@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/green_leaves.jpg",
+    "alpha": "91",
+
+    "special": {
+        "background": "#181919",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#181919",
+        "color1": "#37493c",
+        "color2": "#2f6342",
+        "color3": "#37613c",
+        "color4": "#2f4841",
+        "color5": "#265d39",
+        "color6": "#3c6547",
+        "color7": "#c5c5c5",
+        "color8": "#303232",
+        "color9": "#3f674a",
+        "color10": "#338a53",
+        "color11": "#3d8746",
+        "color12": "#356557",
+        "color13": "#288147",
+        "color14": "#438d57",
+        "color15": "#ffffff"
+    }
+}

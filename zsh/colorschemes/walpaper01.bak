@@ -1,0 +1,30 @@
+foreground         #ffffff
+background         #171a19
+background_opacity 0.8
+cursor             #ffffff
+
+active_tab_foreground     #171a19
+active_tab_background     #689364
+inactive_tab_foreground   #ffffff
+inactive_tab_background   #171a19
+
+active_border_color   #689364
+inactive_border_color #476544
+bell_border_color     #5d7352
+
+color0       #171a19
+color8       #6c817b
+color1       #5d7352
+color9       #74a25d
+color2       #4e7c5d
+color10      #438b5b
+color3       #8da38c
+color11      #a5e7a2
+color4       #36535a
+color12      #3c717e
+color5       #4a6b5e
+color13      #54967c
+color6       #6e826c
+color14      #82b87d
+color7       #c5c5c5
+color15      #ffffff

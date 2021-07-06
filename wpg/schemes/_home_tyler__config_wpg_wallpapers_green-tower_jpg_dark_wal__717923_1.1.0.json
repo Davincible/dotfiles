@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/green-tower.jpg",
+    "alpha": "80",
+
+    "special": {
+        "background": "#0b1c18",
+        "foreground": "#f6ffff",
+        "cursor": "#f6ffff"
+    },
+    "colors": {
+        "color0": "#0b1c18",
+        "color1": "#75C5CE",
+        "color2": "#549FA0",
+        "color3": "#899C61",
+        "color4": "#507785",
+        "color5": "#75C5E6",
+        "color6": "#6CBEE3",
+        "color7": "#cddbd5",
+        "color8": "#184037",
+        "color9": "#83ffff",
+        "color10": "#5ddedf",
+        "color11": "#b7db6d",
+        "color12": "#5aa1ba",
+        "color13": "#81ffff",
+        "color14": "#76ffff",
+        "color15": "#f6ffff"
+    }
+}

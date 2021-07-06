@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/UrUZefF.jpg",
+    "alpha": "91",
+
+    "special": {
+        "background": "#181919",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#181919",
+        "color1": "#d03549",
+        "color2": "#49565b",
+        "color3": "#7c333d",
+        "color4": "#50616a",
+        "color5": "#da7b7e",
+        "color6": "#7b7a81",
+        "color7": "#c5c5c5",
+        "color8": "#303232",
+        "color9": "#ff3352",
+        "color10": "#547480",
+        "color11": "#ac3647",
+        "color12": "#5b8195",
+        "color13": "#ff898f",
+        "color14": "#948eb7",
+        "color15": "#ffffff"
+    }
+}

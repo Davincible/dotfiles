@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/ice_snow_stones_117524_3840x2400.jpg",
+    "alpha": "85",
+
+    "special": {
+        "background": "#181819",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#181819",
+        "color1": "#5b7f90",
+        "color2": "#365065",
+        "color3": "#678d9e",
+        "color4": "#466b7e",
+        "color5": "#7ba0ac",
+        "color6": "#4c8a9c",
+        "color7": "#c5c5c5",
+        "color8": "#4c4c52",
+        "color9": "#67aaca",
+        "color10": "#3c698d",
+        "color11": "#74bdde",
+        "color12": "#4e8fb0",
+        "color13": "#8cd9f2",
+        "color14": "#53bbd9",
+        "color15": "#ffffff"
+    }
+}

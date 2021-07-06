@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/silhouette-of-golden-gate-bridge-during-golden-hour-1485894.jpg",
+    "alpha": "80",
+
+    "special": {
+        "background": "#1b1b19",
+        "foreground": "#eaf5f7",
+        "cursor": "#eaf5f7"
+    },
+    "colors": {
+        "color0": "#1b1b19",
+        "color1": "#AC6338",
+        "color2": "#656765",
+        "color3": "#DE9A66",
+        "color4": "#6D5549",
+        "color5": "#BF8F68",
+        "color6": "#9A6D55",
+        "color7": "#b0b8ba",
+        "color8": "#96968d",
+        "color9": "#ee7c39",
+        "color10": "#769376",
+        "color11": "#ffc56f",
+        "color12": "#996a53",
+        "color13": "#ffb774",
+        "color14": "#d7885e",
+        "color15": "#eaf5f7"
+    }
+}

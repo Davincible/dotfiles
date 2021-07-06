@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/photo-of-foggy-forest-1367192.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#121312",
+        "foreground": "#d6d7dd",
+        "cursor": "#d6d7dd"
+    },
+    "colors": {
+        "color0": "#121312",
+        "color1": "#7F817F",
+        "color2": "#8D8E90",
+        "color3": "#9D9EA2",
+        "color4": "#ADAFB7",
+        "color5": "#B9BBC5",
+        "color6": "#C1BEC5",
+        "color7": "#d6d7dd",
+        "color8": "#95969a",
+        "color9": "#7F817F",
+        "color10": "#8D8E90",
+        "color11": "#9D9EA2",
+        "color12": "#ADAFB7",
+        "color13": "#B9BBC5",
+        "color14": "#C1BEC5",
+        "color15": "#d6d7dd"
+    }
+}

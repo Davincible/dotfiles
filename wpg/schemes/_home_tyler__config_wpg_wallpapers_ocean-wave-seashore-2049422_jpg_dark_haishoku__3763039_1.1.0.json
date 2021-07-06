@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/ocean-wave-seashore-2049422.jpg",
+    "alpha": "80",
+
+    "special": {
+        "background": "#1d2020",
+        "foreground": "#eaeaea",
+        "cursor": "#eaeaea"
+    },
+    "colors": {
+        "color0": "#1d2020",
+        "color1": "#836a4f",
+        "color2": "#0a8b93",
+        "color3": "#6a543d",
+        "color4": "#75938f",
+        "color5": "#9eb7bf",
+        "color6": "#89a9b5",
+        "color7": "#cdcdcd",
+        "color8": "#343a3a",
+        "color9": "#b68756",
+        "color10": "#06bbc5",
+        "color11": "#926b42",
+        "color12": "#86cec8",
+        "color13": "#b3e7e7",
+        "color14": "#9ce3e7",
+        "color15": "#eaeaea"
+    }
+}

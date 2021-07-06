@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/cyber-truck.jpg",
+    "alpha": "75",
+
+    "special": {
+        "background": "#18191b",
+        "foreground": "#fefeff",
+        "cursor": "#fefeff"
+    },
+    "colors": {
+        "color0": "#18191b",
+        "color1": "#6e7987",
+        "color2": "#849beb",
+        "color3": "#9db4cb",
+        "color4": "#567dbe",
+        "color5": "#aca4a7",
+        "color6": "#819aba",
+        "color7": "#c5c5c6",
+        "color8": "#abbfe9",
+        "color9": "#7f9bbf",
+        "color10": "#77a1da",
+        "color11": "#b4e9ff",
+        "color12": "#5580c8",
+        "color13": "#f5a1c0",
+        "color14": "#93c5ff",
+        "color15": "#fefeff"
+    }
+}

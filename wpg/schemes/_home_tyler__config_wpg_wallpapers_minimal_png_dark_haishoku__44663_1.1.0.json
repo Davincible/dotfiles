@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/minimal.png",
+    "alpha": "85",
+
+    "special": {
+        "background": "#171819",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#171819",
+        "color1": "#8e5b64",
+        "color2": "#73765d",
+        "color3": "#6e505e",
+        "color4": "#4f505f",
+        "color5": "#7e6e94",
+        "color6": "#3e3c4e",
+        "color7": "#c5c5c5",
+        "color8": "#4f5558",
+        "color9": "#c76778",
+        "color10": "#9fa76b",
+        "color11": "#8c516d",
+        "color12": "#5b5e86",
+        "color13": "#a17ed1",
+        "color14": "#49456e",
+        "color15": "#ffffff"
+    }
+}

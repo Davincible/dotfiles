@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/autumn.jpg",
+    "alpha": "85",
+
+    "special": {
+        "background": "#1b1a19",
+        "foreground": "#fffefe",
+        "cursor": "#fffefe"
+    },
+    "colors": {
+        "color0": "#1b1a19",
+        "color1": "#867244",
+        "color2": "#67543f",
+        "color3": "#dbbf96",
+        "color4": "#6d605a",
+        "color5": "#bb9f81",
+        "color6": "#8d8273",
+        "color7": "#c6c5c5",
+        "color8": "#6c6762",
+        "color9": "#bb994b",
+        "color10": "#906d47",
+        "color11": "#fffcab",
+        "color12": "#9a7868",
+        "color13": "#c9a375",
+        "color14": "#c7ab84",
+        "color15": "#fffefe"
+    }
+}

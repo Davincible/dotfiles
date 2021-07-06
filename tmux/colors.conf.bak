@@ -1,0 +1,2 @@
+set -g status-style 'bg=#333333 fg=#5eacd3'
+

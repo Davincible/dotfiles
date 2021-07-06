@@ -1,0 +1,437 @@
+# i3 config file (v4)
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+set $alt Mod1
+set $coloract "#cb654c"
+set $colorin "#8c4535"
+set $terminal kitty
+set_from_resource $color15 i3wm.color15 "#fffefe"
+set_from_resource $split i3wm.color10 "#d55a34"
+set_from_resource $coloru i3wm.color2 "#d45342"
+set_from_resource $color0 i3wm.color0 "#1a1414"
+set_from_resource $color8 i3wm.color8 "#e85454"
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# font pango:monospace 8 
+# font pango:DejaVu Sans Mono 8 
+font pango:JetBrainsMono Nerd Font 8
+
+# Gaps
+for_window [class=".*"] border pixel 0
+gaps outer 4
+gaps top 0
+gaps inner 12
+new_window pixel 5
+
+######### COLORS ##########
+#
+# class                 border    backgr    text    indicator child_border
+client.focused          $coloract $coloract $color15 $split  $coloract
+client.focused_inactive $coloract $coloract $color15 $split  $colorin
+client.unfocused        $colorin  $colorin  $color15 $split  $colorin
+client.urgent           $coloru   $coloru   $color15 $coloru $coloru
+client.placeholder      $color0   $color8   $color15 $color0 $color8
+client.background       $color0
+
+
+###### KEYBINDINGS #######
+
+floating_modifier $mod
+
+#bindsym $mod+space exec tmux2
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal and vertical orientation
+bindsym $mod+s split v
+bindsym $mod+v split h
+
+# enter fullscreen mode for the focused container
+bindsym $mod+c fullscreen toggle
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Shift+t layout tabbed
+bindsym $mod+Shift+s layout stacked
+bindsym $mod+Shift+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+o sticky toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+p focus parent
+
+# Reboot & Poweroff
+bindsym $alt+Ctrl+Shift+Next exec systemctl reboot
+bindsym $alt+Ctrl+Shift+Prior  exec systemctl poweroff
+
+bindsym Print exec flameshot gui
+
+###### EXECUTE PROGRAMS ######
+
+bindsym $mod+Shift+f exec kitty --name fexplorer anger
+bindsym $mod+w       exec brave
+bindsym $mod+m       exec kitty --name music spt
+bindsym $mod+$alt+n  exec wpg -m
+bindsym $alt+Tab     exec rofi -show window
+bindsym $mod+t       exec $terminal
+bindsym $mod+Return  exec $terminal
+bindsym $alt+F4      kill
+bindsym $mod+Shift+q kill
+bindsym $alt+F2      exec rofi -show run
+bindsym $alt+space   exec rofi -show drun
+
+bindsym --release Print exec scrot
+bindsym --release Shift+Print exec scrot -s
+
+# scratchpad terminal
+bindsym $mod+u [instance = "dropdown"] scratchpad show
+
+workspace 1 output primary
+workspace 2 output primary
+workspace 3 output primary
+workspace 4 output primary
+workspace 5 output primary
+workspace 6 output secondary
+workspace 7 output secondary
+workspace 8 output secondary
+workspace 9 output secondary
+workspace 0 output secondary
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+x      exec --no-startup-id i3exit logout, mode "default"
+
+# Suspend
+bindsym $mod+Shift+period          exec systemctl suspend
+bindsym $mod+Shift+i               exec --no-startup-id i3exit lock, mode "default" 
+bindsym $mod+Shift+o               exec --no-startup-id dm-tool lock 
+bindsym $mod+Shift+Escape          exec --no-startup-id i3exit shutdown, mode "default"
+
+################################################################################################
+## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
+################################################################################################
+
+exec --no-startup-id volumeicon
+bindsym $mod+Ctrl+m exec kitty 'alsamixer'
+#exec --no-startup-id pulseaudio
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
+
+################################################################################################
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pulseaudio-ctl up   #increase sound volume
+bindsym XF86AudioLowerVolume  exec --no-startup-id pulseaudio-ctl down #decrease sound volume
+bindsym XF86AudioMute         exec --no-startup-id pulseaudio-ctl mute # mute sound
+bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute 1 toggle
+
+
+# Touchpad controls
+bindsym XF86TouchpadToggle    exec ~/.config/i3/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay         exec playerctl play
+bindsym XF86AudioPause        exec playerctl pause
+bindsym XF86AudioNext         exec playerctl next
+bindsym XF86AudioPrev         exec playerctl previous
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -s sysfs/backlight/auto -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -s sysfs/backlight/auto -U 5
+
+bindsym XF86SplitScreen       exec notify-send SplitScreen
+bindsym XF86Display           exec --no-startup-id autorandr --change --skip-option crtc
+bindsym XF86Tools             exec --no-startup-id ~/.config/i3/togglekeyboardlight.sh
+
+mode "resize" {
+        # resize windows
+        bindsym l resize shrink width 5 px or 1 ppt
+        bindsym j resize grow height 5 px or 1 ppt
+        bindsym k resize shrink height 5 px or 1 ppt
+        bindsym h resize grow width 5 px or 1 ppt
+
+        # resize gaps
+        bindsym minus       gaps outer current plus 10
+        bindsym plus        gaps outer current minus 10
+        bindsym Shift+minus gaps inner current plus 10
+        bindsym Shift+plus  gaps inner current minus 10
+
+        # move windows
+        bindsym Shift+l move right 10
+        bindsym Shift+j move down 10
+        bindsym Shift+k move up 10
+        bindsym Shift+h move left 10
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "display" {
+
+        # toggle thinkpad modes
+        bindsym s exec dock-single
+        bindsym d exec dock-dual
+        bindsym t exec thinkpad
+
+        # toggle picom modes
+        bindsym f exec "killall picom; picom -b --inactive-dim 0.2"
+        bindsym n exec "killall picom; picom -b"
+
+        bindsym h move workspace to output left
+        bindsym l move workspace to output right
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+bindsym $mod+d mode "display"
+
+# i3 bar not present use polybar
+# bar {
+#         status_command i3status
+# }
+
+
+##### WINDOWS ######
+
+assign [class = "Firefox"] 1
+# assign [class = "qutebrowser"] 1
+# assign [class = "Google-chrome"] 1
+# assign [class = "DBeaver"] 3
+# assign [class = "zoom"] 9
+# assign [instance = "music"] 10
+
+for_window [class = "Wpg"] floating enable
+for_window [instance = "dropdown"] move scratchpad
+for_window [instance = "dropdown"] floating enable
+# for_window [instance = "music"] floating enable
+
+
+###### STARTUP ######
+
+exec        --no-startup-id ~/.config/wpg/wp_init.sh
+exec        --no-startup-id autorandr --change --skip-option crtc
+exec        --no-startup-id numlockx on
+# exec --no-startup-id "setxkbmap -option caps:escape"
+# exec --no-startup-id dockd --daemon
+exec        --no-startup-id ~/.config/i3/start-picom.sh
+exec        --no-startup-id "$HOME/.config/polybar/launch.sh"
+exec_always --no-startup-id ~/.config/i3/start-polkit.sh
+exec        --no-startup-id ~/.config/i3/start-xsettingsd.sh
+exec        --no-startup-id xautolock -time 10 -locker blurlock -secure -detectsleep
+exec        --no-startup-id dunst
+exec        --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec        --no-startup-id ~/.config/i3/start-redshift.sh
+# exec_always        --no-startup-id redshift
+exec        --no-startup-id ~/Scripts/wpgd
+
+# bindsym XF86AddFavorite exec --no-startup-id notify-send XF86AddFavorite
+# bindsym XF86ApplicationLeft exec --no-startup-id notify-send XF86ApplicationLeft
+# bindsym XF86ApplicationRight exec --no-startup-id notify-send XF86ApplicationRight
+# bindsym XF86AudioMedia exec --no-startup-id notify-send XF86AudioMedia
+# bindsym XF86AudioMute exec --no-startup-id notify-send XF86AudioMute
+# bindsym XF86AudioNext exec --no-startup-id notify-send XF86AudioNext
+# bindsym XF86AudioPause exec --no-startup-id notify-send XF86AudioPause
+# bindsym XF86AudioPlay exec --no-startup-id notify-send XF86AudioPlay
+# bindsym XF86AudioPrev exec --no-startup-id notify-send XF86AudioPrev
+# bindsym XF86AudioLowerVolume exec --no-startup-id notify-send XF86AudioLowerVolume
+# bindsym XF86AudioRaiseVolume exec --no-startup-id notify-send XF86AudioRaiseVolume
+# bindsym XF86AudioRecord exec --no-startup-id notify-send XF86AudioRecord
+# bindsym XF86AudioRewind exec --no-startup-id notify-send XF86AudioRewind
+# bindsym XF86AudioStop exec --no-startup-id notify-send XF86AudioStop
+# bindsym XF86Away exec --no-startup-id notify-send XF86Away
+# bindsym XF86Back exec --no-startup-id notify-send XF86Back
+# bindsym XF86Book exec --no-startup-id notify-send XF86Book
+# bindsym XF86BrightnessAdjust exec --no-startup-id notify-send XF86BrightnessAdjust
+# bindsym XF86CD exec --no-startup-id notify-send XF86CD
+# bindsym XF86Calculator exec --no-startup-id notify-send XF86Calculator
+# bindsym XF86Calendar exec --no-startup-id notify-send XF86Calendar
+# bindsym XF86Clear exec --no-startup-id notify-send XF86Clear
+# bindsym XF86ClearGrab exec --no-startup-id notify-send XF86ClearGrab
+# bindsym XF86Close exec --no-startup-id notify-send XF86Close
+# bindsym XF86Community exec --no-startup-id notify-send XF86Community
+# bindsym XF86ContrastAdjust exec --no-startup-id notify-send XF86ContrastAdjust
+# bindsym XF86Copy exec --no-startup-id notify-send XF86Copy
+# bindsym XF86Cut exec --no-startup-id notify-send XF86Cut
+# bindsym XF86DOS exec --no-startup-id notify-send XF86DOS
+# bindsym XF86Display exec --no-startup-id notify-send XF86Display
+# bindsym XF86Documents exec --no-startup-id notify-send XF86Documents
+# bindsym XF86Eject exec --no-startup-id notify-send XF86Eject
+# bindsym XF86Excel exec --no-startup-id notify-send XF86Excel
+# bindsym XF86Explorer exec --no-startup-id notify-send XF86Explorer
+# bindsym XF86Favorites exec --no-startup-id notify-send XF86Favorites
+# bindsym XF86Finance exec --no-startup-id notify-send XF86Finance
+# bindsym XF86Forward exec --no-startup-id notify-send XF86Forward
+# bindsym XF86Game exec --no-startup-id notify-send XF86Game
+# bindsym XF86Go exec --no-startup-id notify-send XF86Go
+# bindsym XF86History exec --no-startup-id notify-send XF86History
+# bindsym XF86HomePage exec --no-startup-id notify-send XF86HomePage
+# bindsym XF86HotLinks exec --no-startup-id notify-send XF86HotLinks
+# bindsym XF86Launch0 exec --no-startup-id notify-send XF86Launch0
+# bindsym XF86Launch1 exec --no-startup-id notify-send XF86Launch1
+# bindsym XF86Launch2 exec --no-startup-id notify-send XF86Launch2
+# bindsym XF86Launch3 exec --no-startup-id notify-send XF86Launch3
+# bindsym XF86Launch4 exec --no-startup-id notify-send XF86Launch4
+# bindsym XF86Launch5 exec --no-startup-id notify-send XF86Launch5
+# bindsym XF86Launch6 exec --no-startup-id notify-send XF86Launch6
+# bindsym XF86Launch7 exec --no-startup-id notify-send XF86Launch7
+# bindsym XF86Launch8 exec --no-startup-id notify-send XF86Launch8
+# bindsym XF86Launch9 exec --no-startup-id notify-send XF86Launch9
+# bindsym XF86LaunchA exec --no-startup-id notify-send XF86LaunchA
+# bindsym XF86LaunchB exec --no-startup-id notify-send XF86LaunchB
+# bindsym XF86LaunchC exec --no-startup-id notify-send XF86LaunchC
+# bindsym XF86LaunchD exec --no-startup-id notify-send XF86LaunchD
+# bindsym XF86LaunchE exec --no-startup-id notify-send XF86LaunchE
+# bindsym XF86LaunchF exec --no-startup-id notify-send XF86LaunchF
+# bindsym XF86LightBulb exec --no-startup-id notify-send XF86LightBulb
+# bindsym XF86LogOff exec --no-startup-id notify-send XF86LogOff
+# bindsym XF86Mail exec --no-startup-id notify-send XF86Mail
+# bindsym XF86MailForward exec --no-startup-id notify-send XF86MailForward
+# bindsym XF86Market exec --no-startup-id notify-send XF86Market
+# bindsym XF86Meeting exec --no-startup-id notify-send XF86Meeting
+# bindsym XF86Memo exec --no-startup-id notify-send XF86Memo
+# bindsym XF86MenuKB exec --no-startup-id notify-send XF86MenuKB
+# bindsym XF86MenuPB exec --no-startup-id notify-send XF86MenuPB
+# bindsym XF86Messenger exec --no-startup-id notify-send XF86Messenger
+# bindsym XF86MonBrightnessUp exec --no-startup-id notify-send XF86MonBrightnessUp
+# bindsym XF86MonBrightnessDown exec --no-startup-id notify-send XF86MonBrightnessDown
+# bindsym XF86Music exec --no-startup-id notify-send XF86Music
+# bindsym XF86MyComputer exec --no-startup-id notify-send XF86MyComputer
+# bindsym XF86MySites exec --no-startup-id notify-send XF86MySites
+# bindsym XF86New exec --no-startup-id notify-send XF86New
+# bindsym XF86News exec --no-startup-id notify-send XF86News
+# bindsym XF86Next_VMode exec --no-startup-id notify-send XF86Next_VMode
+# bindsym XF86Prev_VMode exec --no-startup-id notify-send XF86Prev_VMode
+# bindsym XF86OfficeHome exec --no-startup-id notify-send XF86OfficeHome
+# bindsym XF86Open exec --no-startup-id notify-send XF86Open
+# bindsym XF86OpenURL exec --no-startup-id notify-send XF86OpenURL
+# bindsym XF86Option exec --no-startup-id notify-send XF86Option
+# bindsym XF86Paste exec --no-startup-id notify-send XF86Paste
+# bindsym XF86Phone exec --no-startup-id notify-send XF86Phone
+# bindsym XF86Pictures exec --no-startup-id notify-send XF86Pictures
+# bindsym XF86PowerDown exec --no-startup-id notify-send XF86PowerDown
+# bindsym XF86PowerOff exec --no-startup-id notify-send XF86PowerOff
+# bindsym XF86Next_VMode exec --no-startup-id notify-send XF86Next_VMode
+# bindsym XF86Prev_VMode exec --no-startup-id notify-send XF86Prev_VMode
+# bindsym XF86Q exec --no-startup-id notify-send XF86Q
+# bindsym XF86Refresh exec --no-startup-id notify-send XF86Refresh
+# bindsym XF86Reload exec --no-startup-id notify-send XF86Reload
+# bindsym XF86Reply exec --no-startup-id notify-send XF86Reply
+# bindsym XF86RockerDown exec --no-startup-id notify-send XF86RockerDown
+# bindsym XF86RockerEnter exec --no-startup-id notify-send XF86RockerEnter
+# bindsym XF86RockerUp exec --no-startup-id notify-send XF86RockerUp
+# bindsym XF86RotateWindows exec --no-startup-id notify-send XF86RotateWindows
+# bindsym XF86RotationKB exec --no-startup-id notify-send XF86RotationKB
+# bindsym XF86RotationPB exec --no-startup-id notify-send XF86RotationPB
+# bindsym XF86Save exec --no-startup-id notify-send XF86Save
+# bindsym XF86ScreenSaver exec --no-startup-id notify-send XF86ScreenSaver
+# bindsym XF86ScrollClick exec --no-startup-id notify-send XF86ScrollClick
+# bindsym XF86ScrollDown exec --no-startup-id notify-send XF86ScrollDown
+# bindsym XF86ScrollUp exec --no-startup-id notify-send XF86ScrollUp
+# bindsym XF86Search exec --no-startup-id notify-send XF86Search
+# bindsym XF86Send exec --no-startup-id notify-send XF86Send
+# bindsym XF86Shop exec --no-startup-id notify-send XF86Shop
+# bindsym XF86Sleep exec --no-startup-id notify-send XF86Sleep
+# bindsym XF86Spell exec --no-startup-id notify-send XF86Spell
+# bindsym XF86SplitScreen exec --no-startup-id notify-send XF86SplitScreen
+# bindsym XF86Standby exec --no-startup-id notify-send XF86Standby
+# bindsym XF86Start exec --no-startup-id notify-send XF86Start
+# bindsym XF86Stop exec --no-startup-id notify-send XF86Stop
+# bindsym XF86Support exec --no-startup-id notify-send XF86Support
+# bindsym XF86Switch_VT_1 exec --no-startup-id notify-send XF86Switch_VT_1
+# bindsym XF86Switch_VT_10 exec --no-startup-id notify-send XF86Switch_VT_10
+# bindsym XF86Switch_VT_11 exec --no-startup-id notify-send XF86Switch_VT_11
+# bindsym XF86Switch_VT_12 exec --no-startup-id notify-send XF86Switch_VT_12
+# bindsym XF86Switch_VT_2 exec --no-startup-id notify-send XF86Switch_VT_2
+# bindsym XF86Switch_VT_3 exec --no-startup-id notify-send XF86Switch_VT_3
+# bindsym XF86Switch_VT_4 exec --no-startup-id notify-send XF86Switch_VT_4
+# bindsym XF86Switch_VT_5 exec --no-startup-id notify-send XF86Switch_VT_5
+# bindsym XF86Switch_VT_6 exec --no-startup-id notify-send XF86Switch_VT_6
+# bindsym XF86Switch_VT_7 exec --no-startup-id notify-send XF86Switch_VT_7
+# bindsym XF86Switch_VT_8 exec --no-startup-id notify-send XF86Switch_VT_8
+# bindsym XF86Switch_VT_9 exec --no-startup-id notify-send XF86Switch_VT_9
+# bindsym XF86TaskPane exec --no-startup-id notify-send XF86TaskPane
+# bindsym XF86Terminal exec --no-startup-id notify-send XF86Terminal
+# bindsym XF86ToDoList exec --no-startup-id notify-send XF86ToDoList
+# bindsym XF86Tools exec --no-startup-id notify-send XF86Tools
+# bindsym XF86Travel exec --no-startup-id notify-send XF86Travel
+# bindsym XF86Ungrab exec --no-startup-id notify-send XF86Ungrab
+# bindsym XF86User1KB exec --no-startup-id notify-send XF86User1KB
+# bindsym XF86User2KB exec --no-startup-id notify-send XF86User2KB
+# bindsym XF86UserPB exec --no-startup-id notify-send XF86UserPB
+# bindsym XF86VendorHome exec --no-startup-id notify-send XF86VendorHome
+# bindsym XF86Video exec --no-startup-id notify-send XF86Video
+# bindsym XF86WWW exec --no-startup-id notify-send XF86WWW
+# bindsym XF86WakeUp exec --no-startup-id notify-send XF86WakeUp
+# bindsym XF86WebCam exec --no-startup-id notify-send XF86WebCam
+# bindsym XF86WheelButton exec --no-startup-id notify-send XF86WheelButton
+# bindsym XF86Word exec --no-startup-id notify-send XF86Word
+# bindsym XF86XF86BackForward exec --no-startup-id notify-send XF86XF86BackForward
+# bindsym XF86Xfer exec --no-startup-id notify-send XF86Xfer
+# bindsym XF86ZoomIn exec --no-startup-id notify-send XF86ZoomIn
+# bindsym XF86ZoomOut exec --no-startup-id notify-send XF86ZoomOut
+# bindsym XF86iTouch exec --no-startup-id notify-send XF86iTouch

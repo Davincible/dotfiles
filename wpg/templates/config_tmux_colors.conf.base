@@ -1,0 +1,22 @@
+set -g status-style 'bg={active} fg={color0}'
+
+# default theme
+tmux_conf_theme_colour_1={color0}    # dark gray
+tmux_conf_theme_colour_2={color1}    # gray
+tmux_conf_theme_colour_3={color2}    # light gray
+tmux_conf_theme_colour_4={color3}    # light blue
+tmux_conf_theme_colour_5={color4}    # yellow
+tmux_conf_theme_colour_6={color5}    # dark gray
+tmux_conf_theme_colour_7={color6}    # white
+tmux_conf_theme_colour_8={color7}    # dark gray
+tmux_conf_theme_colour_9={color8}    # yellow
+tmux_conf_theme_colour_10={color9}   # pink
+tmux_conf_theme_colour_11={color10}   # green
+tmux_conf_theme_colour_12={color11}   # light gray
+tmux_conf_theme_colour_13={color12}   # white
+tmux_conf_theme_colour_14={color13}   # dark gray
+tmux_conf_theme_colour_15={color14}   # dark gray
+tmux_conf_theme_colour_16="#d70000"   # red
+tmux_conf_theme_colour_17={color15}   # white
+
+
