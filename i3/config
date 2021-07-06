@@ -4,14 +4,14 @@
 
 set $mod Mod4
 set $alt Mod1
-set $coloract "#357045"
-set $colorin "#254d2f"
+set $coloract "#4b8b8b"
+set $colorin "#335f5f"
 set $terminal kitty
-set_from_resource $color15 i3wm.color15 "#ffffff"
-set_from_resource $split i3wm.color10 "#338a53"
-set_from_resource $coloru i3wm.color2 "#2f6342"
-set_from_resource $color0 i3wm.color0 "#181919"
-set_from_resource $color8 i3wm.color8 "#303232"
+set_from_resource $color15 i3wm.color15 "#faffff"
+set_from_resource $split i3wm.color10 "#62eced"
+set_from_resource $coloru i3wm.color2 "#5aacad"
+set_from_resource $color0 i3wm.color0 "#071b17"
+set_from_resource $color8 i3wm.color8 "#479a87"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -193,7 +193,7 @@ bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute 1 toggl
 bindsym XF86TouchpadToggle    exec ~/.config/i3/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
-bindsym XF86AudioPlay         exec playerctl play
+bindsym XF86AudioPlay         exec playerctl play-pause
 bindsym XF86AudioPause        exec playerctl pause
 bindsym XF86AudioNext         exec playerctl next
 bindsym XF86AudioPrev         exec playerctl previous

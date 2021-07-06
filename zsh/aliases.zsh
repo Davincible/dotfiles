@@ -24,7 +24,7 @@ alias man='vman'
 alias pacman='sudo pacman'
 alias wifi-connect='nmcli d connect wlp82s0 --ask'
 alias nmgui="nm-connection-editor"
-alias e3="tmp=`pwd` && cd ~/.config/wpg/templates && nvim i3.base && echo changing back to $tmp && cd $tmp"
+alias e3="nvim ~/.config/wpg/templates/i3.base"
 alias x="exit"
 alias snvim="sudo -E nvim"
 alias svim="sudo -E vim"

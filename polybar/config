@@ -20,26 +20,26 @@
 screenchange-reload = true
 
 [colors]
-background = #f2181919
+background = #f2071b17
 ; old background #2b2f37
 foreground = #adb1b9   
 
-color0 = #181919
-color1 = #37493c
-color2 = #2f6342
-color3 = #37613c
-color4 = #2f4841
-color5 = #265d39
-color6 = #3c6547
-color7 = #c5c5c5
-color8 = #303232
-color9 = #3f674a
-color10 = #338a53
-color11 = #3d8746
-color12 = #356557
-color13 = #288147
-color14 = #438d57
-color15 = #ffffff
+color0 = #071b17
+color1 = #7cd1da
+color2 = #5aacad
+color3 = #93a868
+color4 = #578291
+color5 = #7bd0f3
+color6 = #72c9f0
+color7 = #d6e5df
+color8 = #479a87
+color9 = #5eaeae
+color10 = #62eced
+color11 = #c2e873
+color12 = #498ba4
+color13 = #87ffff
+color14 = #7cffff
+color15 = #faffff
 dark-light = #272A2B 
 active-light = #313435
 
