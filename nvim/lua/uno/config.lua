@@ -13,7 +13,7 @@ vim.go.mouse        = "a"
 vim.go.clipboard    = "unnamedplus"
 vim.go.wildmenu     = true
 vim.go.wildmode     = "longest,list,full"
-vim.go.undodir      = "~/.vim/undodir"
+vim.go.undodir      = ".vim/undodir"
 vim.go.updatetime   = 100
 vim.go.fillchars    = "eob: "
 
