@@ -105,9 +105,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tyler/.local/share/nvim/site/pack/packer/start/harpoon"
   },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/tyler/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/tyler/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/tyler/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lush.nvim"] = {
     loaded = true,

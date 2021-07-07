@@ -37,12 +37,14 @@ return require('packer').startup(function()
   use 'ekalinin/Dockerfile.vim'
   use 'windwp/nvim-autopairs'
   use 'alvan/vim-closetag'
+  use 'ray-x/lsp_signature.nvim'
 
   -- Nvim LSP
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
   use 'hrsh7th/nvim-compe'
   use 'onsails/lspkind-nvim'
+	use 'glepnir/lspsaga.nvim'
 
   -- Nvim Treesitter
   use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
