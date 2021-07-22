@@ -69,5 +69,8 @@ return require('packer').startup(function()
   use 'famiu/nvim-reload'
 
   use 'lewis6991/gitsigns.nvim'
+
+
+  -- use 'dstein64/vim-startuptime'
 end)
 

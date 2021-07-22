@@ -11,21 +11,21 @@ function on_attach(client, bufnr)
     -- Mappings.
     local opts = {noremap = true, silent = true}
 
-    buf_set_keymap("n", "gD", "lua vim.lsp.buf.declaration()", opts)
-    buf_set_keymap("n", "gd", "lua vim.lsp.buf.definition()", opts)
-    buf_set_keymap("n", "K", "lua vim.lsp.buf.hover()", opts)
-    buf_set_keymap("n", "gi", "lua vim.lsp.buf.implementation()", opts)
-    buf_set_keymap("n", "<C-k>", "lua vim.lsp.buf.signature_help()", opts)
-    buf_set_keymap("n", "<leader>wa", "lua vim.lsp.buf.add_workspace_folder()", opts)
-    buf_set_keymap("n", "<leader>wr", "lua vim.lsp.buf.remove_workspace_folder()", opts)
-    buf_set_keymap("n", "<leader>wl", "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))", opts)
-    buf_set_keymap("n", "<leader>D", "lua vim.lsp.buf.type_definition()", opts)
-    buf_set_keymap("n", "<leader>rn", "lua vim.lsp.buf.rename()", opts)
-    buf_set_keymap("n", "gr", "lua vim.lsp.buf.references()", opts)
-    buf_set_keymap("n", "<leader>e", "lua vim.lsp.diagnostic.show_line_diagnostics()", opts)
-    buf_set_keymap("n", "[d", "lua vim.lsp.diagnostic.goto_prev()", opts)
-    buf_set_keymap("n", "]d", "lua vim.lsp.diagnostic.goto_next()", opts)
-    buf_set_keymap("n", "<leader>q", "lua vim.lsp.diagnostic.set_loclist()", opts)
+    buf_set_keymap("n", "gD",         ":lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gd",         ":lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "K",          ":lua vim.lsp.buf.hover()<CR>", opts)
+    buf_set_keymap("n", "gi",         ":lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "<C-k>",      ":lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "<leader>wa", ":lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<leader>wr", ":lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+    buf_set_keymap("n", "<leader>wl", ":lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+    buf_set_keymap("n", "<leader>D",  ":lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "gr",         ":lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap("n", "<leader>e",  ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
+    buf_set_keymap("n", "[d",         ":lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d",         ":lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<leader>q",  ":lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
@@ -148,6 +148,8 @@ vim.api.nvim_set_keymap('n', 'H', ":lua require('lspsaga.hover').render_hover_do
 vim.api.nvim_set_keymap('n', '<C-f>', ":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-b>', ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'gs', ":lua require('lspsaga.signaturehelp').signature_help()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>gd', ":lua require'lspsaga.provider'.preview_definition()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>cd', ":lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", {noremap = true, silent = true})
 
 -- replace the default lsp diagnostic letters with prettier symbols
 vim.fn.sign_define("LspDiagnosticsSignError",       {text = "", numhl = "LspDiagnosticsDefaultError"})

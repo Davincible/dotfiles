@@ -152,7 +152,7 @@ local theme = lush(function()
     MoreMsg       { fg = color6.lighten(10), gui = "italic" }, -- |more-prompt|
     NonText       { fg = color2.darken(20), ctermbg=none }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal        { fg = color1.lighten(50).rotate(50), ctermbg=none }, -- normal text
-    NormalFloat   { bg = color7, fg = color2.darken(40)}, -- Normal text in floating windows.
+    NormalFloat   { bg = black, fg = color2.darken(40)}, -- Normal text in floating windows.
     NormalNC      { fg = color1.lighten(40).rotate(40) }, -- normal text in non-current windows
     Pmenu         { bg = color2.darken(40).saturate(-40), fg = color8 }, -- Popup menu: normal item.
     PmenuSel      { bg = color5.lighten(20), fg = color12.lighten(60) }, -- Popup menu: selected item.
@@ -243,7 +243,7 @@ local theme = lush(function()
     LspDiagnosticsDefaultError           { fg = hsl("#ab0934").saturate(-30).lighten(20) , gui = "italic"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultWarning         { fg = hsl("#e0ba0b").saturate(-20) , gui = "italic"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
     LspDiagnosticsDefaultInformation     { fg = color11.darken(25), gui = "italic" }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultHint            { fg = color7 }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultHint            { fg = color7, gui = "italic" }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
     -- LspDiagnosticsVirtualTextError       { }, -- Used for "Error" diagnostic virtual text
     -- LspDiagnosticsVirtualTextWarning     { }, -- Used for "Warning" diagnostic virtual text
@@ -255,10 +255,10 @@ local theme = lush(function()
     -- LspDiagnosticsUnderlineInformation   { }, -- Used to underline "Information" diagnostics
     -- LspDiagnosticsUnderlineHint          { }, -- Used to underline "Hint" diagnostics
 
-    -- LspDiagnosticsFloatingError          { }, -- Used to color "Error" diagnostic messages in diagnostics float
-    -- LspDiagnosticsFloatingWarning        { }, -- Used to color "Warning" diagnostic messages in diagnostics float
-    -- LspDiagnosticsFloatingInformation    { }, -- Used to color "Information" diagnostic messages in diagnostics float
-    -- LspDiagnosticsFloatingHint           { }, -- Used to color "Hint" diagnostic messages in diagnostics float
+    LspDiagnosticsFloatingError          { fg = LspDiagnosticsDefaultError.fg,       bg = black }, -- Used to color "Error" diagnostic messages in diagnostics float
+    LspDiagnosticsFloatingWarning        { fg = LspDiagnosticsDefaultWarning.fg,     bg = black }, -- Used to color "Warning" diagnostic messages in diagnostics float
+    LspDiagnosticsFloatingInformation    { fg = LspDiagnosticsDefaultInformation.fg, bg = black }, -- Used to color "Information" diagnostic messages in diagnostics float
+    LspDiagnosticsFloatingHint           { fg = LspDiagnosticsDefaultHint.fg,        bg = black }, -- Used to color "Hint" diagnostic messages in diagnostics float
 
     -- LspDiagnosticsSignError              { }, -- Used for "Error" signs in sign column
     -- LspDiagnosticsSignWarning            { }, -- Used for "Warning" signs in sign column
@@ -311,7 +311,7 @@ local theme = lush(function()
     TSPunctBracket       { fg = color8.darken(40) },    -- For brackets and parens.
     TSPunctSpecial       { fg = color7.lighten(10) },    -- For special punctutation that does not fall in the catagories before.
     -- TSRepeat             { },    -- For keywords related to loops.
-    TSString             { fg = color13.darken(20).rotate(-30) },    -- For strings.
+    TSString             { fg = color13.darken(10).rotate(-30) },    -- For strings.
     TSDocString          { fg = color13.darken(10).rotate(-40) },
     -- TSStringRegex        { },    -- For regexes.
     -- TSStringEscape       { },    -- For escape characters within a string.

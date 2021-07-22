@@ -10,7 +10,7 @@ telescope.setup {
     defaults = {
         -- find_command = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--max-depth 5'},
         prompt_prefix = " ",
-        prompt_prefix = " ",
+        -- prompt_prefix = " ",
         selection_caret = " ",
         entry_prefix = "  ",
         initial_mode = "insert",
@@ -30,7 +30,7 @@ telescope.setup {
             ".git/",
         },
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
-        shorten_path = true,
+        path_display = {'shorten'},
         winblend = 0,
         border = {},
         borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
@@ -84,10 +84,12 @@ M.find_files = function()
     }
 end
 
-vim.api.nvim_set_keymap('n', '<leader>ff', ':lua require("uno.telescope").find_files()<CR>',     {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fg', ':lua require("telescope.builtin").live_grep()<CR>',  {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fb', ':lua require("telescope.builtin").buffers()<CR>',    {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fh', ':lua require("telescope.builtin").help_tags()<CR>',  {silent = true})
-vim.api.nvim_set_keymap('n', '<C-p>',      ':lua require("telescope.builtin").git_files()<CR>',  {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ff', ':lua require("uno.telescope").find_files()<CR>',           {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fg', ':lua require("telescope.builtin").live_grep()<CR>',        {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fb', ':lua require("telescope.builtin").buffers()<CR>',          {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fh', ':lua require("telescope.builtin").help_tags()<CR>',        {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fr', ':lua require("telescope.builtin").lsp_references()<CR>',   {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fd', ':lua require("telescope.builtin").lsp_definitions()<CR>',  {silent = true})
+vim.api.nvim_set_keymap('n', '<C-p>',      ':lua require("telescope.builtin").git_files()<CR>',        {silent = true})
 
 return M
