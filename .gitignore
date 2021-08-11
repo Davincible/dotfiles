@@ -1,1 +1,5 @@
 ~/
+.vim/
+*.log
+.zcompdump
+.current
