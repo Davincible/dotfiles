@@ -14,6 +14,7 @@ require "bufferline".setup {
         view = "multiwindow",
         show_buffer_close_icons = true,
         separator_style = "thin",
-        mappings = "true"
+        -- mappings = "true",
+        diagnostics = "nvim_lsp",
     }
 }

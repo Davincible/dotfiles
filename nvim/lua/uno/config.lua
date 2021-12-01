@@ -16,6 +16,8 @@ vim.go.clipboard      = "unnamedplus"
 vim.go.wildmenu       = true
 vim.go.wildmode       = "longest,list,full"
 vim.go.undodir        = ".vim/undodir"
+vim.go.backupdir      = ".vim/backups"
+vim.go.backup         = true
 vim.go.updatetime     = 100
 vim.go.fillchars      = "eob: "
 
@@ -33,11 +35,12 @@ vim.bo.softtabstop    = 4
 vim.bo.shiftwidth     = 4
 vim.bo.expandtab      = true
 vim.bo.smartindent    = true
-vim.bo.swapfile       = false
+vim.bo.swapfile       = true
 vim.bo.undofile       = true
 
 -- Global Variables
 vim.g.mapleader            = " "
+vim.g.python3_host_prog    = "/usr/bin/python3"
 -- vim.g.colorizer_auto_color = 1  -- might not be needed
 
 vim.cmd [[
@@ -62,4 +65,7 @@ vim.api.nvim_exec(
 ]],
     false
 )
+
+-- Format HTML on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.html :silent! Neoformat ]], false)
 

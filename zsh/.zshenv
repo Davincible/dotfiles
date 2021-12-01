@@ -12,9 +12,13 @@ export PATH="$PATH:/home/tyler/Scripts"
 # Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export GOPRIVATE="github.com/lookwhosstreaming"
 
 # Selenium
 export PATH="$PATH:/opt/ChromeDriver"
+
+# Java
+export JAVA8_HOME="/usr/lib/jvm/java-8-openjdk"
 
 
 

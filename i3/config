@@ -4,14 +4,14 @@
 
 set $mod Mod4
 set $alt Mod1
-set $coloract "#cbc988"
-set $colorin "#8c8a5e"
+set $coloract "#8cbfcb"
+set $colorin "#60838c"
 set $terminal kitty
-set_from_resource $color15 i3wm.color15 "#fffefe"
-set_from_resource $split i3wm.color10 "#906d47"
-set_from_resource $coloru i3wm.color2 "#67543f"
-set_from_resource $color0 i3wm.color0 "#1b1a19"
-set_from_resource $color8 i3wm.color8 "#6c6762"
+set_from_resource $color15 i3wm.color15 "#ffffff"
+set_from_resource $split i3wm.color10 "#aa7f53"
+set_from_resource $coloru i3wm.color2 "#81654a"
+set_from_resource $color0 i3wm.color0 "#171919"
+set_from_resource $color8 i3wm.color8 "#4f9e9e"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -289,6 +289,7 @@ exec        --no-startup-id ~/.config/i3/start-redshift.sh
 # exec_always        --no-startup-id redshift
 exec        --no-startup-id ~/Scripts/wpgd
 exec        --no-startup-id insync start
+exec        --no-startup-id xset mouse 8 0
 
 # bindsym XF86AddFavorite exec --no-startup-id notify-send XF86AddFavorite
 # bindsym XF86ApplicationLeft exec --no-startup-id notify-send XF86ApplicationLeft

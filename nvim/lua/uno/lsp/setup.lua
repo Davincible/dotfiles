@@ -34,13 +34,13 @@ function on_attach(client, bufnr)
         buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
-    require "lsp_signature".on_attach({
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
-      handler_opts = {
-        border = "single"
-      },
-      use_lspsaga = true,
-    })
+    -- require "lsp_signature".on_attach({
+    --   bind = true, -- This is mandatory, otherwise border config won't get registered.
+    --   handler_opts = {
+    --     border = "single"
+    --   },
+    --   use_lspsaga = true,
+    -- })
 end
 
 -- lspInstall + lspconfig stuff

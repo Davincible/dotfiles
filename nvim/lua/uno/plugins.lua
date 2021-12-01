@@ -56,16 +56,18 @@ return require('packer').startup(function()
   use 'Pocco81/TrueZen.nvim'
   use 'rktjmp/fwatch.nvim'
   use 'sbdchd/neoformat'
+  use 'Chiel92/vim-autoformat'
   use 'akinsho/nvim-toggleterm.lua'
 
   -- Golang
   use 'ray-x/go.nvim'
 
   -- Git stuff
-  use 'ThePrimeagen/git-worktree.nvim'
-  use 'tpope/vim-fugitive'
+  use 'ThePrimeagen/git-worktree.nvim'  -- look into how this works
+  use 'tpope/vim-fugitive' -- what is this again?
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
-  use 'ThePrimeagen/harpoon'
+  use 'ThePrimeagen/harpoon'  -- what is this again?
   use 'famiu/nvim-reload'
 
   use 'lewis6991/gitsigns.nvim'
