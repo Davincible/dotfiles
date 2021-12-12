@@ -1,4 +1,4 @@
-function on_attach(client, bufnr)
+function common_on_attach(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -34,75 +34,19 @@ function on_attach(client, bufnr)
         buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
-    -- require "lsp_signature".on_attach({
-    --   bind = true, -- This is mandatory, otherwise border config won't get registered.
-    --   handler_opts = {
-    --     border = "single"
-    --   },
-    --   use_lspsaga = true,
-    -- })
+    -- Seems redundant with LSP Saga Signature Help
+    -- require "lsp_signature".on_attach(
+    --     {
+    --         bind = false, -- This is mandatory, otherwise border config won't get registered.
+    --         handler_opts = {
+    --             border = "single"
+    --         },
+    --         use_lspsaga = true
+    --     }
+    -- )
 end
 
 -- lspInstall + lspconfig stuff
-
--- Old lsp config setup, lspinstall is archived now:
--- local function setup_servers()
---     require "lspinstall".setup()
---
---     local lspconf = require("lspconfig")
---     local servers = require "lspinstall".installed_servers()
---
---     for _, lang in pairs(servers) do
---         if lang ~= "lua" then
---             lspconf[lang].setup {
---                 on_attach = on_attach,
---                 root_dir = vim.loop.cwd
---             }
---         elseif lang == "lua" then
---             lspconf[lang].setup {
---                 root_dir = function()
---                     return vim.loop.cwd()
---                 end,
---                 on_attach = function(client, buffnr)
---                     require "lsp_signature".on_attach(
---                         {
---                             bind = true, -- This is mandatory, otherwise border config won't get registered.
---                             handler_opts = {
---                                 border = "single"
---                             },
---                             use_lspsaga = true
---                         }
---                     )
---
---                     vim.bo.tabstop = 2
---                     vim.bo.softtabstop = 2
---                     vim.bo.shiftwidth = 2
---                 end,
---                 settings = {
---                     Lua = {
---                         diagnostics = {
---                             globals = {"vim", "use"}
---                         },
---                         workspace = {
---                             preloadFileSize = 1000,
---                             library = {
---                                 [vim.fn.expand("$VIMRUNTIME/lua")] = true
---                             }
---                         },
---                         telemetry = {
---                             enable = false
---                         }
---                     }
---                 }
---             }
---         end
---     end
--- end
-
-local function common_on_attach(client, bufnr)
-    require "lsp_signature".on_attach()
-end
-
 local function setup_servers()
     -- lspconfig variables, not used now
     local lspconfig = require("lspconfig")
@@ -149,6 +93,9 @@ local function setup_servers()
             local opts = {
                 on_attach = common_on_attach
             }
+
+	    -- Setup cmp for all servers
+            opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
             -- (optional) Customize the options passed to the server
             -- if server.name == "tsserver" then

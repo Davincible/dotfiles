@@ -1,10 +1,8 @@
-
 require('uno.config')
 require('uno.plugins')
 require('uno.bufferline')
 require('uno.statusline')
 require('uno.lsp')
-require('uno.compe')
 require('uno.fileTree')
 require('uno.telescope')
 require('uno.treesitter')

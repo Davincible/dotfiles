@@ -4,6 +4,7 @@ require "bufferline".setup {
         buffer_close_icon = "",
         modified_icon = "",
         close_icon = "",
+	close_command = "lua require('uno.myFuncs').closeBuffer()",
         left_trunc_marker = "",
         right_trunc_marker = "",
         max_name_length = 14,
@@ -18,3 +19,4 @@ require "bufferline".setup {
         diagnostics = "nvim_lsp",
     }
 }
+
