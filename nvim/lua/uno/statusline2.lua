@@ -64,9 +64,9 @@ end
 
 local function lsp_info()
 
-    local warnings = vim.lsp.diagnostic.get_count(0, "Warning")
-    local errors = vim.lsp.diagnostic.get_count(0, "Error")
-    local hints = vim.lsp.diagnostic.get_count(0, "Hint")
+    local warnings = vim.diagnostic.get_count(0, "Warning")
+    local errors = vim.diagnostic.get_count(0, "Error")
+    local hints = vim.diagnostic.get_count(0, "Hint")
 
     return string.format("LSP: H %d W %d E %d", hints, warnings, errors)
 end

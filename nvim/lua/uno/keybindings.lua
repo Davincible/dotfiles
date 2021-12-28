@@ -6,6 +6,10 @@ vim.api.nvim_set_keymap('v', 'Q', '', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>d', '"_d', {noremap = true})
 vim.api.nvim_set_keymap('v', '<leader>d', '"_d', {noremap = true})
 
+-- Paste on new line
+vim.api.nvim_set_keymap('n', '<leader>p', 'o<ESC>p', {noremap = true})
+vim.api.nvim_set_keymap('v', '<leader>p', 'o<ESC>p', {noremap = true})
+
 -- write only if changed
 vim.api.nvim_set_keymap('n', '<Leader>w', ':up<CR>', {noremap = true})
 vim.api.nvim_set_keymap('v', '<Leader>w', ':up<CR>', {noremap = true})

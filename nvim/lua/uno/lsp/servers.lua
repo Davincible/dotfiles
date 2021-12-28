@@ -65,12 +65,14 @@ local function setup_servers()
         "eslint",
         "gopls",
         "graphql",
+        "grammarly",
         "html",
         "jsonls",
         "jdtls", -- java
         "ltex",
         "sumneko_lua",
-        "pyright",
+        -- "pyright",
+        "jedi_language_server",
         "sqls",
         "tsserver",
         "yamlls"
@@ -130,6 +132,12 @@ local function setup_servers()
                         }
                     }
                 }
+            end
+            if server.name == "denols" then
+                opts.root_dir = lspconfig.util.root_pattern('.deno')
+            end
+            if server.name == "html" then
+                opts.filetypes = {"html", "eta"}
             end
 
             -- This setup() function is exactly the same as lspconfig's setup function.

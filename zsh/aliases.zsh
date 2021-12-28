@@ -20,7 +20,7 @@ alias ls="lsd"
 alias sudo='sudo '
 alias python='python3'
 alias pypi='pip3 install --user'
-alias man='vman'
+# alias man='vman'
 alias pacman='sudo pacman'
 alias wifi-connect='nmcli d connect wlp82s0 --ask'
 alias nmgui="nm-connection-editor"
@@ -56,3 +56,6 @@ vman() {
 
 # User Programs
 alias gephi="LIBGL_ALWAYS_SOFTWARE=1 gephi --jdkhome $JAVA8_HOME"
+
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
