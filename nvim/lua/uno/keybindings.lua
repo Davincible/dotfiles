@@ -11,8 +11,8 @@ vim.api.nvim_set_keymap('n', '<leader>p', 'o<ESC>p', {noremap = true})
 vim.api.nvim_set_keymap('v', '<leader>p', 'o<ESC>p', {noremap = true})
 
 -- write only if changed
-vim.api.nvim_set_keymap('n', '<Leader>w', ':up<CR>', {noremap = true})
-vim.api.nvim_set_keymap('v', '<Leader>w', ':up<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>w', ':upall<CR>', {noremap = true})
+vim.api.nvim_set_keymap('v', '<Leader>w', ':upall<CR>', {noremap = true})
 -- quit (or close window)
 vim.api.nvim_set_keymap('n', '<Leader>q', ':q<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<Leader>q', ':q<CR>', {noremap = true, silent = true})

@@ -124,7 +124,7 @@ local theme = lush(function()
     -- styling for that group (meaning they mostly get styled as Normal)
     -- or leave them commented to apply vims default colouring or linking.
 
-    Comment       { fg = color11.darken(25), gui = "italic" }, -- any comment
+    Comment       { fg = color11.lighten(25).saturate(20), gui = "italic" }, -- any comment
     ColorColumn   { bg = color1.darken(20) }, -- used for the columns set with 'colorcolumn'
     Conceal       { fg = red.darken(20) }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor        { fg = color9 }, -- character under the cursor
@@ -152,7 +152,7 @@ local theme = lush(function()
     MoreMsg       { fg = color6.lighten(10), gui = "italic" }, -- |more-prompt|
     NonText       { fg = color2.darken(20), ctermbg=none }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal        { fg = color1.lighten(50).rotate(50), ctermbg=none }, -- normal text
-    NormalFloat   { bg = black, fg = color2.darken(40)}, -- Normal text in floating windows.
+    NormalFloat   { fg = Normal.fg }, -- Normal text in floating windows.
     NormalNC      { fg = color1.lighten(40).rotate(40) }, -- normal text in non-current windows
     Pmenu         { bg = color2.darken(40).saturate(-40), fg = color8 }, -- Popup menu: normal item.
     PmenuSel      { bg = color5.lighten(20), fg = color12.lighten(60) }, -- Popup menu: selected item.
@@ -171,8 +171,8 @@ local theme = lush(function()
     TabLine       { StatusLineNC}, -- tab pages line, not active tab page label
     TabLineFill   { PmenuThumb }, -- tab pages line, where there are no labels
     TabLineSel    { Search }, -- tab pages line, active tab page label
-    Title         { bg = color1.lighten(10),fg = color1.lighten(40) }, -- titles for output from ":set all", ":autocmd" etc.
-    Visual        { bg = color9, fg = color1 }, -- Visual mode selection
+    Title         { --[[ bg = color1.lighten(10),]] fg = color2.lighten(20) }, -- titles for output from ":set all", ":autocmd" etc.
+    Visual        { bg = color9.darken(20), fg = color6.saturate(20).lighten(20) }, -- Visual mode selection
     VisualNOS     { QuickFixLine }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg    { bg = color1.lighten(15), fg = color6.lighten(70), gui="bold"  }, -- warning messages
     Whitespace    { NonText}, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -337,7 +337,7 @@ local theme = lush(function()
     TelescopeSelection      { fg = color4.lighten(10) },
     TelescopeMultiSelection { fg = color3.lighten(5) },
     -- TelescopeNormal         { bg = color1.lighten(4) },
-    
+
     -- NvimTree
     NvimTreeFolderIcon        { fg = blue },
     NvimTreeFolderName        { fg = blue },

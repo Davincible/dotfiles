@@ -28,6 +28,7 @@ alias e3="nvim ~/.config/wpg/templates/i3.base"
 alias x="exit"
 alias snvim="sudo -E nvim"
 alias svim="sudo -E vim"
+alias mkinitcpio="sudo mkinitcpio"
 alias b="bluetoothctl"
 
 # Open files with default program

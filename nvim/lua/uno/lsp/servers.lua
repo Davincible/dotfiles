@@ -96,7 +96,7 @@ local function setup_servers()
                 on_attach = common_on_attach
             }
 
-	    -- Setup cmp for all servers
+            -- Setup cmp for all servers
             opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
             -- (optional) Customize the options passed to the server
@@ -134,10 +134,13 @@ local function setup_servers()
                 }
             end
             if server.name == "denols" then
-                opts.root_dir = lspconfig.util.root_pattern('.deno')
+                opts.root_dir = lspconfig.util.root_pattern(".deno")
             end
             if server.name == "html" then
                 opts.filetypes = {"html", "eta"}
+            end
+            if server.name == "ansiblels" then
+                opts.root_dir = lspconfig.util.root_pattern("ansible.cfg")
             end
 
             -- This setup() function is exactly the same as lspconfig's setup function.
