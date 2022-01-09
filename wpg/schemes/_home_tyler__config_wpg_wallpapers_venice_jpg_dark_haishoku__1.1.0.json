@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/venice.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#1b1d1e",
+        "foreground": "#c6c6c6",
+        "cursor": "#c6c6c6"
+    },
+    "colors": {
+        "color0": "#1b1d1e",
+        "color1": "#426b82",
+        "color2": "#6b5c64",
+        "color3": "#4c7b91",
+        "color4": "#7e95a2",
+        "color5": "#90b3c5",
+        "color6": "#9cc2d6",
+        "color7": "#c6c6c6",
+        "color8": "#545556",
+        "color9": "#426b82",
+        "color10": "#6b5c64",
+        "color11": "#4c7b91",
+        "color12": "#7e95a2",
+        "color13": "#90b3c5",
+        "color14": "#9cc2d6",
+        "color15": "#c6c6c6"
+    }
+}

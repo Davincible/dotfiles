@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/forest.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#1a1b1b",
+        "foreground": "#c5c6c6",
+        "cursor": "#c5c6c6"
+    },
+    "colors": {
+        "color0": "#1a1b1b",
+        "color1": "#6a5958",
+        "color2": "#5a656b",
+        "color3": "#556e58",
+        "color4": "#6e656c",
+        "color5": "#6b7760",
+        "color6": "#747e7c",
+        "color7": "#c5c6c6",
+        "color8": "#535454",
+        "color9": "#6a5958",
+        "color10": "#5a656b",
+        "color11": "#556e58",
+        "color12": "#6e656c",
+        "color13": "#6b7760",
+        "color14": "#747e7c",
+        "color15": "#c5c6c6"
+    }
+}

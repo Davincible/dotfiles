@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/goldengate-bridge.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#1a1a1a",
+        "foreground": "#c5c5c5",
+        "cursor": "#c5c5c5"
+    },
+    "colors": {
+        "color0": "#1a1a1a",
+        "color1": "#505c5e",
+        "color2": "#7d5844",
+        "color3": "#917769",
+        "color4": "#cc8247",
+        "color5": "#d3966d",
+        "color6": "#f7bb82",
+        "color7": "#c5c5c5",
+        "color8": "#535353",
+        "color9": "#505c5e",
+        "color10": "#7d5844",
+        "color11": "#917769",
+        "color12": "#cc8247",
+        "color13": "#d3966d",
+        "color14": "#f7bb82",
+        "color15": "#c5c5c5"
+    }
+}

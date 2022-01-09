@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/margo-robbie.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#1a1414",
+        "foreground": "#c5c4c4",
+        "cursor": "#c5c4c4"
+    },
+    "colors": {
+        "color0": "#1a1414",
+        "color1": "#910a0f",
+        "color2": "#d1171e",
+        "color3": "#9a4b33",
+        "color4": "#b75136",
+        "color5": "#d06c59",
+        "color6": "#e48e74",
+        "color7": "#c5c4c4",
+        "color8": "#534e4e",
+        "color9": "#910a0f",
+        "color10": "#d1171e",
+        "color11": "#9a4b33",
+        "color12": "#b75136",
+        "color13": "#d06c59",
+        "color14": "#e48e74",
+        "color15": "#c5c4c4"
+    }
+}

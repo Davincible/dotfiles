@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/raindrops-3_6K.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#1c1d20",
+        "foreground": "#c6c6c7",
+        "cursor": "#c6c6c7"
+    },
+    "colors": {
+        "color0": "#1c1d20",
+        "color1": "#5e6c97",
+        "color2": "#905c6f",
+        "color3": "#6c7fac",
+        "color4": "#8a89a6",
+        "color5": "#6d93d2",
+        "color6": "#849edd",
+        "color7": "#c6c6c7",
+        "color8": "#545557",
+        "color9": "#5e6c97",
+        "color10": "#905c6f",
+        "color11": "#6c7fac",
+        "color12": "#8a89a6",
+        "color13": "#6d93d2",
+        "color14": "#849edd",
+        "color15": "#c6c6c7"
+    }
+}

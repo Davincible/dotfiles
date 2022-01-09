@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/StCu3gW.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#191919",
+        "foreground": "#c5c5c5",
+        "cursor": "#c5c5c5"
+    },
+    "colors": {
+        "color0": "#191919",
+        "color1": "#724148",
+        "color2": "#4e575b",
+        "color3": "#536065",
+        "color4": "#797778",
+        "color5": "#c78782",
+        "color6": "#a3acad",
+        "color7": "#c5c5c5",
+        "color8": "#525252",
+        "color9": "#724148",
+        "color10": "#4e575b",
+        "color11": "#536065",
+        "color12": "#797778",
+        "color13": "#c78782",
+        "color14": "#a3acad",
+        "color15": "#c5c5c5"
+    }
+}

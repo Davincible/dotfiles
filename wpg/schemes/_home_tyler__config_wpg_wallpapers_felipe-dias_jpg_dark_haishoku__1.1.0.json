@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/felipe-dias.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#191918",
+        "foreground": "#c5c5c5",
+        "cursor": "#c5c5c5"
+    },
+    "colors": {
+        "color0": "#191918",
+        "color1": "#6a4338",
+        "color2": "#815d48",
+        "color3": "#867d7b",
+        "color4": "#c3917d",
+        "color5": "#a4adad",
+        "color6": "#d8b198",
+        "color7": "#c5c5c5",
+        "color8": "#525251",
+        "color9": "#6a4338",
+        "color10": "#815d48",
+        "color11": "#867d7b",
+        "color12": "#c3917d",
+        "color13": "#a4adad",
+        "color14": "#d8b198",
+        "color15": "#c5c5c5"
+    }
+}
