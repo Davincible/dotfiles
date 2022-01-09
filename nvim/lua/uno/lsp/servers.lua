@@ -135,6 +135,8 @@ local function setup_servers()
             end
             if server.name == "denols" then
                 opts.root_dir = lspconfig.util.root_pattern(".deno")
+                vim.bo.tabstop = 2
+                vim.bo.shiftwidth = 2
             end
             if server.name == "html" then
                 opts.filetypes = {"html", "eta"}

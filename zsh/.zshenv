@@ -15,7 +15,7 @@ export PATH=$PATH:$GOPATH/bin
 export GOPRIVATE="github.com/lookwhosstreaming"
 
 # Selenium
-export PATH="$PATH:/opt/ChromeDriver"
+export PATH="$PATH:$HOME/Applications/ChromeDriver"
 
 # Java
 export JAVA8_HOME="/usr/lib/jvm/java-8-openjdk"
