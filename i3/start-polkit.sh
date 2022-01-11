@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/lib/polkit-kde-authentication-agent-1 &/dev/null
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &>/dev/null

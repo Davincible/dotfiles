@@ -22,7 +22,6 @@ alias python='python3'
 alias pypi='pip3 install --user'
 # alias man='vman'
 alias pacman='sudo pacman'
-alias wifi-connect='nmcli d connect wlp82s0 --ask'
 alias nmgui="nm-connection-editor"
 alias e3="nvim ~/.config/wpg/templates/i3.base"
 alias x="exit"
@@ -30,6 +29,9 @@ alias snvim="sudo -E nvim"
 alias svim="sudo -E vim"
 alias mkinitcpio="sudo mkinitcpio"
 alias b="bluetoothctl"
+alias cat="bat"
+alias catt="cat"
+alias fd="fd -L"
 
 # Open files with default program
 function open () {
@@ -53,6 +55,21 @@ vman() {
   if [ "$?" != "0" ]; then
     echo "No manual entry for $*"
   fi
+}
+
+# ripgrep-all with fzf support
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
 }
 
 # User Programs
