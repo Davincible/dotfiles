@@ -290,6 +290,8 @@ exec        --no-startup-id ~/.config/i3/start-redshift.sh
 exec        --no-startup-id ~/Scripts/wpgd
 exec        --no-startup-id insync start
 exec        --no-startup-id xset mouse 8 0
+exec        --no-startup-id ~/Scripts/bluetooth-at-boot.sh
+exec        --no-startup-id solaar -w hidden
 
 # bindsym XF86AddFavorite exec --no-startup-id notify-send XF86AddFavorite
 # bindsym XF86ApplicationLeft exec --no-startup-id notify-send XF86ApplicationLeft
