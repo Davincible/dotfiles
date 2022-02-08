@@ -15,7 +15,7 @@ export PATH="$PATH:/home/$USER/.cargo/bin"
 # Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GOPRIVATE="github.com/lookwhosstreaming"
+export GOPRIVATE="github.com/sweetstreams/*"
 
 # Selenium
 export PATH="$PATH:$HOME/Applications/ChromeDriver"
