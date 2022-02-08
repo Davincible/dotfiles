@@ -30,12 +30,16 @@ vim.api.nvim_set_keymap('n', '<Leader>l',       ':bn<CR>', {noremap = true, sile
 -- go to prev buffer
 vim.api.nvim_set_keymap('n', '<Leader><left>', ':bp<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>h',      ':bp<CR>', {noremap = true, silent = true})
+
 -- HTML stuf
 -- Select inside tag, delete, select all tags, paste, format, beginning of line
 vim.api.nvim_set_keymap('n', '<Leader>5', 'vitdvatp:Neoformat<CR>^', {noremap = true, silent = true})
 
 -- Select all
 vim.api.nvim_set_keymap('n', '<Leader>va', 'ggVG', {noremap = true, silent = true})
+
+-- Git stuff
+vim.api.nvim_set_keymap('n', '<Leader>G', ':Git<CR>', {noremap = true, silent = true})
 
 
 
