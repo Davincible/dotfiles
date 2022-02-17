@@ -60,22 +60,24 @@ end
 local colors = getColors()
 
 local theme = lush(function()
-  local color1  = hsl(colors[1])
-  local color2  = hsl(colors[2])
-  local color3  = hsl(colors[3])
-  local color4  = hsl(colors[4])
-  local color5  = hsl(colors[5])
-  local color6  = hsl(colors[6])
-  local color7  = hsl(colors[7])
-  local color8  = hsl(colors[8])
-  local color9  = hsl(colors[9])
-  local color10 = hsl(colors[10])
-  local color11 = hsl(colors[11])
-  local color12 = hsl(colors[12])
-  local color13 = hsl(colors[13])
-  local color14 = hsl(colors[14])
-  local color15 = hsl(colors[15])
-  local color16 = hsl(colors[16])
+  local l = 50
+  local s = 18
+  local color1  = hsl(colors[1]).lighten(l).saturate(s)
+  local color2  = hsl(colors[2]).lighten(l).saturate(s)
+  local color3  = hsl(colors[3]).lighten(l).saturate(s)
+  local color4  = hsl(colors[4]).lighten(l).saturate(s)
+  local color5  = hsl(colors[5]).lighten(l).saturate(s)
+  local color6  = hsl(colors[6]).lighten(l).saturate(s)
+  local color7  = hsl(colors[7]).lighten(l).saturate(s)
+  local color8  = hsl(colors[8]).lighten(l).saturate(s)
+  local color9  = hsl(colors[9]).lighten(l).saturate(s)
+  local color10 = hsl(colors[10]).lighten(l).saturate(s)
+  local color11 = hsl(colors[11]).lighten(l).saturate(s)
+  local color12 = hsl(colors[12]).lighten(l).saturate(s)
+  local color13 = hsl(colors[13]).lighten(l).saturate(s)
+  local color14 = hsl(colors[14]).lighten(l).saturate(s)
+  local color15 = hsl(colors[15]).lighten(l).saturate(s)
+  local color16 = hsl(colors[16]).lighten(l).saturate(s)
   -- local red     = hsl("#ff0000")
   -- local green     = hsl("#00ff00")
   local blue     = hsl("#0000ff")
@@ -155,7 +157,7 @@ local theme = lush(function()
     NormalFloat   { fg = Normal.fg }, -- Normal text in floating windows.
     NormalNC      { fg = color1.lighten(40).rotate(40) }, -- normal text in non-current windows
     Pmenu         { bg = color2.darken(40).saturate(-40), fg = color8 }, -- Popup menu: normal item.
-    PmenuSel      { bg = color5.lighten(20), fg = color12.lighten(60) }, -- Popup menu: selected item.
+    PmenuSel      { bg = color5.lighten(20), fg = color3.darken(60) }, -- Popup menu: selected item.
     PmenuSbar     { bg = color2, fg = color1.darken(10) }, -- Popup menu: scrollbar.
     PmenuThumb    { fg = color2 }, -- Popup menu: Thumb of the scrollbar.
     Question      { fg = color5.lighten(30)  }, -- |hit-enter| prompt and yes/no questions
@@ -176,7 +178,7 @@ local theme = lush(function()
     VisualNOS     { QuickFixLine }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg    { bg = color1.lighten(15), fg = color6.lighten(70), gui="bold"  }, -- warning messages
     Whitespace    { NonText}, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    WildMenu      { PmenuSel}, -- current match in 'wildmenu' completion
+    WildMenu      { PmenuSel }, -- current match in 'wildmenu' completion
     NvimInternalError  { fg = hsl("#ab0934") },    -- Nvim internal errors
 
     -- These groups are not listed as default vim groups,

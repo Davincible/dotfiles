@@ -56,7 +56,7 @@ local function setup_servers()
     local lsp_installer = require("nvim-lsp-installer")
 
     local servers = {
-        "ansiblels",
+        -- "ansiblels",
         "bashls",
         "cmake",
         "cssls",
@@ -65,8 +65,9 @@ local function setup_servers()
         "eslint",
         "gopls",
         "graphql",
-        -- "grammarly",
-	"remark_ls",
+        "grammarly",
+	      -- "remark_ls",
+        "zeta_note",
         "html",
         "jsonls",
         "jdtls", -- java

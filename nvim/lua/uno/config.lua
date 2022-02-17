@@ -69,3 +69,6 @@ vim.api.nvim_exec(
 -- Format HTML on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.html :silent! Neoformat ]], false)
 
+-- Format SQL on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.sql :silent! Neoformat pg_format ]], false)
+
