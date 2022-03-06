@@ -13,31 +13,49 @@ return require("packer").startup(
         -- Packer can manage itself
         use("wbthomason/packer.nvim")
 
-        -- Telescope, fzf replacement fuzzy scanner
+        -- Faster startup
+        use {"lewis6991/impatient.nvim"}
+        use("nathom/filetype.nvim")
+
+        -- Telescope
         use("folke/trouble.nvim")
         use("nvim-lua/popup.nvim")
         use("nvim-lua/plenary.nvim")
         use("nvim-telescope/telescope.nvim")
         use("nvim-telescope/telescope-fzy-native.nvim")
         use("nvim-telescope/telescope-project.nvim")
+        use("nvim-telescope/telescope-media-files.nvim")
+        use {"nvim-telescope/telescope-ui-select.nvim"}
+        use("danielpieper/telescope-tmuxinator.nvim")
+        use {"nvim-telescope/telescope-file-browser.nvim"}
 
         -- Theming
         use("dylanaraps/wal.vim")
         use("deviantfero/wpgtk.vim")
-        use("chrisbra/Colorizer")
         use("ryanoasis/vim-devicons")
         use("rktjmp/lush.nvim")
         use("akinsho/nvim-bufferline.lua")
         use("norcalli/nvim-colorizer.lua")
-        use("glepnir/galaxyline.nvim")
+
+        -- Status line
+        -- use("glepnir/galaxyline.nvim")  -- Author has gone AFK
+        -- use("NTBBloodbath/galaxyline.nvim")  -- main new fork
+        use {"joshuaMarple/galaxyline.nvim", config = "require('uno.statusline')"}
+        -- use {"nvim-lualine/lualine.nvim", config = "require('uno.lualine')"}
 
         -- Software Devlopment
         -- TODO: Currntly doesn't support lsp and treesitter, check back later
         -- use {'fatih/vim-go', run = ':GoUpdateBinaries'}
         use("ekalinin/Dockerfile.vim")
         use("windwp/nvim-autopairs")
-        use("alvan/vim-closetag")
+        use {"windwp/nvim-ts-autotag", config = "require('nvim-ts-autotag').setup({ enable = true })"}
+        -- use("alvan/vim-closetag")
         use("ray-x/lsp_signature.nvim")
+
+        -- Nvim Treesitter
+        use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
+        use("nvim-treesitter/playground")
+        use("kyazdani42/nvim-web-devicons")
 
         -- Nvim LSP
         use("neovim/nvim-lspconfig")
@@ -54,21 +72,45 @@ return require("packer").startup(
         use("hrsh7th/cmp-cmdline")
         use("hrsh7th/nvim-cmp")
         use({"tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp"})
-        use("L3MON4D3/LuaSnip")
-        use("saadparwaiz1/cmp_luasnip")
+        use {
+            "David-Kunz/cmp-npm",
+            -- after = "cmp-tabnine",
+            requires = "nvim-lua/plenary.nvim"
+        }
+        use({"saadparwaiz1/cmp_luasnip"}) -- , after = "cmp-npm"
+        use {"L3MON4D3/LuaSnip", requires = {"rafamadriz/friendly-snippets"}} -- , after = "cmp_luasnip"
 
-        -- Nvim Treesitter
-        use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
-        use("nvim-treesitter/playground")
-        use("kyazdani42/nvim-web-devicons")
+        -- Lsp Addons
+        use {"stevearc/dressing.nvim", requires = "MunifTanjim/nui.nvim"}
+        use {"folke/lsp-trouble.nvim"}
+        use {"jose-elias-alvarez/nvim-lsp-ts-utils"} -- , after = {"nvim-treesitter"}
 
         -- Misc
         use("kyazdani42/nvim-tree.lua")
         use("Pocco81/TrueZen.nvim")
-        use("rktjmp/fwatch.nvim")
-        use("sbdchd/neoformat")
-        use("Chiel92/vim-autoformat")
+        use("rktjmp/fwatch.nvim") -- file watcher for themes
+        use("sbdchd/neoformat") -- file formatting
         use("akinsho/nvim-toggleterm.lua")
+        use {"AndrewRadev/splitjoin.vim"} -- to expand / contract multiline
+        use {"numToStr/Comment.nvim"} -- Comment stuff
+        use {"JoosepAlviste/nvim-ts-context-commentstring"} -- , after = "nvim-treesitter"
+        use {"tpope/vim-repeat"}
+        use {"tpope/vim-speeddating"}
+        use {"tpope/vim-surround"}
+        use {"folke/todo-comments.nvim", config = "require('todo-comments')"}
+        use {"antoinemadec/FixCursorHold.nvim"} -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+        use {"rcarriga/nvim-notify"}
+        use {
+            "vuki656/package-info.nvim",
+            requires = "MunifTanjim/nui.nvim",
+            config = "require('package-info').setup()"
+        }
+        use {"iamcco/markdown-preview.nvim"}
+        use {"mattn/emmet-vim"}
+        use {"potatoesmaster/i3-vim-syntax"}
+        use {"airblade/vim-rooter"}
+        use {"mvllow/modes.nvim"} -- Highlights current line based on mode
+        use {"zegervdv/nrpattern.nvim", config = "require('nrpattern').setup()"}
 
         -- Golang
         use(
@@ -91,17 +133,10 @@ return require("packer").startup(
 
         use("ThePrimeagen/harpoon") -- what is this again?
         use("famiu/nvim-reload")
+        -- use("dlee/nvim-reload")
 
         use("lewis6991/gitsigns.nvim")
 
         -- use 'dstein64/vim-startuptime'
-        use(
-            {
-                "glacambre/firenvim",
-                run = function()
-                    vim.fn["firenvim#install"](0)
-                end
-            }
-        )
     end
 )

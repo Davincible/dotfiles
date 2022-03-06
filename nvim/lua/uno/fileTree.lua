@@ -2,7 +2,6 @@ local g = vim.g
 
 g.nvim_tree_side = "left"
 g.nvim_tree_width = 35
-g.nvim_tree_quit_on_open = 0
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_git_hl = 1
 g.nvim_tree_root_folder_modifier = ":t"
@@ -58,7 +57,7 @@ vim.g.nvim_tree_bindings =
     disable_netrw = true,
     hijack_netrw = true,
     ignore_ft_on_setup = {},
-    open_on_setup = true,
+    open_on_setup = false,
     auto_close = false,
     open_on_tab = false,
     hijack_cursor = false,
@@ -88,6 +87,11 @@ vim.g.nvim_tree_bindings =
     filters = {
         dotfiles = false,
         custom = {}
+    },
+    actions = {
+        open_file = {
+            quit_on_open = 0
+        }
     },
     view = {
         width = 35,

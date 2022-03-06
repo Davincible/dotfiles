@@ -34,10 +34,21 @@ vim.api.nvim_set_keymap('n', '<Leader>h',      ':bp<CR>', {noremap = true, silen
 -- Move windows
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {noremap = true, silent = true})
+
+-- Navigate Insert
+vim.api.nvim_set_keymap('i', '<C-h>', '<C-o>h', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-l>', '<C-o>l', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-k>', '<C-o>k', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-j>', '<C-o>j', {noremap = true, silent = true})
 
 -- HTML stuf
 -- Select inside tag, delete, select all tags, paste, format, beginning of line
 vim.api.nvim_set_keymap('n', '<Leader>5', 'vitdvatp:Neoformat<CR>^', {noremap = true, silent = true})
+
+-- Restart LSP
+vim.api.nvim_set_keymap('n', '<Leader>R', ':LspRestart<CR>', {noremap = true, silent = true})
 
 -- Select all
 vim.api.nvim_set_keymap('n', '<Leader>va', 'ggVG', {noremap = true, silent = true})

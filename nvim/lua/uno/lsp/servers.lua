@@ -32,6 +32,8 @@ function common_on_attach(client, bufnr)
         buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<CR>", opts)
     elseif client.resolved_capabilities.document_range_formatting then
         buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.range_formatting()<CR>", opts)
+    else
+        buf_set_keymap("n", "<leader>f", ":Neoformat<CR>", opts)
     end
 
     -- Seems redundant with LSP Saga Signature Help
@@ -66,7 +68,7 @@ local function setup_servers()
         "gopls",
         "graphql",
         "grammarly",
-	      -- "remark_ls",
+        -- "remark_ls",
         "zeta_note",
         "html",
         "jsonls",

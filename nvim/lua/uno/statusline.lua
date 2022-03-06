@@ -7,10 +7,12 @@ gl.short_line_list = {" "}
 local colors = require "themes/onedark"
 
 gls.left[1] = {
-  FirstElement = {
-    provider = function() return '▋' end,
-    highlight = { colors.nord_blue, colors.nord_blue }
-  },
+    FirstElement = {
+        provider = function()
+            return "▋"
+        end,
+        highlight = {colors.nord_blue, colors.nord_blue}
+    }
 }
 
 gls.left[2] = {
@@ -124,7 +126,7 @@ gls.right[2] = {
         provider = function()
             return " "
         end,
-        condition = require("galaxyline.provider_vcs").check_git_workspace,
+        condition = require("galaxyline.providers.vcs").check_git_workspace,
         highlight = {colors.grey_fg2, colors.lightbg},
         separator = "",
         separator_highlight = {colors.lightbg, colors.statusline_bg}
@@ -134,7 +136,7 @@ gls.right[2] = {
 gls.right[3] = {
     GitBranch = {
         provider = "GitBranch",
-        condition = require("galaxyline.provider_vcs").check_git_workspace,
+        condition = require("galaxyline.providers.vcs").check_git_workspace,
         highlight = {colors.grey_fg2, colors.lightbg}
     }
 }
@@ -167,7 +169,7 @@ gls.right[5] = {
             if current_Mode == nil then
                 return "  Terminal "
             else
-               return "  " .. current_Mode .. " "
+                return "  " .. current_Mode .. " "
             end
         end,
         highlight = {colors.red, colors.lightbg}

@@ -2,21 +2,45 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 
+require("luasnip.loaders.from_vscode").load()
+
+require("cmp_tabnine.config"):setup(
+    {
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+        run_on_every_keystroke = true,
+        snippet_placeholder = ".."
+    }
+)
+
+require("cmp-npm").setup(
+    {
+        ignore = {},
+        only_semantic_versions = true
+    }
+)
+
 local source_mapping = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
     cmp_tabnine = "[TN]",
-    path = "[Path]"
+    npm = "[NPM]",
+    path = "[Path]",
+    luasnip = "[Snip]"
 }
 
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 cmp.setup(
     {
+        completion = {
+            completeopt = "menu,menuone,noinsert"
+        },
         snippet = {
             -- REQUIRED - you must specify a snippet engine
             expand = function(args)
@@ -40,7 +64,6 @@ cmp.setup(
             -- Accept currently selected item. If none selected, `select` first item.
             -- Set `select` to `false` to only confirm explicitly selected items.
             ["<CR>"] = cmp.mapping.confirm({select = true}),
-
             -- Tab scrolling
             ["<Tab>"] = cmp.mapping(
                 function(fallback)
@@ -68,7 +91,6 @@ cmp.setup(
                 end,
                 {"i", "s"}
             ),
-
             -- j / k navigation
             ["<C-j>"] = cmp.mapping(
                 function(fallback)
@@ -96,9 +118,9 @@ cmp.setup(
                 end,
                 {"i", "s"}
             )
-
         },
         formatting = {
+            -- Formatting is responsible for the items at the end
             format = function(entry, vim_item)
                 vim_item.kind = lspkind.presets.default[vim_item.kind]
                 local menu = source_mapping[entry.source.name]
@@ -115,6 +137,7 @@ cmp.setup(
         sources = cmp.config.sources(
             {
                 {name = "cmp_tabnine"},
+                {name = "npm", keyword_length = 4},
                 {name = "nvim_lsp"},
                 -- {name = "vsnip"} -- For vsnip users.
                 {name = "luasnip"} -- For luasnip users.
@@ -124,7 +147,10 @@ cmp.setup(
             {
                 {name = "buffer"}
             }
-        )
+        ),
+        experimental = {
+            ghost_text = true
+        }
     }
 )
 
@@ -152,14 +178,3 @@ cmp.setup.cmdline(
 --         )
 --     }
 -- )
-
-local tabnine = require("cmp_tabnine.config")
-tabnine:setup(
-    {
-        max_lines = 1000,
-        max_num_results = 20,
-        sort = true,
-        run_on_every_keystroke = true,
-        snippet_placeholder = ".."
-    }
-)

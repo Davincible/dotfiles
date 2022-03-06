@@ -1,5 +1,5 @@
-local telescope = require('telescope')
-local actions = require('telescope.actions')
+local telescope = require("telescope")
+local actions = require("telescope.actions")
 
 require("trouble").setup()
 local trouble = require("trouble.providers.telescope")
@@ -21,29 +21,28 @@ telescope.setup {
         layout_config = {
             prompt_position = "bottom",
             preview_cutoff = 120,
-            horizontal = {width = 0.75, mirror = false}, 
-            vertical   = {mirror = false}
+            horizontal = {width = 0.75, mirror = false},
+            vertical = {mirror = false}
         },
-        file_sorter = require'telescope.sorters'.get_fzy_sorter,
+        file_sorter = require "telescope.sorters".get_fzy_sorter,
         file_ignore_patterns = {
             "node_modules/",
             "vendor/",
-            ".git/",
+            ".git/"
         },
-        generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
-        path_display = {'shorten'},
+        generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
+        path_display = {"shorten"},
         winblend = 0,
         border = {},
-        borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+        borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
         color_devicons = true,
         use_less = true,
-        set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
-        file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-        grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-        qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
+        set_env = {["COLORTERM"] = "truecolor"}, -- default = nil,
+        file_previewer = require "telescope.previewers".vim_buffer_cat.new,
+        grep_previewer = require "telescope.previewers".vim_buffer_vimgrep.new,
+        qflist_previewer = require "telescope.previewers".vim_buffer_qflist.new,
         -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
+        buffer_previewer_maker = require "telescope.previewers".buffer_previewer_maker,
         mappings = {
             i = {
                 ["<C-c>"] = actions.close,
@@ -74,24 +73,45 @@ telescope.setup {
             }
         }
     },
-    extensions = {fzy_native = {override_generic_sorter = false, override_file_sorter = true}}
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true
+        },
+        media_files = {
+            -- filetypes whitelist
+            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+            filetypes = {"png", "webp", "jpg", "jpeg", "pdf", "webm", "mp4"},
+            find_cmd = "rg" -- find command (defaults to `fd`)
+        },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown {}
+        }
+    }
 }
 
--- require'telescope'.load_extension('project')
+require "telescope".load_extension("project")
+require("telescope").load_extension("media_files")
+require("telescope").load_extension("ui-select")
+require("telescope").load_extension("tmuxinator")
+require("telescope").load_extension("notify")
+require("telescope").load_extension("file_browser")
 
 M.find_files = function()
     require("telescope.builtin").find_files {
-        find_command = { 'fd', '--max-depth',  '5', '--hidden', '--follow', '--type', 'f' },
+        find_command = {"fd", "--max-depth", "5", "--hidden", "--follow", "--type", "f"}
     }
 end
 
-vim.api.nvim_set_keymap('n', '<leader>ff', ':lua require("uno.telescope").find_files()<CR>',           {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fg', ':lua require("telescope.builtin").live_grep()<CR>',        {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fb', ':lua require("telescope.builtin").buffers()<CR>',          {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ft', ':lua require("telescope.builtin").file_browser()<CR>',          {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fh', ':lua require("telescope.builtin").help_tags()<CR>',        {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fr', ':lua require("telescope.builtin").lsp_references()<CR>',   {silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fd', ':lua require("telescope.builtin").lsp_definitions()<CR>',  {silent = true})
-vim.api.nvim_set_keymap('n', '<C-p>',      ':lua require("telescope.builtin").git_files()<CR>',        {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ff", ':lua require("uno.telescope").find_files()<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fg", ':lua require("telescope.builtin").live_grep()<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fb", ':lua require("telescope.builtin").buffers()<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ft", ":Telescope file_browser<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fh", ':lua require("telescope.builtin").help_tags()<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fr", ':lua require("telescope.builtin").lsp_references()<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fd", ':lua require("telescope.builtin").lsp_definitions()<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fm", ":Telescope media_files<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fn", ":Telescope notify<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<C-p>", ':lua require("telescope.builtin").git_status()<CR>', {silent = true})
 
 return M

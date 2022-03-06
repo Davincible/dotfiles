@@ -274,7 +274,7 @@ for_window [instance = "dropdown"] floating enable
 ###### STARTUP ######
 
 exec        --no-startup-id ~/.config/wpg/wp_init.sh
-exec        --no-startup-id autorandr --change --skip-option crtc
+exec        --no-startup-id autorandr --change # --skip-option crtc
 exec        --no-startup-id numlockx on
 # exec --no-startup-id "setxkbmap -option caps:escape"
 # exec --no-startup-id dockd --daemon
