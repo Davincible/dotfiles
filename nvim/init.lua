@@ -1,5 +1,6 @@
 require("uno.config")
 require("uno.plugins")
+require("uno.luasnip")
 require("uno.lsp")
 require("uno.impatient")
 require("uno.comment")

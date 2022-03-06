@@ -108,7 +108,7 @@ return require("packer").startup(
         use {"iamcco/markdown-preview.nvim"}
         use {"mattn/emmet-vim"}
         use {"potatoesmaster/i3-vim-syntax"}
-        use {"airblade/vim-rooter"}
+        -- use {"airblade/vim-rooter"}
         use {"mvllow/modes.nvim"} -- Highlights current line based on mode
         use {"zegervdv/nrpattern.nvim", config = "require('nrpattern').setup()"}
 
