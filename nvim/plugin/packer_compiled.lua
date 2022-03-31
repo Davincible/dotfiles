@@ -457,14 +457,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-ts-autotag
-time([[Config for nvim-ts-autotag]], true)
-require('nvim-ts-autotag').setup({ enable = true })
-time([[Config for nvim-ts-autotag]], false)
--- Config for: package-info.nvim
-time([[Config for package-info.nvim]], true)
-require('package-info').setup()
-time([[Config for package-info.nvim]], false)
 -- Config for: nrpattern.nvim
 time([[Config for nrpattern.nvim]], true)
 require('nrpattern').setup()
@@ -473,10 +465,18 @@ time([[Config for nrpattern.nvim]], false)
 time([[Config for todo-comments.nvim]], true)
 require('todo-comments')
 time([[Config for todo-comments.nvim]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+require('nvim-ts-autotag').setup({ enable = true })
+time([[Config for nvim-ts-autotag]], false)
 -- Config for: galaxyline.nvim
 time([[Config for galaxyline.nvim]], true)
 require('uno.statusline')
 time([[Config for galaxyline.nvim]], false)
+-- Config for: package-info.nvim
+time([[Config for package-info.nvim]], true)
+require('package-info').setup()
+time([[Config for package-info.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

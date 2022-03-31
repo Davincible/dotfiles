@@ -23,6 +23,9 @@ ls.config.set_config {
 
 require("luasnip.loaders.from_vscode").load()
 
+ls.filetype_extend("javascript", {"javascriptreact", "html"})
+ls.filetype_extend("javascriptreact", {"html", "javascript"})
+
 -- <c-k> is my expansion key
 -- this will expand the current item or jump to the next item within the snippet.
 vim.keymap.set(

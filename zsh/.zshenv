@@ -34,3 +34,8 @@ export JAVA8_HOME="/usr/lib/jvm/java-8-openjdk"
 # export __NV_PRIME_RENDER_OFFLOAD=1 
 # export __VK_LAYER_NV_optimus=NVIDIA_only 
 # export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+# Android
+export ANDROID_SDK_ROOT="/opt/android-sdk"
+export ANDROID_HOME="/opt/android-sdk"
+export PATH="$PATH:/opt/android-sdk/emulator:/opt/android-sdk/platform-tools:/opt/android-sdk/cmdline-tools/latest/bin"

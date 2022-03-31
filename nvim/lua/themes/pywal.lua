@@ -317,7 +317,7 @@ local theme =
             TSVariable {fg = color8.lighten(30)}, -- Any variable name that does not have another highlight.
             TSVariableBuiltin {fg = color12.lighten(10).rotate(10)}, -- Variable names that are defined by the languages, like `this` or `self`.
             -- TSTag                { },    -- Tags like html tag names.
-            -- TSTagDelimiter       { },    -- Tag delimiter like `<` `>` `/`
+            TSTagDelimiter {fg = color14.saturate(50).darken(20)}, -- Tag delimiter like `<` `>` `/`
             -- TSText               { },    -- For strings considered text in a markup language.
             -- TSEmphasis           { },    -- For text to be represented with emphasis.
             -- TSUnderline          { },    -- For text to be represented with an underline.

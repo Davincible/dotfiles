@@ -22,7 +22,8 @@ local Rule = require("nvim-autopairs.rule")
 npairs.add_rules(
     {
         Rule("%", "%", "lua"):with_pair(ts_conds.is_ts_node({"string", "comment"})),
-        Rule("$", "$", "lua"):with_pair(ts_conds.is_not_ts_node({"function"}))
+        Rule("$", "$", "lua"):with_pair(ts_conds.is_not_ts_node({"function"})),
+        Rule("$", "$"):with_pair(ts_conds.is_not_ts_node({"import_statement", "import_specifier"}))
     }
 )
 

@@ -548,11 +548,10 @@ tab_bar_edge bottom
 
 tab_bar_margin_width 32.0
 
-tab_bar_margin_height 32 0
-
 #: The margin to the left and right of the tab bar (in pts)
 
-tab_bar_style powerline
+tab_bar_style separator 
+# powerline
 
 #: The tab bar style, can be one of: fade, separator, powerline, or
 #: hidden. In the fade style, each tab's edges fade into the

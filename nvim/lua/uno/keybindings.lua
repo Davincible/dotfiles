@@ -55,3 +55,11 @@ vim.api.nvim_set_keymap("n", "<Leader>va", "ggVG", {noremap = true, silent = tru
 
 -- Git stuff
 vim.api.nvim_set_keymap("n", "<Leader>G", ":Git<CR>", {noremap = true, silent = true})
+
+vim.keymap.set(
+    {"i"},
+    "<F16>",
+    function()
+        vim.cmd([[[ echo synIDattr(synID(line("."), col("."), 1), "name") ]])
+    end
+)

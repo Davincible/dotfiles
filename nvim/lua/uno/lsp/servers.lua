@@ -118,6 +118,8 @@ local function setup_servers()
                 opts.settings = {
                     format = {enable = true} -- this will enable formatting
                 }
+                vim.bo.tabstop = 2
+                vim.bo.shiftwidth = 2
             end
             if server.name == "sumneko_lua" then
                 opts.settings = {
@@ -139,6 +141,10 @@ local function setup_servers()
             end
             if server.name == "denols" then
                 opts.root_dir = lspconfig.util.root_pattern(".deno")
+                vim.bo.tabstop = 2
+                vim.bo.shiftwidth = 2
+            end
+            if server.name == "tsserver" then
                 vim.bo.tabstop = 2
                 vim.bo.shiftwidth = 2
             end

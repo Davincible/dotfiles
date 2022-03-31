@@ -35,6 +35,7 @@ vim.bo.softtabstop = 2
 vim.bo.shiftwidth = 2
 vim.bo.expandtab = true
 vim.bo.smartindent = true
+vim.bo.autoindent = true
 vim.bo.swapfile = true
 vim.bo.undofile = true
 
@@ -54,13 +55,15 @@ set wildignore+=**/ios/*
 set wildignore+=**/.git/*
 ]]
 
--- hide line numbers , statusline in specific buffers!
+-- hide line numbers , statusline in specific buffers such as file tree and terminal
 vim.api.nvim_exec(
     [[
    au BufEnter * highlight Normal guibg=0
    au BufEnter term://* setlocal nonumber
+   au BufEnter zsh setlocal nonumber
    au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
    au BufEnter term://* set laststatus=0 
+   au BufEnter zsh set laststatus=0 
 
 ]],
     false
@@ -74,6 +77,9 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.sql :silent! Neoformat pg_format ]], 
 
 -- Format JS on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.js :silent! Neoformat ]], false)
+vim.api.nvim_exec([[ autocmd BufWritePre *.jsx :silent! Neoformat ]], false)
+
+vim.api.nvim_exec([[ autocmd BufWritePre *.css :silent! Neoformat ]], false)
 
 -- Format Lua on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.lua :silent! Neoformat ]], false)

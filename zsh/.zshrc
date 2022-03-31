@@ -7,4 +7,4 @@
 [ -f "$HOME/.config/zsh/keybindings.zsh" ] && source ~/.config/zsh/keybindings.zsh
 
 HISTFILE=~/.cache/zsh/history
-[ -z "$TMUX"  ] && { tmux new -s local || exec tmux new -t local && exit }
+# [ -z "$TMUX"  ] && { tmux new -s local || exec tmux new -t local } #  && exit }
