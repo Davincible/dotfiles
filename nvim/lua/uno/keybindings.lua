@@ -26,9 +26,11 @@ vim.api.nvim_set_keymap("v", "<Leader>W", ":wqall<CR>", {noremap = true, silent 
 -- Buffer stuff - <C-6> is toggle current and alt(last viewed)
 -- go to next buffer
 vim.api.nvim_set_keymap("n", "<Leader><right>", ":bn<CR>", {noremap = true, silent = true})
+-- Doesn't work
 vim.api.nvim_set_keymap("n", "<Leader>l", ":bn<CR>", {noremap = true, silent = true})
 -- go to prev buffer
 vim.api.nvim_set_keymap("n", "<Leader><left>", ":bp<CR>", {noremap = true, silent = true})
+-- Doesn't work
 vim.api.nvim_set_keymap("n", "<Leader>h", ":bp<CR>", {noremap = true, silent = true})
 
 -- Move windows

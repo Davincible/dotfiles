@@ -28,9 +28,9 @@ function common_on_attach(client, bufnr)
     buf_set_keymap("n", "<leader>q", ":lua vim.diagnostic.set_loclist()<CR>", opts)
 
     -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
         buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<CR>", opts)
-    elseif client.resolved_capabilities.document_range_formatting then
+    elseif client.server_capabilities.document_range_formatting then
         buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.range_formatting()<CR>", opts)
     else
         buf_set_keymap("n", "<leader>f", ":Neoformat<CR>", opts)
@@ -60,6 +60,7 @@ local function setup_servers()
     local servers = {
         -- "ansiblels",
         "bashls",
+        "buildifier",
         "cmake",
         "cssls",
         "denols",
@@ -112,7 +113,7 @@ local function setup_servers()
                 opts.on_attach = function(client, bufnr)
                     -- neovim's LSP client does not currently support dynamic capabilities registration, so we need to set
                     -- the resolved capabilities of the eslint server ourselves!
-                    client.resolved_capabilities.document_formatting = true
+                    client.server_capabilities.document_formatting = true
                     common_on_attach(client, bufnr)
                 end
                 opts.settings = {
@@ -154,12 +155,33 @@ local function setup_servers()
             if server.name == "ansiblels" then
                 opts.root_dir = lspconfig.util.root_pattern("ansible.cfg")
             end
+            if server.name == "yamlls" then
+                opts.settings = {
+                    yaml = {
+                        trace = {
+                            server = "verbose"
+                        },
+                        schemas = {
+                            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                            ["http://json.schemastore.org/kustomization"] = "kustomization.yaml",
+                            ["https://json.schemastore.org/chart.json"] = "Chart.yaml",
+                            ["https://json.schemastore.org/taskfile.json"] = "Taskfile*.yml",
+                            ["https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta26.json"] = "skaffold.yaml",
+                            ["https://raw.githubusercontent.com/rancher/k3d/main/pkg/config/v1alpha3/schema.json"] = "k3d.yaml",
+                            ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.20.13/all.json"] = "/*.yaml"
+                        }
+                    }
+                }
+            end
 
             -- This setup() function is exactly the same as lspconfig's setup function.
             -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
             server:setup(opts)
         end
     )
+
+    -- manually set up tilt server
+    require("lspconfig").tilt_ls.setup {}
 end
 
 setup_servers()

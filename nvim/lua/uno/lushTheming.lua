@@ -1,36 +1,26 @@
--- In cool_name/lua/lush_theme/cool_name.lua
+local lush = require("lush")
 
--- require lush
-local lush = require('lush')
+-- Get Highlight Undeer Cursor:
+-- execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
 
--- lush() will parse the spec and
--- return a table containing all color information.
--- We return it for use in other files.
-
--- vim.go.background = "dark"
--- vim.g.colors_name = "wpgtk"
--- package.loaded['themes.wpgtk'] = nil
--- lush(require('themes.wpgtk'))
---
+lush(require("themes.pywal"))
 vim.cmd("colorscheme pywal")
-package.loaded['themes.pywal'] = nil
 
-require('lush')(require('themes.pywal'))
-require('lush')(require('themes.pywal'))
--- require("colorizer").setup()
--- require'colorizer'.reload_all_buffers()
-
-local fwatch = require('fwatch')
-fwatch.watch("/home/tyler/.cache/wal/colors", {
-  -- when file changes
-  on_event = function()
-    -- wait 200ms then
-    vim.defer_fn(function()
-      -- reapply the colorscheme
-      package.loaded['themes.pywal'] = nil
-      require('lush')(require('themes.pywal'))
-      -- vim.cmd("colorscheme pywal")
-    end, 200)
-  end
-})
-
+-- Watch pywal cache file for color changes
+local fwatch = require("fwatch")
+fwatch.watch(
+    "/home/tyler/.cache/wal/colors",
+    {
+        on_event = function()
+            -- Reapply colorscheme 200ms after file changed
+            vim.defer_fn(
+                function()
+                    package.loaded["themes.pywal"] = nil
+                    require("lush")(require("themes.pywal"))
+                    vim.cmd("colorscheme pywal")
+                end,
+                200
+            )
+        end
+    }
+)

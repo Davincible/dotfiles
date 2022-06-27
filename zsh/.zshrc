@@ -8,3 +8,16 @@
 
 HISTFILE=~/.cache/zsh/history
 # [ -z "$TMUX"  ] && { tmux new -s local || exec tmux new -t local } #  && exit }
+
+# Command completions
+[[ /sbin/kubectl ]] && source <(kubectl completion zsh)
+[[ /sbin/k3d ]] && source <(k3d completion zsh)
+[[ /sbin/datree ]] && source <(datree completion zsh)
+[[ /sbin/helm ]] && source <(helm completion zsh)
+[[ /sbin/tobs ]] && source <(tobs completion zsh)
+[[ /sbin/go-micro ]] && source <(go-micro completion zsh)
+[[ /sbin/cilium ]] && source <(cilium completion zsh)
+
+# Fix Screen Tearing
+# Put this in .xinitrc
+# nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"

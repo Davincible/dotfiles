@@ -24,6 +24,8 @@ alias pypi='pip3 install --user'
 alias pacman='sudo pacman'
 alias nmgui="nm-connection-editor"
 alias e3="nvim ~/.config/wpg/templates/i3.base"
+alias envim="nvim ~/.config/nvim/lua/uno/config.lua"
+alias ezsh="nvim ~/.config/zsh/.zshrc"
 alias x="exit"
 alias snvim="sudo -E nvim"
 alias svim="sudo -E vim"
@@ -32,6 +34,7 @@ alias b="bluetoothctl"
 alias cat="bat"
 alias catt="cat"
 alias fd="fd -L"
+alias sz="source ~/.config/zsh/.zshrc"
 
 # Open files with default program
 function open () {
@@ -77,3 +80,5 @@ alias gephi="LIBGL_ALWAYS_SOFTWARE=1 gephi --jdkhome $JAVA8_HOME"
 
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+
+alias tableplus="/usr/bin/env LD_PRELOAD=/opt/tableplus/lib/libldap-2.5.so.0.1.1:/opt/tableplus/lib/liblber-2.5.so.0.1.1:/opt/tableplus/lib/libsasl2.so.2.0.25:/opt/tableplus/lib/libgio-2.0.so.0.6800.4 /usr/local/bin/tableplus"

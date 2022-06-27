@@ -29,9 +29,9 @@ function zvm_after_init() # wrap in vi mode plugin function
         source /usr/share/fzf/completion.zsh
     fi
 
-    export FZF_DEFAULT_COMMAND='fd --follow --exclude .git --exclude .snapshots'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --max-depth 6 --hidden"
-    export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d --max-depth 6 --hidden"
+    export FZF_DEFAULT_COMMAND='fd --follow --exclude .git --exclude .snapshots --hidden --strip-cwd-prefix'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --max-depth 8"
+    export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d --max-depth 8"
 
 }
 

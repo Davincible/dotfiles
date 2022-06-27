@@ -105,12 +105,28 @@ return require("packer").startup(
             requires = "MunifTanjim/nui.nvim",
             config = "require('package-info').setup()"
         }
-        use {"iamcco/markdown-preview.nvim"}
+        use(
+            {
+                "iamcco/markdown-preview.nvim",
+                run = "cd app && npm install",
+                setup = function()
+                    vim.g.mkdp_filetypes = {"markdown"}
+                end,
+                ft = {"markdown"}
+            }
+        )
         use {"mattn/emmet-vim"}
         use {"potatoesmaster/i3-vim-syntax"}
         -- use {"airblade/vim-rooter"}
         use {"mvllow/modes.nvim"} -- Highlights current line based on mode
         use {"zegervdv/nrpattern.nvim", config = "require('nrpattern').setup()"}
+        use {"kevinhwang91/nvim-bqf", ft = "qf"} -- Nicer quickfix list
+        use {
+            "ahmedkhalf/project.nvim",
+            config = function()
+                require("project_nvim").setup {}
+            end
+        }
 
         -- Golang
         use(

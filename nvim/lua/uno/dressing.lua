@@ -22,11 +22,11 @@ require("dressing").setup(
             -- Priority list of preferred vim.select implementations
             backend = {"telescope", "nui", "fzf", "builtin"},
             -- Options for telescope selector
-            telescope = {
-                -- can be 'dropdown', 'cursor', or 'ivy'
-                theme = "dropdown"
-            },
-            -- Options for fzf selector
+            -- telescope = {
+            --     -- can be 'dropdown', 'cursor', or 'ivy'
+            --     theme = "dropdown"
+            -- },
+            -- -- Options for fzf selector
             fzf = {
                 window = {
                     width = 0.5,

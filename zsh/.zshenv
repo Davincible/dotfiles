@@ -39,3 +39,6 @@ export JAVA8_HOME="/usr/lib/jvm/java-8-openjdk"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export ANDROID_HOME="/opt/android-sdk"
 export PATH="$PATH:/opt/android-sdk/emulator:/opt/android-sdk/platform-tools:/opt/android-sdk/cmdline-tools/latest/bin"
+
+# Upcloud
+source ~/.config/upctl.sh

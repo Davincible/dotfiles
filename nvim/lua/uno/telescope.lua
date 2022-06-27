@@ -81,29 +81,39 @@ telescope.setup {
         media_files = {
             -- filetypes whitelist
             -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-            filetypes = {"png", "webp", "jpg", "jpeg", "pdf", "webm", "mp4"},
-            find_cmd = "rg" -- find command (defaults to `fd`)
+            filetypes = {"png", "webp", "jpg", "jpeg", "pdf", "webm", "mp4", "mp3", "mkv"}
         },
         ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
         }
+    },
+    pickers = {
+        find_files = {
+            find_command = {
+                "fd",
+                "--max-depth",
+                "8",
+                "--hidden",
+                "--follow",
+                "--type",
+                "f",
+                "--strip-cwd-prefix",
+                "--follow",
+                "--no-ignore-vcs"
+            }
+        }
     }
 }
 
-require "telescope".load_extension("project")
+require("telescope").load_extension("project")
+require("telescope").load_extension("projects") -- ahmedkhalf/project.nvim
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("tmuxinator")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("file_browser")
 
-M.find_files = function()
-    require("telescope.builtin").find_files {
-        find_command = {"fd", "--max-depth", "5", "--hidden", "--follow", "--type", "f"}
-    }
-end
-
-vim.api.nvim_set_keymap("n", "<leader>ff", ':lua require("uno.telescope").find_files()<CR>', {silent = true})
+vim.api.nvim_set_keymap("n", "<leader>ff", ':lua require("telescope.builtin").find_files()<CR>', {silent = true})
 vim.api.nvim_set_keymap("n", "<leader>fg", ':lua require("telescope.builtin").live_grep()<CR>', {silent = true})
 vim.api.nvim_set_keymap("n", "<leader>fb", ':lua require("telescope.builtin").buffers()<CR>', {silent = true})
 vim.api.nvim_set_keymap("n", "<leader>ft", ":Telescope file_browser<CR>", {silent = true})

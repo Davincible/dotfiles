@@ -15,8 +15,8 @@ vim.go.mouse = "a"
 vim.go.clipboard = "unnamedplus"
 vim.go.wildmenu = true
 vim.go.wildmode = "longest,list,full"
-vim.go.undodir = ".vim/undodir"
-vim.go.backupdir = ".vim/backups"
+vim.go.undodir = os.getenv("HOME") .. "/.nvim/undodir"
+vim.go.backupdir = os.getenv("HOME") .. "/.nvim/backups"
 vim.go.backup = true
 vim.go.updatetime = 100
 vim.go.fillchars = "eob: "
@@ -42,6 +42,7 @@ vim.bo.undofile = true
 -- Global Variables
 vim.g.mapleader = " "
 vim.g.python3_host_prog = "/usr/bin/python3"
+vim.g.mkdp_browserfunc = "firefox"
 -- vim.g.colorizer_auto_color = 1  -- might not be needed
 
 vim.cmd [[
@@ -55,16 +56,17 @@ set wildignore+=**/ios/*
 set wildignore+=**/.git/*
 ]]
 
+-- au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
 -- hide line numbers , statusline in specific buffers such as file tree and terminal
 vim.api.nvim_exec(
     [[
    au BufEnter * highlight Normal guibg=0
    au BufEnter term://* setlocal nonumber
    au BufEnter zsh setlocal nonumber
-   au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
    au BufEnter term://* set laststatus=0 
    au BufEnter zsh set laststatus=0 
-
+   au BufEnter,BufWinEnter,WinEnter,CmdwinEnter NvimTree* set laststatus=0 
+   au FileType qf set laststatus=0
 ]],
     false
 )
@@ -75,6 +77,15 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.html :silent! Neoformat ]], false)
 -- Format SQL on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.sql :silent! Neoformat pg_format ]], false)
 
+-- SQL tabs
+vim.api.nvim_exec([[ autocmd BufRead *.sql set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab ]], false)
+
+-- Format Python on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.py :silent! Neoformat ]], false)
+
+-- Format Protobuf on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.proto :silent! Neoformat ]], false)
+
 -- Format JS on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.js :silent! Neoformat ]], false)
 vim.api.nvim_exec([[ autocmd BufWritePre *.jsx :silent! Neoformat ]], false)
@@ -84,6 +95,12 @@ vim.api.nvim_exec([[ autocmd BufWritePre *.css :silent! Neoformat ]], false)
 -- Format Lua on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.lua :silent! Neoformat ]], false)
 
+-- Format JSON on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.json :silent! Neoformat ]], false)
+
+-- Format Tiltfile on save
+vim.api.nvim_exec([[ autocmd BufWritePre Tiltfile :silent! Neoformat ]], false)
+
 vim.api.nvim_exec(
     [[ 
     aug i3config_ft_detection
@@ -92,3 +109,7 @@ vim.api.nvim_exec(
 aug end ]],
     false
 )
+
+-- Load tilt file
+vim.api.nvim_exec([[ autocmd BufRead Tiltfile set ft=tiltfile ]], false)
+vim.api.nvim_exec([[ autocmd BufRead Tiltfile set syntax=python ]], false)

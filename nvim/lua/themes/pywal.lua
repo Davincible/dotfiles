@@ -57,6 +57,7 @@ function getColors()
     return colorTable
 end
 
+-- Read colors in from pywal cache
 local colors = getColors()
 
 local theme =
@@ -80,9 +81,6 @@ local theme =
         local color14 = hsl(colors[14]).lighten(l).saturate(s)
         local color15 = hsl(colors[15]).lighten(l).saturate(s)
         local color16 = hsl(colors[16]).lighten(l).saturate(s)
-        -- local red     = hsl("#ff0000")
-        -- local green     = hsl("#00ff00")
-        local blue = hsl("#0000ff")
 
         -- Onedark theme
         local white = hsl("#abb2bf")
@@ -140,14 +138,14 @@ local theme =
             EndOfBuffer {fg = color2.darken(10)}, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
             TermCursor {bg = color6, fg = color1}, -- cursor in a focused terminal
             TermCursorNC {bg = color3, fg = color1}, -- cursor in an unfocused terminal
-            ErrorMsg {bg = color3.lighten(50), fg = color1}, -- error messages on the command line
+            ErrorMsg {fg = pink.darken(40).saturate(-20)}, -- error messages on the command line
             VertSplit {fg = color2.darken(50)}, -- the column separating vertically split windows
             Folded {fg = color3.darken(5)}, -- line used for closed folds
             FoldColumn {fg = color3}, -- 'foldcolumn'
             SignColumn {fg = color6}, -- column where |signs| are displayed
             IncSearch {bg = color8, fg = color1}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
             Substitute {bg = color7, fg = color1}, -- |:substitute| replacement text highlighting
-            LineNr {fg = color12}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+            LineNr {fg = color12.darken(30)}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
             CursorLineNr {bg = color12.darken(80), fg = color12.darken(10)}, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
             MatchParen {fg = color1.lighten(50)}, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
             ModeMsg {fg = color6}, -- 'showmode' message (e.g., "-- INSERT -- ")
@@ -163,9 +161,9 @@ local theme =
             PmenuSbar {bg = color2, fg = color1.darken(10)}, -- Popup menu: scrollbar.
             PmenuThumb {fg = color2}, -- Popup menu: Thumb of the scrollbar.
             Question {fg = color5.lighten(30)}, -- |hit-enter| prompt and yes/no questions
-            QuickFixLine {bg = color3, fg = color3.lighten(50)}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-            Search {bg = color8.darken(5), fg = color2.darken(10)}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-            SpecialKey {bg = color1, fg = color8.darken(40)}, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+            QuickFixLine {fg = white, gui = "bold"}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+            Search {bg = color8.darken(5), fg = black}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+            SpecialKey {bg = color1, fg = black.darken(40)}, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
             SpellBad {fg = color3.darken(25), gui = "undercurl"}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
             SpellCap {SpellBad}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
             SpellLocal {SpellBad}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
@@ -241,7 +239,7 @@ local theme =
 
             LspDiagnosticsDefaultError {fg = hsl("#ab0934").saturate(-30).lighten(20), gui = "italic"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
             LspDiagnosticsDefaultWarning {fg = hsl("#e0ba0b").saturate(-20), gui = "italic"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-            LspDiagnosticsDefaultInformation {fg = color11.darken(25), gui = "italic"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+            LspDiagnosticsDefaultInformation {fg = teal.lighten(10).saturate(10), gui = "italic"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
             LspDiagnosticsDefaultHint {fg = color7, gui = "italic"}, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
             -- LspDiagnosticsVirtualTextError       { }, -- Used for "Error" diagnostic virtual text
             -- LspDiagnosticsVirtualTextWarning     { }, -- Used for "Warning" diagnostic virtual text
@@ -332,6 +330,12 @@ local theme =
             TelescopeMultiSelection {fg = color3.lighten(5)},
             -- TelescopeNormal         { bg = color1.lighten(4) },
 
+            -- Git Signs
+            DiffAdd {fg = vibrant_green.rotate(-10)}, -- diff mode: Added line |diff.txt|
+            DiffChange {fg = dark_purple}, -- diff mode: Changed ine |diff.txt|
+            DiffDelete {fg = red}, -- diff mode: Deleted line |diff.txt|
+            DffText {fg = nord_blue}, -- diff mode: Changed text within a changed line |diff.txt|
+            DiffModified {fg = sun},
             -- NvimTree
             NvimTreeFolderIcon {fg = blue},
             NvimTreeFolderName {fg = blue},
@@ -340,39 +344,44 @@ local theme =
             NvimTreeIndentMarker {fg = one_bg2},
             NvimTreeVertSplit {fg = darker_black},
             NvimTreeEndOfBuffer {fg = darker_black},
-            NvimTreeRootFolder {fg = one_bg2.lighten(30)},
-            NvimTreeNormal {fg = one_bg2.lighten(30)},
+            NvimTreeRootFolder {fg = black2.lighten(50)},
+            NvimTreeNormal {fg = grey.lighten(60)},
             NvimTreeStatuslineNc {},
             NvimTreeWindowPicker {bg = black2.lighten(20), fg = red},
-            -- Git Signs
-            DiffAdd {fg = vibrant_green.rotate(-10)}, -- diff mode: Added line |diff.txt|
-            DiffChange {fg = dark_purple}, -- diff mode: Changed ine |diff.txt|
-            DiffDelete {fg = red}, -- diff mode: Deleted line |diff.txt|
-            DffText {fg = nord_blue}, -- diff mode: Changed text within a changed line |diff.txt|
-            DiffModified {fg = sun},
+            NvimTreeLspDiagnosticsError {fg = LspDiagnosticsDefaultError.fg},
+            NvimTreeLspDiagnosticsWarning {fg = LspDiagnosticsDefaultWarning.fg},
+            NvimTreeLspDiagnosticsInformation {fg = LspDiagnosticsDefaultInformation.fg},
+            NvimTreeLspDiagnosticsHint {fg = LspDiagnosticsDefaultError.fg.rotate(30)},
+            NvimTreeGitDirty {fg = DiffModified.fg},
+            NvimTreeGitStaged {fg = DiffAdd.fg},
+            NvimTreeGitMerge {fg = dark_purple},
+            NvimTreeGitRenamed {fg = DiffModified.fg},
+            NvimTreeGitNew {fg = cyan},
+            NvimTreeGitDeleted {fg = DiffDelete.fg},
+            NvimTreeGitIgnored {fg = DiffText.fg},
             -- Buffer lines or smth, not sure yet what this does
-            BufferLineFill {fg = grey_fg},
-            BufferLineBackground {fg = light_grey},
-            BufferLineBufferVisible {fg = light_grey},
-            BufferLineBufferSelected {fg = white, gui = "bold"},
-            -- tabs
-            BufferLineTab {fg = light_grey, bg = one_bg3},
-            BufferLineTabSelected {fg = black2, bg = nord_blue},
-            BufferLineTabClose {fg = red},
-            BufferLineIndicator {fg = red},
-            BufferLineIndicatorSelected {fg = color4},
-            -- separators
-            BufferLineSeparator {fg = color4},
-            BufferLineSeparatorVisible {fg = green},
-            BufferLineSeparatorSelected {fg = blue},
-            -- modified buffers
-            BufferLineModified {fg = red, bg = black2},
-            BufferLineModifiedVisible {fg = blue, bg = black2},
-            BufferLineModifiedSelected {fg = green, bg = black},
-            -- close buttons
-            BufferLineCloseButtonVisible {fg = light_grey},
-            BufferLineCloseButton {fg = light_grey},
-            BufferLineCloseButtonSelected {fg = red},
+            -- BufferLineFill {fg = grey_fg},
+            -- BufferLineBackground {fg = light_grey},
+            -- BufferLineBufferVisible {fg = light_grey},
+            -- BufferLineBufferSelected {fg = white, gui = "bold"},
+            -- -- tabs
+            -- BufferLineTab {fg = light_grey, bg = one_bg3},
+            -- BufferLineTabSelected {fg = black2, bg = nord_blue},
+            -- BufferLineTabClose {fg = red},
+            -- BufferLineIndicator {fg = red},
+            -- BufferLineIndicatorSelected {fg = color4},
+            -- -- separators
+            -- BufferLineSeparator {fg = color4},
+            -- BufferLineSeparatorVisible {fg = green},
+            -- BufferLineSeparatorSelected {fg = blue},
+            -- -- modified buffers
+            -- BufferLineModified {fg = red, bg = black2},
+            -- BufferLineModifiedVisible {fg = blue, bg = black2},
+            -- BufferLineModifiedSelected {fg = green, bg = black},
+            -- -- close buttons
+            -- BufferLineCloseButtonVisible {fg = light_grey},
+            -- BufferLineCloseButton {fg = light_grey},
+            -- BufferLineCloseButtonSelected {fg = red},
             -- Notify
             NotifyERRORBorder {fg = "#8A1F1F"},
             NotifyWARNBorder {fg = "#79491D"},
@@ -398,7 +407,8 @@ local theme =
             ModesCopy {bg = "#f5c359"},
             ModesDelete {bg = "#c75c6a"},
             ModesInsert {bg = "#78ccc5"},
-            ModesVisual {bg = color2.lighten(30)}
+            ModesVisual {bg = color2.lighten(30)},
+            packerStatusFail {fg = pink.darken(40).saturate(-20)} -- error messages on the command line
         }
     end
 )

@@ -226,8 +226,10 @@ _G.packer_plugins = {
     url = "https://github.com/rktjmp/lush.nvim"
   },
   ["markdown-preview.nvim"] = {
-    loaded = true,
-    path = "/home/tyler/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/tyler/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["modes.nvim"] = {
@@ -255,6 +257,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tyler/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
+  },
+  ["nvim-bqf"] = {
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/tyler/.local/share/nvim/site/pack/packer/opt/nvim-bqf",
+    url = "https://github.com/kevinhwang91/nvim-bqf"
   },
   ["nvim-bufferline.lua"] = {
     loaded = true,
@@ -368,6 +377,12 @@ _G.packer_plugins = {
     path = "/home/tyler/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["project.nvim"] = {
+    config = { "\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17project_nvim\frequire\0" },
+    loaded = true,
+    path = "/home/tyler/.local/share/nvim/site/pack/packer/start/project.nvim",
+    url = "https://github.com/ahmedkhalf/project.nvim"
+  },
   ["splitjoin.vim"] = {
     loaded = true,
     path = "/home/tyler/.local/share/nvim/site/pack/packer/start/splitjoin.vim",
@@ -457,26 +472,42 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nrpattern.nvim
-time([[Config for nrpattern.nvim]], true)
-require('nrpattern').setup()
-time([[Config for nrpattern.nvim]], false)
+-- Setup for: markdown-preview.nvim
+time([[Setup for markdown-preview.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\2\0\0\rmarkdown\19mkdp_filetypes\6g\bvim\0", "setup", "markdown-preview.nvim")
+time([[Setup for markdown-preview.nvim]], false)
 -- Config for: todo-comments.nvim
 time([[Config for todo-comments.nvim]], true)
 require('todo-comments')
 time([[Config for todo-comments.nvim]], false)
--- Config for: nvim-ts-autotag
-time([[Config for nvim-ts-autotag]], true)
-require('nvim-ts-autotag').setup({ enable = true })
-time([[Config for nvim-ts-autotag]], false)
+-- Config for: nrpattern.nvim
+time([[Config for nrpattern.nvim]], true)
+require('nrpattern').setup()
+time([[Config for nrpattern.nvim]], false)
 -- Config for: galaxyline.nvim
 time([[Config for galaxyline.nvim]], true)
 require('uno.statusline')
 time([[Config for galaxyline.nvim]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+require('nvim-ts-autotag').setup({ enable = true })
+time([[Config for nvim-ts-autotag]], false)
+-- Config for: project.nvim
+time([[Config for project.nvim]], true)
+try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17project_nvim\frequire\0", "config", "project.nvim")
+time([[Config for project.nvim]], false)
 -- Config for: package-info.nvim
 time([[Config for package-info.nvim]], true)
 require('package-info').setup()
 time([[Config for package-info.nvim]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType qf ++once lua require("packer.load")({'nvim-bqf'}, { ft = "qf" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
