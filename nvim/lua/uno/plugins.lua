@@ -40,8 +40,8 @@ return require("packer").startup(
         -- Status line
         -- use("glepnir/galaxyline.nvim")  -- Author has gone AFK
         -- use("NTBBloodbath/galaxyline.nvim")  -- main new fork
-        use {"joshuaMarple/galaxyline.nvim", config = "require('uno.statusline')"}
-        -- use {"nvim-lualine/lualine.nvim", config = "require('uno.lualine')"}
+        -- use {"joshuaMarple/galaxyline.nvim"}
+        use {"nvim-lualine/lualine.nvim"}
 
         -- Software Devlopment
         -- TODO: Currntly doesn't support lsp and treesitter, check back later

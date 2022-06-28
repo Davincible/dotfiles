@@ -6,15 +6,29 @@ require "go".setup(
         tag_transform = false,
         test_dir = "",
         comment_placeholder = "   ",
-        lsp_cfg = true, -- false: use your own lspconfig
+        lsp_cfg = false, -- false: use your own lspconfig
         lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
         lsp_on_attach = true, -- use on_attach from go.nvim
-        dap_debug = true
+        dap_debug = true,
+        test_runner = "richgo"
     }
 )
 
--- What is this for?
-require "vim.lsp.protocol"
+local lsp_installer_servers = require "nvim-lsp-installer.servers"
+
+local server_available, requested_server = lsp_installer_servers.get_server("gopls")
+if server_available then
+    requested_server:on_ready(
+        function()
+            local opts = require "go.lsp".config() -- config() return the go.nvim gopls setup
+            requested_server:setup(opts)
+        end
+    )
+    if not requested_server:is_installed() then
+        -- Queue the server to be installed
+        requested_server:install()
+    end
+end
 
 vim.cmd('command! Gofmt lua require("go.format").gofmt(true)')
 

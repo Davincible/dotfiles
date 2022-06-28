@@ -20,6 +20,9 @@ vim.go.backupdir = os.getenv("HOME") .. "/.nvim/backups"
 vim.go.backup = true
 vim.go.updatetime = 100
 vim.go.fillchars = "eob: "
+vim.go.laststatus = 3
+vim.go.splitright = true
+vim.go.splitbelow = true
 
 -- Window Options
 vim.wo.relativenumber = true
@@ -58,18 +61,11 @@ set wildignore+=**/.git/*
 
 -- au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
 -- hide line numbers , statusline in specific buffers such as file tree and terminal
-vim.api.nvim_exec(
-    [[
-   au BufEnter * highlight Normal guibg=0
-   au BufEnter term://* setlocal nonumber
-   au BufEnter zsh setlocal nonumber
-   au BufEnter term://* set laststatus=0 
-   au BufEnter zsh set laststatus=0 
-   au BufEnter,BufWinEnter,WinEnter,CmdwinEnter NvimTree* set laststatus=0 
-   au FileType qf set laststatus=0
-]],
-    false
-)
+-- au BufEnter * highlight Normal guibg=0
+--    au FileType qf set laststatus=0
+vim.api.nvim_exec([[
+   au TermOpen * setlocal nonumber norelativenumber startinsert
+]], false)
 
 -- Format HTML on save
 vim.api.nvim_exec([[ autocmd BufWritePre *.html :silent! Neoformat ]], false)

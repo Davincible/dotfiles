@@ -7,8 +7,8 @@ background         {color0}
 background_opacity {color0.alpha_dec}
 cursor             {color15}
 
-active_tab_foreground     {color0}
-active_tab_background     {color8}
+active_tab_foreground     {color8}
+active_tab_background     {color0}
 inactive_tab_foreground   {color15}
 inactive_tab_background   {color0}
 

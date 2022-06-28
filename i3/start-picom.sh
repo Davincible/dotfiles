@@ -1,3 +1,4 @@
 #!/bin/bash
 killall -q picom
-picom --xrender-sync-fence &>/dev/null
+sleep .05
+picom --xrender-sync-fence --blur-strength 5 --blur-method dual_kawase &>/dev/null &

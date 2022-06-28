@@ -34,10 +34,10 @@ vim.api.nvim_set_keymap("n", "<Leader><left>", ":bp<CR>", {noremap = true, silen
 vim.api.nvim_set_keymap("n", "<Leader>h", ":bp<CR>", {noremap = true, silent = true})
 
 -- Move windows
-vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", {noremap = true, silent = true})
 
 -- Navigate Insert
 -- vim.api.nvim_set_keymap('i', '<C-h>', '<C-o>h', {noremap = true, silent = true})
@@ -58,6 +58,7 @@ vim.api.nvim_set_keymap("n", "<Leader>va", "ggVG", {noremap = true, silent = tru
 -- Git stuff
 vim.api.nvim_set_keymap("n", "<Leader>G", ":Git<CR>", {noremap = true, silent = true})
 
+-- Get highlight group
 vim.keymap.set(
     {"i"},
     "<F16>",
@@ -65,3 +66,8 @@ vim.keymap.set(
         vim.cmd([[[ echo synIDattr(synID(line("."), col("."), 1), "name") ]])
     end
 )
+
+-- Terminal stuff
+vim.api.nvim_set_keymap("t", "<esc>", "<C-\\><C-N>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>tv", ":vsplit<bar>term<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>ts", ":split<bar>term<CR>", {noremap = true, silent = true})

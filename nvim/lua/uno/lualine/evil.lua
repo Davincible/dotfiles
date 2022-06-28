@@ -16,7 +16,8 @@ local colors = {
     violet = "#a9a1e1",
     magenta = "#c678dd",
     blue = "#51afef",
-    red = "#ec5f67"
+    red = "#ec5f67",
+    transparent = "#181919"
 }
 
 local conditions = {
@@ -35,7 +36,10 @@ local conditions = {
 
 -- Config
 local config = {
+    extensions = {"quickfix", "fugitive", "fzf", "man", "nvim-dap-ui", "toggleterm"},
     options = {
+        -- component_separators = {left = "  ", right = "  "},
+        -- section_separators = {left = "", right = ""},
         -- Disable sections and component separators
         component_separators = "",
         section_separators = "",
@@ -43,8 +47,8 @@ local config = {
             -- We are going to use lualine_c an lualine_x as left and
             -- right section. Both are highlighted by c theme .  So we
             -- are just setting default looks o statusline
-            normal = {c = {fg = colors.fg, bg = colors.bg}},
-            inactive = {c = {fg = colors.fg, bg = colors.bg}}
+            normal = {c = {fg = colors.fg, bg = colors.transparent}},
+            inactive = {c = {fg = colors.fg, bg = colors.transparent}}
         }
     },
     sections = {
@@ -217,5 +221,4 @@ ins_right {
     padding = {left = 1}
 }
 
--- Now don't forget to initialize lualine
 lualine.setup(config)

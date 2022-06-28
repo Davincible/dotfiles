@@ -143,6 +143,7 @@ local theme =
             Folded {fg = color3.darken(5)}, -- line used for closed folds
             FoldColumn {fg = color3}, -- 'foldcolumn'
             SignColumn {fg = color6}, -- column where |signs| are displayed
+            Search {bg = color8.darken(5), fg = black}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
             IncSearch {bg = color8, fg = color1}, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
             Substitute {bg = color7, fg = color1}, -- |:substitute| replacement text highlighting
             LineNr {fg = color12.darken(30)}, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
@@ -162,13 +163,12 @@ local theme =
             PmenuThumb {fg = color2}, -- Popup menu: Thumb of the scrollbar.
             Question {fg = color5.lighten(30)}, -- |hit-enter| prompt and yes/no questions
             QuickFixLine {fg = white, gui = "bold"}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-            Search {bg = color8.darken(5), fg = black}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
             SpecialKey {bg = color1, fg = black.darken(40)}, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
             SpellBad {fg = color3.darken(25), gui = "undercurl"}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
             SpellCap {SpellBad}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
             SpellLocal {SpellBad}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
             SpellRare {SpellBad}, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-            StatusLine {bg = color1.lighten(60), fg = color6.darken(60)}, -- status line of current window
+            -- StatusLine {bg = black}, --{bg = color1.lighten(60), fg = color6.darken(60)}, -- status line of current window
             StatusLineNC {fg = color2.darken(50), gui = "underline"}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
             TabLine {StatusLineNC}, -- tab pages line, not active tab page label
             TabLineFill {PmenuThumb}, -- tab pages line, where there are no labels
@@ -382,6 +382,67 @@ local theme =
             -- BufferLineCloseButtonVisible {fg = light_grey},
             -- BufferLineCloseButton {fg = light_grey},
             -- BufferLineCloseButtonSelected {fg = red},
+
+            -- Raw list of bufferline items, some don't really do much, hard to find which ones do
+            -- BufferLineTab  xxx guifg=#ffffff guibg=#fff
+            -- BufferLineHintDiagnosticVisible xxx guifg=#849aa5
+            -- BufferLineHintDiagnostic xxx guifg=#849aa5 guisp=#9e9e9e
+            -- BufferLineHintSelected xxx gui=bold,italic guifg=#d3d3d3 guisp=#d3d3d3
+            -- BufferLineHintVisible xxx guifg=#b0cedd
+            -- BufferLineDiagnosticSelected xxx gui=bold,italic guifg=#8d8f9d
+            -- BufferLineDiagnosticVisible xxx guifg=#849aa5
+            -- BufferLineBufferSelected xxx gui=bold,italic guifg=#bcbfd2 guibg=#ffffff
+            --
+            -- If the buffer is visible in one of the windows
+            -- BufferLineBufferVisible xxx guifg=#b0cedd guibg=#ffffff
+            --
+            -- Filling on the right side remaining space
+            -- BufferLineFill xxx guifg=#b0cedd guibg=#ffffff
+            -- BufferLineCloseButtonVisible xxx guifg=#b0cedd
+            -- BufferLineCloseButton xxx guifg=#b0cedd
+            -- BufferLineTabClose xxx guifg=#b0cedd
+            -- BufferLineTabSelected xxx guifg=#d1e0e0
+            -- BufferLineGroupLabel xxx guibg=#b0cedd
+            -- BufferLineGroupSeparator xxx guifg=#b0cedd
+            -- BufferLineModified xxx guifg=#80a8a8
+            -- BufferLineDiagnostic xxx guifg=#849aa5
+            -- BufferLineWarning xxx guifg=#b0cedd guisp=#ffa500
+            -- BufferLineHintDiagnosticSelected xxx gui=bold,italic guifg=#9e9e9e guisp=#9e9e9e
+            -- BufferLineError xxx guifg=#b0cedd guisp=#ff0000
+            -- BufferLineInfoDiagnostic xxx guifg=#849aa5 guisp=#81a2ac
+            -- BufferLineCloseButtonSelected xxx guifg=#bcbfd2
+            -- BufferLineInfo xxx guifg=#b0cedd guisp=#add8e6
+            -- BufferLinePickSelected xxx gui=bold,italic guifg=#ff0000
+            -- BufferLinePick xxx gui=bold,italic guifg=#ff0000
+            -- BufferLineDuplicate xxx gui=italic guifg=#a7c3d1
+            -- BufferLinePickVisible xxx gui=bold,italic guifg=#ff0000
+            -- BufferLineBuffer xxx guifg=#b0cedd guibg=#ffffff
+            -- BufferLineSeparator xxx cleared
+            -- BufferLineIndicatorSelected xxx guifg=#d1e0e0
+            -- BufferLineSeparatorVisible xxx cleared
+            -- BufferLineSeparatorSelected xxx cleared
+            -- BufferLineDuplicateVisible xxx gui=italic guifg=#a7c3d1
+            -- BufferLineDuplicateSelected xxx gui=italic guifg=#a7c3d1
+            -- BufferLineModifiedSelected xxx guifg=#80a8a8
+            -- BufferLineModifiedVisible xxx guifg=#80a8a8
+            -- BufferLineErrorDiagnosticSelected xxx gui=bold,italic guifg=#bf0000 guisp=#bf0000
+            -- BufferLineErrorDiagnosticVisible xxx guifg=#849aa5
+            -- BufferLineErrorDiagnostic xxx guifg=#849aa5 guisp=#bf0000
+            -- BufferLineErrorSelected xxx gui=bold,italic guifg=#ff0000 guisp=#ff0000
+            -- BufferLineErrorVisible xxx guifg=#b0cedd
+            -- BufferLineWarningDiagnosticSelected xxx gui=bold,italic guifg=#bf7b00 guisp=#bf7b00
+            -- BufferLineWarningDiagnosticVisible xxx guifg=#849aa5
+            -- BufferLineWarningDiagnostic xxx guifg=#849aa5 guisp=#bf7b00
+            -- BufferLineHint xxx guifg=#b0cedd guisp=#d3d3d3
+            -- BufferLineWarningSelected xxx gui=bold,italic guifg=#ffa500 guisp=#ffa500
+            -- BufferLineWarningVisible xxx guifg=#b0cedd
+            -- BufferLineInfoDiagnosticSelected xxx gui=bold,italic guifg=#81a2ac guisp=#81a2ac
+            -- BufferLineInfoDiagnosticVisible xxx guifg=#849aa5
+            --
+            -- Background of all escept visible
+            -- BufferLineBackground xxx guifg=#b0cedd
+            -- BufferLineInfoSelected xxx gui=bold,italic guifg=#add8e6 guisp=#add8e6
+            -- BufferLineInfoVisible xxx guifg=#b0cedd
             -- Notify
             NotifyERRORBorder {fg = "#8A1F1F"},
             NotifyWARNBorder {fg = "#79491D"},
