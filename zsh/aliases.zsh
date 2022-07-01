@@ -23,10 +23,7 @@ alias pypi='pip3 install --user'
 # alias man='vman'
 alias pacman='sudo pacman'
 alias nmgui="nm-connection-editor"
-alias e3="nvim ~/.config/wpg/templates/i3.base"
-alias envim="nvim ~/.config/nvim/lua/uno/config.lua"
-alias ezsh="nvim ~/.config/zsh/.zshrc"
-alias ekitty="nvim ~/.config/kitty/kitty.conf"
+
 alias x="exit"
 alias snvim="sudo -E nvim"
 alias svim="sudo -E vim"
@@ -36,6 +33,17 @@ alias cat="bat"
 alias catt="cat"
 alias fd="fd -L"
 alias sz="source ~/.config/zsh/.zshrc"
+
+# Edit config files
+edit_config () {
+	nvim $1 -c ":cd $(dirname $1)"
+}
+CONFIG_DIR="~/.config"
+
+alias e3="edit_config $CONFIG_DIR/wpg/templates/i3.base"
+alias envim="edit_config $CONFIG_DIR/nvim/lua/uno/config.lua"
+alias ezsh="edit_config $CONFIG_DIR/zsh/.zshrc"
+alias ekitty="edit_config $CONFIG_DIR/wpg/templates/config_kitty_colors-kitty.conf.base"
 
 # Open files with default program
 function open () {
@@ -78,8 +86,5 @@ rga-fzf() {
 
 # User Programs
 alias gephi="LIBGL_ALWAYS_SOFTWARE=1 gephi --jdkhome $JAVA8_HOME"
-
-export MANPAGER='nvim +Man!'
-export MANWIDTH=999
 
 alias tableplus="/usr/bin/env LD_PRELOAD=/opt/tableplus/lib/libldap-2.5.so.0.1.1:/opt/tableplus/lib/liblber-2.5.so.0.1.1:/opt/tableplus/lib/libsasl2.so.2.0.25:/opt/tableplus/lib/libgio-2.0.so.0.6800.4 /usr/local/bin/tableplus"

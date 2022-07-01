@@ -4,20 +4,20 @@
 
 set $mod Mod4
 set $alt Mod1
-set $coloract "#c59568"
-set $colorin "#876647"
+set $coloract "#486777"
+set $colorin "#324651"
 set $terminal kitty
-set_from_resource $color15 i3wm.color15 "#c5c5c5"
-set_from_resource $split i3wm.color10 "#7d5844"
-set_from_resource $coloru i3wm.color2 "#7d5844"
-set_from_resource $color0 i3wm.color0 "#1a1a1a"
-set_from_resource $color8 i3wm.color8 "#535353"
+set_from_resource $color15 i3wm.color15 "#ffffff"
+set_from_resource $split i3wm.color10 "#547480"
+set_from_resource $coloru i3wm.color2 "#49565b"
+set_from_resource $color0 i3wm.color0 "#181919"
+set_from_resource $color8 i3wm.color8 "#3e4242"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 8 
 # font pango:DejaVu Sans Mono 8 
-font pango:JetBrainsMono Nerd Font 8
+font pango:MonoLisa Nerd Font Mono 8
 
 # Gaps
 for_window [class=".*"] border pixel 0
@@ -98,13 +98,13 @@ bindsym Print exec flameshot gui
 
 ###### EXECUTE PROGRAMS ######
 
-bindsym $mod+Shift+f exec kitty --name fexplorer anger
+bindsym $mod+Shift+f exec $terminal --name fexplorer anger
 bindsym $mod+w       exec brave
-bindsym $mod+m       exec kitty --name music spt
+bindsym $mod+m       exec $terminal --name music spt
 bindsym $mod+$alt+n  exec wpg -m
 bindsym $alt+Tab     exec rofi -show window
-bindsym $mod+t       exec $terminal
-bindsym $mod+Return  exec $terminal
+bindsym $mod+t       exec $terminal --single-instance --listen-on='unix:/tmp/kitty.sock'
+bindsym $mod+Return  exec $terminal --single-instance --listen-on='unix:/tmp/kitty.sock'
 bindsym $alt+F4      kill
 bindsym $mod+Shift+q kill
 bindsym $alt+F2      exec rofi -show run
@@ -175,7 +175,7 @@ bindsym $mod+Shift+Escape          exec --no-startup-id i3exit shutdown, mode "d
 ################################################################################################
 
 exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec kitty 'alsamixer'
+bindsym $mod+Ctrl+m exec $terminal 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
@@ -274,7 +274,7 @@ for_window [instance = "dropdown"] floating enable
 ###### STARTUP ######
 
 exec        --no-startup-id ~/.config/wpg/wp_init.sh
-exec        --no-startup-id autorandr --change --skip-option crtc
+exec        --no-startup-id autorandr --change # --skip-option crtc
 exec        --no-startup-id numlockx on
 # exec --no-startup-id "setxkbmap -option caps:escape"
 # exec --no-startup-id dockd --daemon
@@ -290,6 +290,8 @@ exec        --no-startup-id ~/.config/i3/start-redshift.sh
 exec        --no-startup-id ~/Scripts/wpgd
 exec        --no-startup-id insync start
 exec        --no-startup-id xset mouse 8 0
+exec        --no-startup-id ~/Scripts/bluetooth-at-boot.sh
+exec        --no-startup-id solaar -w hidden
 
 # bindsym XF86AddFavorite exec --no-startup-id notify-send XF86AddFavorite
 # bindsym XF86ApplicationLeft exec --no-startup-id notify-send XF86ApplicationLeft

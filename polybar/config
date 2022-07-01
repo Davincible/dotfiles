@@ -18,6 +18,7 @@
 
 [settings]
 screenchange-reload = true
+enable-ipc = true
 
 [colors]
 background = #e8181919
@@ -47,7 +48,7 @@ active-light = #313435
 # tray-position = right
 # monitor = DP-1-1
 width =  100%
-height = 24
+height = 34
 padding-left = 1
 padding-right = 1
 ; background = #00000000    
@@ -69,12 +70,12 @@ enable-ipc = true
 line-size = 3
 wm-restack = i3
 
-modules-left   = gone-left i3 corner-right 
+modules-left   = round-left i3 round-right 
 modules-center =    
-modules-right  = corner-left temperature pulseaudio battery cpu updates wlan mem backlight time  powermenu gone-right
+modules-right  = round-left temperature pulseaudio battery cpu updates wlan mem backlight time  round-right
 
-font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=11;3
-font-1 = JetBrainsMono Nerd Font:size=18;5
+font-0 = MonoLisa Nerd Font Mono:style=Bold:pixelsize=10;3
+font-1 = MonoLisa Nerd Font Mono:size=26;5
 font-2 = Material Design Icons:style=Bold:size=11;3
 font-3 = unifont:fontformat=truetype:size=18:antialias=true;
 
@@ -150,14 +151,23 @@ format = <label-state>
 format-background =${colors.background} 
 ; content-background = ${colors.background}
 
-ws-icon-0 = 1;%{F#F9DE8F} 
-ws-icon-1 = 2;%{F#ff9b93}   
-ws-icon-2 = 3;%{F#95e1d3}    
-ws-icon-3 = 4;%{F#81A1C1}
-ws-icon-4 = 5;%{F#A3BE8C} 
-ws-icon-5 = 6;%{F#A3BE8C} 
-ws-icon-6 = 7;%{F#A3BE8C}力 
-ws-icon-7 = 8;%{F#A3BE8C} 
+ws-icon-0 = 1;%{F#F9DE8F}[1] 
+ws-icon-1 = 2;%{F#ff9b93}[2]   
+ws-icon-2 = 3;%{F#95e1d3}[3]    
+ws-icon-3 = 4;%{F#81A1C1}[4]
+ws-icon-4 = 5;%{F#A3BE8C}[5] 
+ws-icon-5 = 6;%{F#A3BE8C}[6] 
+ws-icon-6 = 7;%{F#A3BE8C}[7] 
+ws-icon-7 = 8;%{F#A3BE8C}[8] 
+
+; ws-icon-0 = 1;%{F#F9DE8F} 
+; ws-icon-1 = 2;%{F#ff9b93}   
+; ws-icon-2 = 3;%{F#95e1d3}    
+; ws-icon-3 = 4;%{F#81A1C1}
+; ws-icon-4 = 5;%{F#A3BE8C} 
+; ws-icon-5 = 6;%{F#A3BE8C} 
+; ws-icon-6 = 7;%{F#A3BE8C}力 
+; ws-icon-7 = 8;%{F#A3BE8C} 
 
 label-separator = ""
 label-separator-background =${colors.background} 

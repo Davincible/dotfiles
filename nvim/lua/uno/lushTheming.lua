@@ -8,19 +8,13 @@ vim.cmd("colorscheme pywal")
 
 -- Watch pywal cache file for color changes
 local fwatch = require("fwatch")
-fwatch.watch(
-    "/home/tyler/.cache/wal/colors",
-    {
-        on_event = function()
-            -- Reapply colorscheme 200ms after file changed
-            vim.defer_fn(
-                function()
-                    package.loaded["themes.pywal"] = nil
-                    require("lush")(require("themes.pywal"))
-                    vim.cmd("colorscheme pywal")
-                end,
-                200
-            )
-        end
-    }
-)
+fwatch.watch(vim.fn.expand("$USER") .. "/.cache/wal/colors", {
+	on_event = function()
+		-- Reapply colorscheme 200ms after file changed
+		vim.defer_fn(function()
+			package.loaded["themes.pywal"] = nil
+			require("lush")(require("themes.pywal"))
+			vim.cmd("colorscheme pywal")
+		end, 200)
+	end,
+})

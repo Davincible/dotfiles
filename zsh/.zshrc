@@ -1,22 +1,26 @@
+# Paths
+export ZSH_CONFIG_PATH="$HOME/.config/zsh"
+export KITTY_CONFIG_PATH="$HOME/.config/kitty"
+
+# Config
+export HISTFILE="$HOME/.cache/zsh/history"
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+
+source $ZSH_CONFIG_PATH/functions.zsh
+
+### load zsh defer plugin
+load $ZSH_CONFIG_PATH/plugins/zsh-defer/zsh-defer.plugin.zsh
 
 ### source other config scripts
-[ -f "$HOME/.config/zsh/plugins.zsh" ] && source ~/.config/zsh/plugins.zsh
-[ -f "$HOME/.config/zsh/prompt.zsh" ] && source ~/.config/zsh/prompt.zsh
-[ -f "$HOME/.config/zsh/prompt_colors.zsh" ] && source ~/.config/zsh/prompt_colors.zsh
-[ -f "$HOME/.config/zsh/aliases.zsh" ] && source ~/.config/zsh/aliases.zsh
-[ -f "$HOME/.config/zsh/keybindings.zsh" ] && source ~/.config/zsh/keybindings.zsh
+load $ZSH_CONFIG_PATH/ohmy.zsh
+load $ZSH_CONFIG_PATH/themes/robbyrussel.zsh
+defer_load $ZSH_CONFIG_PATH/plugins/init.zsh
+defer_load $ZSH_CONFIG_PATH/aliases.zsh
+defer_load $ZSH_CONFIG_PATH/keybindings.zsh
 
-HISTFILE=~/.cache/zsh/history
+# If Using tmux
 # [ -z "$TMUX"  ] && { tmux new -s local || exec tmux new -t local } #  && exit }
-
-# Command completions
-[[ /sbin/kubectl ]] && source <(kubectl completion zsh)
-[[ /sbin/k3d ]] && source <(k3d completion zsh)
-[[ /sbin/datree ]] && source <(datree completion zsh)
-[[ /sbin/helm ]] && source <(helm completion zsh)
-[[ /sbin/tobs ]] && source <(tobs completion zsh)
-[[ /sbin/go-micro ]] && source <(go-micro completion zsh)
-[[ /sbin/cilium ]] && source <(cilium completion zsh)
 
 # Fix Screen Tearing
 # Put this in .xinitrc

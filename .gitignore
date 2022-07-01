@@ -4,3 +4,5 @@
 .zcompdump
 .current
 tmux/plugins/
+packer_compiled.lua
+notes.txt

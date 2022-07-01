@@ -1,6 +1,6 @@
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="brave"
+export BROWSER="firefox"
 export READER="zathura"
 export FILE="ranger"
 

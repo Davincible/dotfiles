@@ -1,5 +1,3 @@
-
-font_family  {myFont}
 font_size    {kittyFontSize}
 
 foreground         {color15}
@@ -7,9 +5,9 @@ background         {color0}
 background_opacity {color0.alpha_dec}
 cursor             {color15}
 
-active_tab_foreground     {color8}
+active_tab_foreground     {color15}
 active_tab_background     {color0}
-inactive_tab_foreground   {color15}
+inactive_tab_foreground   {color8}
 inactive_tab_background   {color0}
 
 active_border_color   {active}

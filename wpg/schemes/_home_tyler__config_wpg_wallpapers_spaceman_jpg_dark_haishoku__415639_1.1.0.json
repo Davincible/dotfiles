@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/spaceman.jpg",
+    "alpha": "91",
+    "special": {
+        "background": "#161718",
+        "foreground": "#c4c5c5",
+        "cursor": "#c4c5c5"
+    },
+    "colors": {
+        "color0": "#161718",
+        "color1": "#41434d",
+        "color2": "#693a37",
+        "color3": "#754355",
+        "color4": "#337f59",
+        "color5": "#767130",
+        "color6": "#6c7062",
+        "color7": "#c4c5c5",
+        "color8": "#505151",
+        "color9": "#41434d",
+        "color10": "#693a37",
+        "color11": "#754355",
+        "color12": "#337f59",
+        "color13": "#767130",
+        "color14": "#6c7062",
+        "color15": "#c4c5c5"
+    }
+}

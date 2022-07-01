@@ -1,34 +1,34 @@
-require "go".setup(
-    {
-        goimport = "gopls", -- if set to 'gopls' will use golsp format
-        gofmt = "gopls", -- if set to gopls will use golsp format
-        max_line_len = 120,
-        tag_transform = false,
-        test_dir = "",
-        comment_placeholder = "   ",
-        lsp_cfg = false, -- false: use your own lspconfig
-        lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
-        lsp_on_attach = true, -- use on_attach from go.nvim
-        dap_debug = true,
-        test_runner = "richgo"
-    }
-)
+local path = require("nvim-lsp-installer.core.path")
+local install_root_dir = path.concat({ vim.fn.stdpath("data"), "lsp_servers" })
 
-local lsp_installer_servers = require "nvim-lsp-installer.servers"
+require("go").setup({
+	verbose = true,
+	gopls_cmd = { install_root_dir .. "/go/gopls" },
+	log_path = vim.fn.expand("$HOME") .. "/.cache/nvim/gonvim.log",
+	comment_placeholder = " ",
+	gofmt = "gopls", -- if set to gopls will use gopls format
+	test_runner = "richgo",
+	lsp_cfg = false,
+	icons = { breakpoint = "", currentpos = "" }, -- set to false to disable
+	run_in_floaterm = false, -- set to true to run in float window.
+	dap_debug = true,
+})
 
-local server_available, requested_server = lsp_installer_servers.get_server("gopls")
-if server_available then
-    requested_server:on_ready(
-        function()
-            local opts = require "go.lsp".config() -- config() return the go.nvim gopls setup
-            requested_server:setup(opts)
-        end
-    )
-    if not requested_server:is_installed() then
-        -- Queue the server to be installed
-        requested_server:install()
-    end
-end
+-- local lsp_installer_servers = require "nvim-lsp-installer.servers"
+
+-- local server_available, requested_server = lsp_installer_servers.get_server("gopls")
+-- if server_available then
+--     requested_server:on_ready(
+--         function()
+--             local opts = require "go.lsp".config() -- config() return the go.nvim gopls setup
+--             requested_server:setup(opts)
+--         end
+--     )
+--     if not requested_server:is_installed() then
+--         -- Queue the server to be installed
+--         requested_server:install()
+--     end
+-- end
 
 vim.cmd('command! Gofmt lua require("go.format").gofmt(true)')
 
@@ -48,6 +48,7 @@ vim.cmd("autocmd FileType go nmap <leader>gt  GoTest")
 vim.cmd("autocmd FileType go nmap <Leader>gl GoLint")
 vim.cmd("autocmd FileType go nmap <Leader>gc :lua require('go.comment').gen()")
 vim.cmd("autocmd FileType go nmap <Leader>gs :GoFillStruct<CR>")
+vim.cmd("autocmd FileType go nmap <Leader>gdb :GoBreakToggle<CR>")
 
 vim.cmd("au FileType go command! Gtn :TestNearest -v -tags=integration")
 vim.cmd("au FileType go command! Gts :TestSuite -v -tags=integration")

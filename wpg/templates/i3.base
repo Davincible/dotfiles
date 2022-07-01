@@ -98,13 +98,13 @@ bindsym Print exec flameshot gui
 
 ###### EXECUTE PROGRAMS ######
 
-bindsym $mod+Shift+f exec kitty --name fexplorer anger
+bindsym $mod+Shift+f exec $terminal --name fexplorer anger
 bindsym $mod+w       exec brave
-bindsym $mod+m       exec kitty --name music spt
+bindsym $mod+m       exec $terminal --name music spt
 bindsym $mod+$alt+n  exec wpg -m
 bindsym $alt+Tab     exec rofi -show window
-bindsym $mod+t       exec $terminal
-bindsym $mod+Return  exec $terminal
+bindsym $mod+t       exec $terminal --single-instance --listen-on='unix:/tmp/kitty.sock'
+bindsym $mod+Return  exec $terminal --single-instance --listen-on='unix:/tmp/kitty.sock'
 bindsym $alt+F4      kill
 bindsym $mod+Shift+q kill
 bindsym $alt+F2      exec rofi -show run
@@ -175,7 +175,7 @@ bindsym $mod+Shift+Escape          exec --no-startup-id i3exit shutdown, mode "d
 ################################################################################################
 
 exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec kitty 'alsamixer'
+bindsym $mod+Ctrl+m exec $terminal 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol

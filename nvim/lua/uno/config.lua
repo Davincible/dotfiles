@@ -22,7 +22,7 @@ vim.go.updatetime = 100
 vim.go.fillchars = "eob: "
 vim.go.laststatus = 3
 vim.go.splitright = true
-vim.go.splitbelow = true
+vim.go.splitbelow = false
 
 -- Window Options
 vim.wo.relativenumber = true
@@ -48,64 +48,23 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.mkdp_browserfunc = "firefox"
 -- vim.g.colorizer_auto_color = 1  -- might not be needed
 
-vim.cmd [[
-" Ignore files
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=**/coverage/*
-set wildignore+=**/node_modules/*
-set wildignore+=**/android/*
-set wildignore+=**/ios/*
-set wildignore+=**/.git/*
-]]
+vim.opt.wildignore = {
+	"*.pyc",
+	"*_build/*",
+	"**/coverage/*",
+	"**/node_modules/*",
+	"**/android/*",
+	"**/ios/*",
+	"**/.git/*",
+}
 
--- au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
--- hide line numbers , statusline in specific buffers such as file tree and terminal
--- au BufEnter * highlight Normal guibg=0
---    au FileType qf set laststatus=0
-vim.api.nvim_exec([[
-   au TermOpen * setlocal nonumber norelativenumber startinsert
-]], false)
-
--- Format HTML on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.html :silent! Neoformat ]], false)
-
--- Format SQL on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.sql :silent! Neoformat pg_format ]], false)
-
--- SQL tabs
-vim.api.nvim_exec([[ autocmd BufRead *.sql set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab ]], false)
-
--- Format Python on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.py :silent! Neoformat ]], false)
-
--- Format Protobuf on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.proto :silent! Neoformat ]], false)
-
--- Format JS on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.js :silent! Neoformat ]], false)
-vim.api.nvim_exec([[ autocmd BufWritePre *.jsx :silent! Neoformat ]], false)
-
-vim.api.nvim_exec([[ autocmd BufWritePre *.css :silent! Neoformat ]], false)
-
--- Format Lua on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.lua :silent! Neoformat ]], false)
-
--- Format JSON on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.json :silent! Neoformat ]], false)
-
--- Format Tiltfile on save
-vim.api.nvim_exec([[ autocmd BufWritePre Tiltfile :silent! Neoformat ]], false)
-
-vim.api.nvim_exec(
-    [[ 
-    aug i3config_ft_detection
-  au!
-  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
-aug end ]],
-    false
-)
-
--- Load tilt file
-vim.api.nvim_exec([[ autocmd BufRead Tiltfile set ft=tiltfile ]], false)
-vim.api.nvim_exec([[ autocmd BufRead Tiltfile set syntax=python ]], false)
+local _term = vim.api.nvim_create_augroup("Terminal", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = "*",
+	callback = function()
+		vim.wo.relativenumber = false
+		vim.wo.number = false
+		vim.cmd("startinsert")
+	end,
+	group = _term,
+})
