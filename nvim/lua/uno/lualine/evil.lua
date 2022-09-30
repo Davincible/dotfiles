@@ -55,11 +55,11 @@ local config = {
 		-- these are to remove the defaults
 		lualine_a = {},
 		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {},
 		-- These will be filled later
-		lualine_c = {},
-		lualine_x = {},
 	},
 	inactive_sections = {
 		-- these are to remove the defaults
@@ -95,33 +95,33 @@ ins_left({
 	function()
 		return ""
 	end,
-	color = { fg = colors.red },
-	-- color = function()
-	-- 	-- auto change color according to neovims mode
-	-- 	local mode_color = {
-	-- 		n = colors.red,
-	-- 		i = colors.green,
-	-- 		v = colors.blue,
-	-- 		[""] = colors.blue,
-	-- 		V = colors.blue,
-	-- 		c = colors.magenta,
-	-- 		no = colors.red,
-	-- 		s = colors.orange,
-	-- 		S = colors.orange,
-	-- 		[""] = colors.orange,
-	-- 		ic = colors.yellow,
-	-- 		R = colors.violet,
-	-- 		Rv = colors.violet,
-	-- 		cv = colors.red,
-	-- 		ce = colors.red,
-	-- 		r = colors.cyan,
-	-- 		rm = colors.cyan,
-	-- 		["r?"] = colors.cyan,
-	-- 		["!"] = colors.red,
-	-- 		t = colors.red,
-	-- 	}
-	-- 	return { fg = mode_color[vim.fn.mode()] }
-	-- end,
+	--  color = { fg = colors.red },
+	color = function()
+		-- auto change color according to neovims mode
+		local mode_color = {
+			n = colors.red,
+			i = colors.green,
+			v = colors.blue,
+			[""] = colors.blue,
+			V = colors.blue,
+			c = colors.magenta,
+			no = colors.red,
+			s = colors.orange,
+			S = colors.orange,
+			[""] = colors.orange,
+			ic = colors.yellow,
+			R = colors.violet,
+			Rv = colors.violet,
+			cv = colors.red,
+			ce = colors.red,
+			r = colors.cyan,
+			rm = colors.cyan,
+			["r?"] = colors.cyan,
+			["!"] = colors.red,
+			t = colors.red,
+		}
+		return { fg = mode_color[vim.fn.mode()] }
+	end,
 	padding = { right = 1 },
 })
 
@@ -132,9 +132,24 @@ ins_left({
 })
 
 ins_left({
-	"filename",
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.magenta, gui = "bold" },
+	-- Lsp server name .
+	function()
+		local msg = "No Active Lsp"
+		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+		local clients = vim.lsp.get_active_clients()
+		if next(clients) == nil then
+			return msg
+		end
+		for _, client in ipairs(clients) do
+			local filetypes = client.config.filetypes
+			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+				return client.name
+			end
+		end
+		return msg
+	end,
+	icon = " LSP:",
+	color = { fg = "#fff", gui = "bold" },
 })
 
 ins_left({ "location" })
@@ -161,24 +176,9 @@ ins_left({
 })
 
 ins_left({
-	-- Lsp server name .
-	function()
-		local msg = "No Active Lsp"
-		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-		local clients = vim.lsp.get_active_clients()
-		if next(clients) == nil then
-			return msg
-		end
-		for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return client.name
-			end
-		end
-		return msg
-	end,
-	icon = " LSP:",
-	color = { fg = "#ffffff", gui = "bold" },
+	"filename",
+	cond = conditions.buffer_not_empty,
+	color = { fg = colors.magenta, gui = "bold" },
 })
 
 -- Add components to right sections

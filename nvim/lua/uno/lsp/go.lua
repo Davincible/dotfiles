@@ -9,9 +9,11 @@ require("go").setup({
 	gofmt = "gopls", -- if set to gopls will use gopls format
 	test_runner = "richgo",
 	lsp_cfg = false,
-	icons = { breakpoint = "", currentpos = "" }, -- set to false to disable
+	lsp_keymaps = false,
+	icons = { breakpoint = "🔺", currentpos = "♥️" }, -- set to false to disable
 	run_in_floaterm = false, -- set to true to run in float window.
 	dap_debug = true,
+	dap_debug_keymap = false,
 })
 
 -- local lsp_installer_servers = require "nvim-lsp-installer.servers"
@@ -48,7 +50,8 @@ vim.cmd("autocmd FileType go nmap <leader>gt  GoTest")
 vim.cmd("autocmd FileType go nmap <Leader>gl GoLint")
 vim.cmd("autocmd FileType go nmap <Leader>gc :lua require('go.comment').gen()")
 vim.cmd("autocmd FileType go nmap <Leader>gs :GoFillStruct<CR>")
-vim.cmd("autocmd FileType go nmap <Leader>gdb :GoBreakToggle<CR>")
+vim.cmd("autocmd FileType go nmap <Leader>gdb :GoDebug<CR>")
+vim.cmd("autocmd FileType go nmap <Leader>gdt :GoBreakToggle<CR>")
 
 vim.cmd("au FileType go command! Gtn :TestNearest -v -tags=integration")
 vim.cmd("au FileType go command! Gts :TestSuite -v -tags=integration")

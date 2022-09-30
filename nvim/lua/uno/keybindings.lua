@@ -3,8 +3,8 @@ vim.api.nvim_set_keymap("n", "Q", "", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "Q", "", { noremap = true, silent = true })
 
 -- Delete without yanking
-vim.api.nvim_set_keymap("n", "<leader>d", '"_d', { noremap = true })
-vim.api.nvim_set_keymap("v", "<leader>d", '"_d', { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>d", '"_d', { noremap = true })
+-- vim.api.nvim_set_keymap("v", "<leader>d", '"_d', { noremap = true })
 
 -- Paste on new line
 vim.api.nvim_set_keymap("n", "<leader>p", "o<ESC>p", { noremap = true })
@@ -23,15 +23,12 @@ vim.api.nvim_set_keymap("v", "<Leader>Q", ":qall!<CR>", { noremap = true, silent
 -- write all and quit
 vim.api.nvim_set_keymap("n", "<Leader>W", ":wqall<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<Leader>W", ":wqall<CR>", { noremap = true, silent = true })
+
 -- Buffer stuff - <C-6> is toggle current and alt(last viewed)
--- go to next buffer
+vim.api.nvim_set_keymap("n", "<Leader>bn", ":bn<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>bp", ":bp<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader><right>", ":bn<CR>", { noremap = true, silent = true })
--- Doesn't work
-vim.api.nvim_set_keymap("n", "<Leader>l", ":bn<CR>", { noremap = true, silent = true })
--- go to prev buffer
 vim.api.nvim_set_keymap("n", "<Leader><left>", ":bp<CR>", { noremap = true, silent = true })
--- Doesn't work
-vim.api.nvim_set_keymap("n", "<Leader>h", ":bp<CR>", { noremap = true, silent = true })
 
 -- Move windows
 -- vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", {noremap = true, silent = true})
@@ -68,6 +65,30 @@ vim.api.nvim_set_keymap(
 	":lua require'dap'.toggle_breakpoint()<CR>",
 	{ noremap = true, silent = true }
 )
+
+vim.notify("Setting keygindings")
+
+local bind = require("go.keybind")
+bind.nvim_load_mapping({
+	-- DAP --
+	["<Leader>dr"] = { f = require("go.dap").run, desc = "run" },
+	["<Leader>dc"] = { f = require("dap").continue, desc = "continue" },
+	["<Leader>dn"] = { f = require("dap").step_over, desc = "step_over" },
+	["<Leader>ds"] = { f = require("dap").step_into, desc = "step_into" },
+	["<Leader>do"] = { f = require("dap").step_out, desc = "step_out" },
+	["<Leader>dS"] = { f = require("go.dap").stop, desc = "stop" },
+	["<Leader>du"] = { f = require("dap").up, desc = "up" },
+	["<Leader>dd"] = { f = require("dap").down, desc = "down" },
+	["<Leader>dC"] = { f = require("dap").run_to_cursor, desc = "run_to_cursor" },
+	["<Leader>db"] = { f = require("dap").toggle_breakpoint, desc = "toggle_breakpoint" },
+	["<Leader>dP"] = { f = require("dap").pause, desc = "pause" },
+	["<F9>"] = { f = require("dap").continue, desc = "continue" },
+	["<F10>"] = { f = require("dap").step_over, desc = "step_over" },
+	["<F11>"] = { f = require("dap").step_into, desc = "step_into" },
+	["<F12>"] = { f = require("dap").step_out, desc = "step_out" },
+})
+vim.api.nvim_set_keymap("n", "<Leader>dR", ":GoDebug -R<CR>", { noremap = true, silent = true })
+
 -- nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
 -- nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
 -- nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
@@ -84,7 +105,7 @@ vim.keymap.set({ "i" }, "<F16>", function()
 end)
 
 -- Terminal stuff
-vim.api.nvim_set_keymap("t", "<esc>", "<C-\\><C-N>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<C-`>", "<C-\\><C-N>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>tv", ":vsplit<bar>term<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>ts", ":split<bar>term<CR>", { noremap = true, silent = true })
 

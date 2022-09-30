@@ -1,0 +1,29 @@
+labelType: long
+buildStyle:
+  bold: true
+  foreground: "#f7bf23"
+startStyle:
+  foreground: "#bfbbbb"
+passStyle:
+  foreground: "#56a36e"
+failStyle:
+  bold: true
+  foreground: "#821515"
+skipStyle:
+  foreground: "#638196"
+passPackageStyle:
+  foreground: "#56a36e"
+  hide: true
+failPackageStyle:
+  bold: true
+  foreground: "#821515"
+coverThreshold: 80
+coveredStyle:
+  foreground: "#2b5c19"
+uncoveredStyle:
+  bold: true
+  foreground: "#deaa18"
+fileStyle:
+  foreground: "#9c9c9c"
+lineStyle:
+  foreground: "#858181"

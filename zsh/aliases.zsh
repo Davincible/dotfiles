@@ -30,7 +30,7 @@ alias svim="sudo -E vim"
 alias mkinitcpio="sudo mkinitcpio"
 alias b="bluetoothctl"
 alias cat="bat"
-alias catt="cat"
+alias catt="/usr/bin/cat"
 alias fd="fd -L"
 alias sz="source ~/.config/zsh/.zshrc"
 
@@ -53,6 +53,7 @@ function open () {
 # go aliases
 alias gb="go build ."
 alias gr="go run . || go run main.go"
+alias go="richgo"
 
 if [[ $TERM == "xterm-kitty" ]]; then 
     alias icat="kitty +kitten icat"

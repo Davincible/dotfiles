@@ -124,7 +124,7 @@ local theme = lush(function()
 		-- styling for that group (meaning they mostly get styled as Normal)
 		-- or leave them commented to apply vims default colouring or linking.
 
-		Comment({ fg = color11.lighten(25).saturate(20), gui = "italic" }), -- any comment
+		Comment({ fg = color11.lighten(60).saturate(40), gui = "italic" }), -- any comment
 		ColorColumn({ bg = color1.darken(20) }), -- used for the columns set with 'colorcolumn'
 		Conceal({ fg = red.darken(20) }), -- placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor({ fg = color9 }), -- character under the cursor
@@ -144,7 +144,7 @@ local theme = lush(function()
 		Search({ bg = color8.darken(5), fg = black }), -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
 		IncSearch({ bg = color8, fg = color1 }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		Substitute({ bg = color7, fg = color1 }), -- |:substitute| replacement text highlighting
-		LineNr({ fg = color12.darken(60).rotate(-30).saturate(50) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		LineNr({ fg = color12.darken(40).rotate(-30).saturate(-50) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		CursorLineNr({ bg = color12.darken(80), fg = color12.darken(10) }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		MatchParen({ fg = color1.lighten(50) }), -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		ModeMsg({ fg = color6 }), -- 'showmode' message (e.g., "-- INSERT -- ")

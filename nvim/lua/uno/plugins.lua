@@ -15,9 +15,7 @@ return require("packer").startup(function()
 	-- Faster startup
 	use({
 		"lewis6991/impatient.nvim",
-		config = function()
-			require("impatient")
-		end,
+		config = require("impatient").setup,
 	})
 	use("nathom/filetype.nvim")
 
@@ -25,13 +23,19 @@ return require("packer").startup(function()
 	use("folke/trouble.nvim")
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
-	use("nvim-telescope/telescope.nvim")
-	use("nvim-telescope/telescope-fzy-native.nvim")
-	use("nvim-telescope/telescope-project.nvim")
-	use("nvim-telescope/telescope-media-files.nvim")
-	use({ "nvim-telescope/telescope-ui-select.nvim" })
-	use("danielpieper/telescope-tmuxinator.nvim")
-	use({ "nvim-telescope/telescope-file-browser.nvim" })
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			"nvim-telescope/telescope-file-browser.nvim",
+			"danielpieper/telescope-tmuxinator.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
+			"nvim-telescope/telescope-media-files.nvim",
+			"nvim-telescope/telescope-project.nvim",
+			"nvim-telescope/telescope-dap.nvim",
+			"nvim-telescope/telescope-fzy-native.nvim",
+			"nvim-telescope/telescope-symbols.nvim",
+		},
+	})
 
 	-- Theming
 	use("dylanaraps/wal.vim")
@@ -48,7 +52,12 @@ return require("packer").startup(function()
 	-- Software Devlopment
 	use("ekalinin/Dockerfile.vim")
 	use("windwp/nvim-autopairs")
-	use({ "windwp/nvim-ts-autotag", config = "require('nvim-ts-autotag').setup({ enable = true })" })
+	use({
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup({ enable = true })
+		end,
+	})
 	-- use("alvan/vim-closetag")
 	use("ray-x/lsp_signature.nvim")
 
@@ -65,14 +74,11 @@ return require("packer").startup(function()
 			"rcarriga/nvim-dap-ui",
 			"theHamsta/nvim-dap-virtual-text",
 			"ray-x/guihua.lua",
-			--float term, gui support
 		},
 	})
 
 	-- Nvim LSP
 	use({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer", after = "go.nvim" })
-	-- remove
-	-- use 'hrsh7th/nvim-compe'
 	use("onsails/lspkind-nvim")
 	use("tami5/lspsaga.nvim")
 
@@ -94,7 +100,7 @@ return require("packer").startup(function()
 	-- Lsp Addons
 	use({ "stevearc/dressing.nvim", requires = "MunifTanjim/nui.nvim" })
 	use({ "folke/lsp-trouble.nvim" })
-	use({ "jose-elias-alvarez/nvim-lsp-ts-utils" }) -- , after = {"nvim-treesitter"}
+	use({ "jose-elias-alvarez/nvim-lsp-ts-utils", after = { "nvim-treesitter" } })
 
 	-- Misc
 	use("kyazdani42/nvim-tree.lua")

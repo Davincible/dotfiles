@@ -152,6 +152,12 @@ local function setup_servers()
 		if server.name == "html" then
 			opts.filetypes = { "html", "eta" }
 		end
+		if server.name == "ltex" then
+			opts.filetypes = { "bib", "gitcommit", "org", "plaintex", "rst", "rnoweb", "tex" }
+		end
+		if server.name == "tailwindcss" then
+			opts.filetypes = { "html", "eta", "js", "jsx", "javascript", "javascriptreact" }
+		end
 		if server.name == "ansiblels" then
 			opts.root_dir = lspconfig.util.root_pattern("ansible.cfg")
 		end
@@ -248,55 +254,24 @@ require("lspsaga").init_lsp_saga({
 	-- server_filetype_map = {}
 })
 
-vim.api.nvim_set_keymap("n", "gh", ":lua require'lspsaga.provider'.lsp_finder()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>ca",
-	":lua require('lspsaga.codeaction').code_action()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"v",
-	"<Leader>ca",
-	":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"H",
-	":lua require('lspsaga.hover').render_hover_doc()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<C-f>",
-	":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<C-b>",
-	":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"gs",
-	":lua require('lspsaga.signaturehelp').signature_help()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>gd",
-	":lua require'lspsaga.provider'.preview_definition()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>cd",
-	":lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
-	{ noremap = true, silent = true }
-)
+local snore = { noremap = true, silent = true }
+local scroll_up = function()
+	require("lspsaga.action").smart_scroll_with_saga(1)
+end
+
+local scroll_down = function()
+	require("lspsaga.action").smart_scroll_with_saga(-1)
+end
+
+vim.keymap.set("n", "gh", require("lspsaga.provider").lsp_finder, snore)
+vim.keymap.set("n", "<Leader>ca", require("lspsaga.codeaction").code_action, snore)
+vim.keymap.set("v", "<Leader>ca", ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", snore)
+vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, snore)
+vim.keymap.set("n", "<Leader>gd", require("lspsaga.provider").preview_definition, snore)
+vim.keymap.set("n", "<Leader>cd", require("lspsaga.diagnostic").show_line_diagnostics, snore)
+vim.keymap.set("n", "H", require("lspsaga.hover").render_hover_doc, snore)
+vim.keymap.set("n", "<C-f>", scroll_up, snore)
+vim.keymap.set("n", "<C-b>", scroll_down, snore)
 
 -- replace the default lsp diagnostic letters with prettier symbols
 vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })

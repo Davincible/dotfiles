@@ -74,10 +74,6 @@ telescope.setup({
 		},
 	},
 	extensions = {
-		fzy_native = {
-			override_generic_sorter = false,
-			override_file_sorter = true,
-		},
 		media_files = {
 			-- filetypes whitelist
 			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
@@ -112,16 +108,28 @@ require("telescope").load_extension("ui-select")
 require("telescope").load_extension("tmuxinator")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("dap")
 
-vim.api.nvim_set_keymap("n", "<leader>ff", ':lua require("telescope.builtin").find_files()<CR>', { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fg", ':lua require("telescope.builtin").live_grep()<CR>', { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fb", ':lua require("telescope.builtin").buffers()<CR>', { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>ft", ":Telescope file_browser<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fh", ':lua require("telescope.builtin").help_tags()<CR>', { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fr", ':lua require("telescope.builtin").lsp_references()<CR>', { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fd", ':lua require("telescope.builtin").lsp_definitions()<CR>', { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fm", ":Telescope media_files<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fn", ":Telescope notify<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<C-p>", ':lua require("telescope.builtin").git_status()<CR>', { silent = true })
+-- Native
+vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true })
+vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { silent = true })
+vim.keymap.set("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find, { silent = true })
+vim.keymap.set("n", "<leader>fl", require("telescope.builtin").buffers, { silent = true })
+vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { silent = true })
+vim.keymap.set("n", "<leader>fr", require("telescope.builtin").lsp_references, { silent = true })
+vim.keymap.set("n", "<leader>fd", require("telescope.builtin").lsp_definitions, { silent = true })
+vim.keymap.set("n", "<leader>fs", require("telescope.builtin").symbols, { silent = true })
+vim.keymap.set("n", "<C-p>", require("telescope.builtin").git_status, { silent = true })
+
+-- Extensions
+vim.keymap.set("n", "<leader>fm", require("telescope").extensions.media_files.media_files, { silent = true })
+vim.keymap.set("n", "<leader>ft", require("telescope").extensions.file_browser.file_browser, { silent = true })
+vim.keymap.set("n", "<leader>fn", require("telescope").extensions.notify.notify, { silent = true })
+vim.keymap.set("n", "<leader>lb", require("telescope").extensions.dap.list_breakpoints, { silent = true })
+vim.keymap.set("n", "<leader>lv", require("telescope").extensions.dap.variables, { silent = true })
+vim.keymap.set("n", "<leader>lf", require("telescope").extensions.dap.frames, { silent = true })
+vim.keymap.set("n", "<leader>lc", require("telescope").extensions.dap.commands, { silent = true })
+vim.keymap.set("n", "<leader>ls", require("telescope").extensions.dap.configurations, { silent = true })
 
 return M

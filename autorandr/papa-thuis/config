@@ -1,21 +1,22 @@
-output DP-0
+output DP-1-1
 off
-output DP-1
-crtc 1
+output DP-1-0
+crtc 4
 gamma 0.769:0.769:0.714
 mode 1600x1200
 pos 0x0
 rate 60.00
 x-prop-non_desktop 0
-output HDMI-0
+output HDMI-1-0
 crtc 0
 gamma 0.769:0.769:0.714
 mode 1920x1200
 pos 1600x0
+primary
 rate 59.95
 x-prop-non_desktop 0
-output eDP-1-1
-crtc 4
+output eDP-1
+crtc 1
 gamma 0.769:0.769:0.714
 mode 1920x1080
 pos 3520x120

@@ -5,10 +5,11 @@ background         {color0}
 background_opacity {color0.alpha_dec}
 cursor             {color15}
 
-active_tab_foreground     {color15}
+active_tab_foreground     #d1d1d1
 active_tab_background     {color0}
-inactive_tab_foreground   {color8}
+inactive_tab_foreground   #8a8888
 inactive_tab_background   {color0}
+tab_bar_background        none
 
 active_border_color   {active}
 inactive_border_color {inactive}
