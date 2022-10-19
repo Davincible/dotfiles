@@ -1,5 +1,6 @@
 require("uno.plugins")
 require("uno.config")
+require("uno.notify")
 require("uno.lushTheming")
 require("uno.lualine.evil")
 require("uno.lsp")
@@ -12,13 +13,13 @@ require("uno.telescope")
 require("uno.treesitter")
 require("uno.zenmode")
 require("uno.bufferline")
-require("uno.keybindings") -- #FFF #F0E
+require("uno.highlights")
 require("uno.icons")
 require("uno.gitsigns")
 require("uno.terminal")
 require("uno.diffview")
-require("uno.notify")
 require("uno.luasnip")
+require("uno.keybindings") -- #FFF #F0E
 
 -- WHY DOESN"T THIS FUCKEN WORK
 -- require("uno.quickfix")

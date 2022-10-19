@@ -42,52 +42,28 @@ require("lspsaga").init_lsp_saga({
 	-- server_filetype_map = {}
 })
 
-vim.api.nvim_set_keymap("n", "gh", ":lua require'lspsaga.provider'.lsp_finder()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>ca",
-	":lua require('lspsaga.codeaction').code_action()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"v",
-	"<Leader>ca",
-	":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"H",
-	":lua require('lspsaga.hover').render_hover_doc()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<C-f>",
-	":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<C-b>",
-	":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"gs",
-	":lua require('lspsaga.signaturehelp').signature_help()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>gd",
-	":lua require'lspsaga.provider'.preview_definition()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>cd",
-	":lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
-	{ noremap = true, silent = true }
-)
+-- replace the default lsp diagnostic letters with prettier symbols
+vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
+vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
+
+-- Set keybindings
+local snore = { noremap = true, silent = true }
+
+vim.keymap.set("n", "gh", require("lspsaga.provider").lsp_finder, snore)
+vim.keymap.set("n", "<Leader>ca", require("lspsaga.codeaction").code_action, snore)
+-- old action ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>",
+vim.keymap.set("v", "<Leader>ca", require("lspsaga.codeaction").range_code_action, snore)
+vim.keymap.set("n", "H", require("lspsaga.hover").render_hover_doc, snore)
+vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, snore)
+vim.keymap.set("n", "K", require("lspsaga.provider").preview_definition, snore)
+vim.keymap.set("n", "<Leader>cd", require("lspsaga.diagnostic").show_line_diagnostics, snore)
+vim.keymap.set("n", "<C-f>", function()
+	-- Scroll up
+	require("lspsaga.action").smart_scroll_with_saga(1)
+end, snore)
+vim.keymap.set("n", "<C-b>", function()
+	-- Scroll down
+	require("lspsaga.action").smart_scroll_with_saga(-1)
+end, snore)

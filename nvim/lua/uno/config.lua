@@ -23,6 +23,7 @@ vim.go.fillchars = "eob: "
 vim.go.laststatus = 3
 vim.go.splitright = true
 vim.go.splitbelow = false
+vim.go.mousemodel = "extend"
 
 -- Window Options
 vim.wo.relativenumber = true
@@ -45,7 +46,7 @@ vim.bo.undofile = true
 -- Global Variables
 vim.g.mapleader = " "
 vim.g.python3_host_prog = "/usr/bin/python3"
-vim.g.mkdp_browserfunc = "firefox"
+vim.g.mkdp_browser = "/usr/bin/" .. vim.fn.expand("$BROWSER")
 -- vim.g.colorizer_auto_color = 1  -- might not be needed
 
 vim.opt.wildignore = {
@@ -68,3 +69,24 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 	group = _term,
 })
+
+local _ft = vim.api.nvim_create_augroup("FileTypeSettings", { clear = true })
+-- Lua
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "lua",
+	callback = function()
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+	end,
+	group = _ft,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "sh",
+	callback = function()
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+	end,
+	group = _ft,
+})
+
+

@@ -22,19 +22,17 @@ return require("packer").startup(function()
 	-- Telescope
 	use("folke/trouble.nvim")
 	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = {
-			"nvim-telescope/telescope-file-browser.nvim",
-			"danielpieper/telescope-tmuxinator.nvim",
-			"nvim-telescope/telescope-ui-select.nvim",
-			"nvim-telescope/telescope-media-files.nvim",
-			"nvim-telescope/telescope-project.nvim",
-			"nvim-telescope/telescope-dap.nvim",
-			"nvim-telescope/telescope-fzy-native.nvim",
-			"nvim-telescope/telescope-symbols.nvim",
-		},
+		"nvim-telescope/telescope-file-browser.nvim",
+		"danielpieper/telescope-tmuxinator.nvim",
+		"nvim-telescope/telescope-ui-select.nvim",
+		"nvim-telescope/telescope-media-files.nvim",
+		"nvim-telescope/telescope-project.nvim",
+		"nvim-telescope/telescope-dap.nvim",
+		"nvim-telescope/telescope-fzy-native.nvim",
+		"nvim-telescope/telescope-symbols.nvim",
 	})
 
 	-- Theming
@@ -44,6 +42,21 @@ return require("packer").startup(function()
 	use("rktjmp/lush.nvim")
 	use("akinsho/nvim-bufferline.lua")
 	use("norcalli/nvim-colorizer.lua")
+	use("kyazdani42/nvim-web-devicons")
+
+	use({
+		"anuvyklack/windows.nvim",
+		requires = {
+			"anuvyklack/middleclass",
+			-- "anuvyklack/animation.nvim",
+		},
+		config = function()
+			-- vim.o.winwidth = 10
+			-- vim.o.winminwidth = 10
+			-- vim.o.equalalways = false
+			require("windows").setup()
+		end,
+	})
 
 	-- Status line
 	-- use {"joshuaMarple/galaxyline.nvim"}
@@ -62,9 +75,14 @@ return require("packer").startup(function()
 	use("ray-x/lsp_signature.nvim")
 
 	-- Nvim Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("nvim-treesitter/playground")
-	use("kyazdani42/nvim-web-devicons")
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		requires = {
+			"nvim-treesitter/nvim-treesitter-context",
+			"nvim-treesitter/playground",
+		},
+	})
 
 	-- Golang
 	use({
@@ -78,7 +96,16 @@ return require("packer").startup(function()
 	})
 
 	-- Nvim LSP
-	use({ "neovim/nvim-lspconfig", "williamboman/nvim-lsp-installer", after = "go.nvim" })
+	use({
+		"neovim/nvim-lspconfig",
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"jayp0521/mason-nvim-dap.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"jose-elias-alvarez/null-ls.nvim",
+		"jayp0521/mason-null-ls.nvim",
+		after = "go.nvim",
+	})
 	use("onsails/lspkind-nvim")
 	use("tami5/lspsaga.nvim")
 
@@ -92,7 +119,6 @@ return require("packer").startup(function()
 	use({
 		"David-Kunz/cmp-npm",
 		-- after = "cmp-tabnine",
-		requires = "nvim-lua/plenary.nvim",
 	})
 	use({ "saadparwaiz1/cmp_luasnip" }) -- , after = "cmp-npm"
 	use({ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" } }) -- , after = "cmp_luasnip"
@@ -119,7 +145,7 @@ return require("packer").startup(function()
 	use({ "rcarriga/nvim-notify" })
 	use({
 		"vuki656/package-info.nvim",
-		requires = "MunifTanjim/nui.nvim",
+		"MunifTanjim/nui.nvim",
 		config = "require('package-info').setup()",
 	})
 	use({
@@ -142,11 +168,12 @@ return require("packer").startup(function()
 			require("project_nvim").setup()
 		end,
 	})
+	use("Pocco81/HighStr.nvim") -- Highlight lines
 
 	-- Git stuff
 	use("ThePrimeagen/git-worktree.nvim") -- look into how this works
 	use("tpope/vim-fugitive") -- what is this again?
-	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({ "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" })
 
 	use("ThePrimeagen/harpoon") -- what is this again?
 	use("famiu/nvim-reload")

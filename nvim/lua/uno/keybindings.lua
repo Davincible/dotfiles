@@ -66,8 +66,6 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true }
 )
 
-vim.notify("Setting keygindings")
-
 local bind = require("go.keybind")
 bind.nvim_load_mapping({
 	-- DAP --
@@ -100,7 +98,7 @@ vim.api.nvim_set_keymap("n", "<Leader>dR", ":GoDebug -R<CR>", { noremap = true, 
 -- nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
 
 -- Get highlight group
-vim.keymap.set({ "i" }, "<F16>", function()
+vim.keymap.set({ "i", "n" }, "<F16>", function()
 	vim.cmd([[[ echo synIDattr(synID(line("."), col("."), 1), "name") ]])
 end)
 

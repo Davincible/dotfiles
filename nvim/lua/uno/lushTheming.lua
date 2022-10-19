@@ -14,7 +14,7 @@ fwatch.watch(vim.fn.expand("$HOME") .. "/.cache/wal/colors", {
 		vim.defer_fn(function()
 			package.loaded["themes.pywal"] = nil
 			require("lush")(require("themes.pywal"))
-			vim.cmd("colorscheme pywal")
+			-- vim.cmd("colorscheme pywal")
 		end, 100)
 	end,
 })

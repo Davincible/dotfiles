@@ -79,7 +79,7 @@ require("nvim-tree").setup({
 	},
 	filters = {
 		dotfiles = false,
-		custom = { "^\\.git", "node_modules", "^\\.cache", "^\\.vim", "^\\.nvim", "^\\.zcompdump" },
+		custom = { "node_modules", "^\\.cache", "^\\.vim", "^\\.nvim", "^\\.zcompdump" },
 	},
 	git = {
 		enable = true,
@@ -155,7 +155,7 @@ require("nvim-tree").setup({
 	},
 	view = {
 		width = 35,
-		height = 30,
+		-- height = 30,
 		hide_root_folder = false,
 		side = "left",
 		mappings = {

@@ -1,5 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local my_pickers = require("uno.telescope-pickers")
 
 require("trouble").setup()
 local trouble = require("trouble.providers.telescope")
@@ -20,29 +21,34 @@ telescope.setup({
 		layout_strategy = "horizontal",
 		layout_config = {
 			prompt_position = "bottom",
-			preview_cutoff = 120,
-			horizontal = { width = 0.75, mirror = false },
+			-- preview_cutoff = 120,
+			horizontal = { width = 0.8, mirror = false },
 			vertical = { mirror = false },
 		},
-		file_sorter = require("telescope.sorters").get_fzy_sorter,
+		-- file_sorter = require("telescope.sorters").get_fzy_sorter,
 		file_ignore_patterns = {
 			"node_modules/",
 			"vendor/",
 			".git/",
 		},
-		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-		path_display = { "shorten" },
+		-- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+		path_display = { 
+      shorten = {
+        len = 3,
+        exclude = {1, -1}
+      } 
+    },
 		winblend = 0,
 		border = {},
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 		color_devicons = true,
-		use_less = true,
+		-- use_less = true,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 		-- Developer configurations: Not meant for general override
-		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+		-- buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 		mappings = {
 			i = {
 				["<C-c>"] = actions.close,
@@ -74,6 +80,12 @@ telescope.setup({
 		},
 	},
 	extensions = {
+		-- fzf = {
+		-- 	fuzzy = true, -- false will only do exact matching
+		-- 	override_generic_sorter = true, -- override the generic sorter
+		-- 	override_file_sorter = true, -- override the file sorter
+		-- 	case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+		-- },
 		media_files = {
 			-- filetypes whitelist
 			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
@@ -84,6 +96,7 @@ telescope.setup({
 		},
 	},
 	pickers = {
+		grep_in_folder = my_pickers.live_grep_in_folder,
 		find_files = {
 			find_command = {
 				"fd",
@@ -101,6 +114,8 @@ telescope.setup({
 	},
 })
 
+require("telescope").load_extension("fzy_native")
+-- require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
 require("telescope").load_extension("projects") -- ahmedkhalf/project.nvim
 require("telescope").load_extension("media_files")
@@ -108,12 +123,12 @@ require("telescope").load_extension("ui-select")
 require("telescope").load_extension("tmuxinator")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("file_browser")
-require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("dap")
 
 -- Native
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true })
 vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { silent = true })
+vim.keymap.set("n", "<leader>fG", my_pickers.live_grep_in_folder, { silent = true })
 vim.keymap.set("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find, { silent = true })
 vim.keymap.set("n", "<leader>fl", require("telescope.builtin").buffers, { silent = true })
 vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { silent = true })

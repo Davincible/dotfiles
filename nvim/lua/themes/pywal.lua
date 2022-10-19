@@ -166,7 +166,7 @@ local theme = lush(function()
 		SpellCap({ SpellBad }), -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
 		SpellLocal({ SpellBad }), -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		SpellRare({ SpellBad }), -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-		-- StatusLine {bg = black}, --{bg = color1.lighten(60), fg = color6.darken(60)}, -- status line of current window
+		StatusLine {}, -- {bg = black}, --{bg = color1.lighten(60), fg = color6.darken(60)}, -- status line of current window
 		StatusLineNC({ fg = color2.darken(50), gui = "underline" }), -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		TabLine({ StatusLineNC }), -- tab pages line, not active tab page label
 		TabLineFill({ PmenuThumb }), -- tab pages line, where there are no labels
@@ -332,12 +332,19 @@ local theme = lush(function()
 		TelescopeMultiSelection({ fg = color3.lighten(5) }),
 		-- TelescopeNormal         { bg = color1.lighten(4) },
 
+		-- Git Diff View
+		DiffAdd{ bg = vibrant_green.rotate(0).darken(70) }, -- diff mode: Added line |diff.txt|
+		DiffChange{ bg = dark_purple.darken(80) }, -- diff mode: Changed ine |diff.txt|
+		DiffDelete{ bg = red.darken(70) }, -- diff mode: Deleted line |diff.txt|
+		DiffText{ bg = nord_blue.darken(50) }, -- diff mode: Changed text within a changed line |diff.txt|
+		DiffModified{ bg = sun.darken(60) },
+
 		-- Git Signs
-		DiffAdd({ fg = vibrant_green.rotate(-10) }), -- diff mode: Added line |diff.txt|
-		DiffChange({ fg = dark_purple }), -- diff mode: Changed ine |diff.txt|
-		DiffDelete({ fg = red }), -- diff mode: Deleted line |diff.txt|
-		DffText({ fg = nord_blue }), -- diff mode: Changed text within a changed line |diff.txt|
-		DiffModified({ fg = sun }),
+		GitSignsAdd{ fg = vibrant_green.rotate(0).darken(50) }, -- diff mode: Added line |diff.txt|
+		GitSignsChange{ fg = dark_purple.darken(60) }, -- diff mode: Changed ine |diff.txt|
+		GitSignsDelete{ fg = red.darken(50) }, -- diff mode: Deleted line |diff.txt|
+		GitSignsText{ fg = nord_blue.darken(40) }, -- diff mode: Changed text within a changed line |diff.txt|
+		GitSignsModified{ fg = sun.darken(40) },
 		-- NvimTree
 		NvimTreeFolderIcon({ fg = blue }),
 		NvimTreeFolderName({ fg = blue }),

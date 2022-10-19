@@ -13,7 +13,7 @@ skipStyle:
   foreground: "#638196"
 passPackageStyle:
   foreground: "#56a36e"
-  hide: true
+  hide: false
 failPackageStyle:
   bold: true
   foreground: "#821515"
