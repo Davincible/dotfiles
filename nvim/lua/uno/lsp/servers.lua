@@ -217,20 +217,20 @@ mason_lsp.setup_handlers({
 		lsp_config[server].setup(opts)
 	end,
 
-	-- ["gopls"] = function(server)
-	-- 	-- Get default config from Ray-x Go plugin
-	-- 	local opts = vim.deepcopy(require("go.lsp").config())
-	--
-	-- 	local attach = opts.on_attach
-	-- 	opts.on_attach = function(client, bufnr)
-	-- 		common_on_attach(client, bufnr)
-	-- 		attach(client, bufnr)
-	-- 	end
-	--
-	-- 	opts.settings.gopls.buildFlags = { "-tags=wireinject" }
-	--
-	-- 	lsp_config[server].setup(opts)
-	-- end,
+	["gopls"] = function(server)
+		-- Get default config from Ray-x Go plugin
+		local opts = vim.deepcopy(require("go.lsp").config())
+
+		local attach = opts.on_attach
+		opts.on_attach = function(client, bufnr)
+			common_on_attach(client, bufnr)
+			attach(client, bufnr)
+		end
+
+		opts.settings.gopls.buildFlags = { "-tags=wireinject" }
+
+		lsp_config[server].setup(opts)
+	end,
 
 	["yamlls"] = function(server)
 		local opts = vim.deepcopy(default_lsp_opts)

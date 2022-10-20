@@ -4,14 +4,14 @@
 
 set $mod Mod4
 set $alt Mod1
-set $coloract "#98bfc4"
-set $colorin "#688387"
+set $coloract "#4383a1"
+set $colorin "#2e5a6e"
 set $terminal kitty
 set_from_resource $color15 i3wm.color15 "#ffffff"
-set_from_resource $split i3wm.color10 "#5a7581"
-set_from_resource $coloru i3wm.color2 "#4e575b"
-set_from_resource $color0 i3wm.color0 "#191919"
-set_from_resource $color8 i3wm.color8 "#323232"
+set_from_resource $split i3wm.color10 "#54a5ca"
+set_from_resource $coloru i3wm.color2 "#4c7b91"
+set_from_resource $color0 i3wm.color0 "#1b1d1e"
+set_from_resource $color8 i3wm.color8 "#adc7d4"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
