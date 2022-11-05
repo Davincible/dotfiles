@@ -33,6 +33,7 @@ alias cat="bat"
 alias catt="/usr/bin/cat"
 alias fd="fd -L"
 alias sz="source ~/.config/zsh/.zshrc"
+alias cdnvim="cd ~/.local/share/nvim/site/pack/packer/start"
 
 # Edit config files
 edit_config () {

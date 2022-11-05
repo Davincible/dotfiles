@@ -4,6 +4,7 @@ npairs.setup({
 	enable_check_bracket_line = false,
 	ignored_next_char = "[%w%.]", -- will ignore alphanumeric and `.` symbol
 	check_ts = true,
+disable_filetype = { "TelescopePrompt" , "guihua", "guihua_rust", "clap_input" },
 	ts_config = {
 		-- it will not add pair on that treesitter node
 		lua = { "string" },

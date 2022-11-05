@@ -41,6 +41,17 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
+	window = {
+		completion = {
+			border = "rounded",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+			zindex = 1001,
+			scrolloff = 0,
+			col_offset = -3,
+			side_padding = 0,
+		},
+		documentation = cmp.config.window.bordered(),
+	},
 	mapping = {
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
@@ -97,18 +108,28 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 	formatting = {
+		fields = { "kind", "abbr", "menu" },
 		-- Formatting is responsible for the items at the end
 		format = function(entry, vim_item)
-			vim_item.kind = lspkind.presets.default[vim_item.kind]
-			local menu = source_mapping[entry.source.name]
+			-- vim_item.kind = lspkind.presets.default[vim_item.kind]
+			-- local menu = source_mapping[entry.source.name]
+
+			local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+			local strings = vim.split(kind.kind, "%s", { trimempty = true })
+
 			if entry.source.name == "cmp_tabnine" then
 				if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-					menu = entry.completion_item.data.detail .. " " .. menu
+					strings[2] = entry.completion_item.data.detail .. " " .. strings[2]
 				end
-				vim_item.kind = ""
+				strings[1] = ""
 			end
-			vim_item.menu = menu
-			return vim_item
+
+			kind.kind = " " .. strings[1] .. " "
+			kind.menu = "    (" .. strings[2] .. ")"
+
+			return kind
+			-- vim_item.menu = menu
+			-- return vim_item
 		end,
 	},
 	sources = cmp.config.sources({

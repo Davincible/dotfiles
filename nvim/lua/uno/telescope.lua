@@ -32,12 +32,12 @@ telescope.setup({
 			".git/",
 		},
 		-- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-		path_display = { 
-      shorten = {
-        len = 3,
-        exclude = {1, -1}
-      } 
-    },
+		path_display = {
+			shorten = {
+				len = 3,
+				exclude = { 1, -1 },
+			},
+		},
 		winblend = 0,
 		border = {},
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -54,7 +54,7 @@ telescope.setup({
 				["<C-c>"] = actions.close,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
-				["<c-t>"] = trouble.open_with_trouble,
+				["<c-r>"] = require("trouble.providers.telescope").open_with_trouble,
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 				-- To disable a keymap, put [map] = false
 				-- So, to not map "<C-n>", just put
@@ -73,7 +73,7 @@ telescope.setup({
 			n = {
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
-				["<c-t>"] = trouble.open_with_trouble,
+				["<c-r>"] = require("trouble.providers.telescope").open_with_trouble,
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 				-- ["<C-i>"] = my_cool_custom_action,
 			},
@@ -86,6 +86,13 @@ telescope.setup({
 		-- 	override_file_sorter = true, -- override the file sorter
 		-- 	case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 		-- },
+		repo = {
+			list = {
+				search_dirs = {
+					"~/Launchpad",
+				},
+			},
+		},
 		media_files = {
 			-- filetypes whitelist
 			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
@@ -116,7 +123,6 @@ telescope.setup({
 
 require("telescope").load_extension("fzy_native")
 -- require("telescope").load_extension("fzf")
-require("telescope").load_extension("project")
 require("telescope").load_extension("projects") -- ahmedkhalf/project.nvim
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("ui-select")
@@ -124,9 +130,11 @@ require("telescope").load_extension("tmuxinator")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("dap")
+require("telescope").load_extension("workspaces")
 
 -- Native
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { silent = true })
+vim.keymap.set("n", "<leader>fT", ":Telescope<CR>", { silent = true })
 vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { silent = true })
 vim.keymap.set("n", "<leader>fG", my_pickers.live_grep_in_folder, { silent = true })
 vim.keymap.set("n", "<leader>fb", require("telescope.builtin").current_buffer_fuzzy_find, { silent = true })
@@ -138,9 +146,13 @@ vim.keymap.set("n", "<leader>fs", require("telescope.builtin").symbols, { silent
 vim.keymap.set("n", "<C-p>", require("telescope.builtin").git_status, { silent = true })
 
 -- Extensions
+vim.keymap.set("n", "<leader>fw", require("telescope").extensions.workspaces.workspaces, { silent = true })
 vim.keymap.set("n", "<leader>fm", require("telescope").extensions.media_files.media_files, { silent = true })
 vim.keymap.set("n", "<leader>ft", require("telescope").extensions.file_browser.file_browser, { silent = true })
 vim.keymap.set("n", "<leader>fn", require("telescope").extensions.notify.notify, { silent = true })
+vim.keymap.set("n", "<leader>fp", require("telescope").extensions.repo.list, { silent = true })
+
+-- Dap debug
 vim.keymap.set("n", "<leader>lb", require("telescope").extensions.dap.list_breakpoints, { silent = true })
 vim.keymap.set("n", "<leader>lv", require("telescope").extensions.dap.variables, { silent = true })
 vim.keymap.set("n", "<leader>lf", require("telescope").extensions.dap.frames, { silent = true })

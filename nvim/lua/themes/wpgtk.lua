@@ -60,61 +60,61 @@ local theme = lush(function()
     -- styling for that group (meaning they mostly get styled as Normal)
     -- or leave them commented to apply vims default colouring or linking.
 
-     Comment      { bg = hsl(328,7,39), fg = hsl(190,99,82).darken(70), gui = "italic"   }, -- any comment
-     ColorColumn  { bg = hsl(328,7,39).darken(60) }, -- used for the columns set with 'colorcolumn'
-     Conceal      { bg = hsl(328,7,39), fg = hsl(199,31,43).darken(60) }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor        { bg = hsl(328,7,39), fg = hsl(328,17,50) }, -- character under the cursor
-    lCursor       { bg = hsl(200,31,66), fg = hsl(198,52,56).darken(30) }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM      { bg = hsl(200,41,72), fg = hsl(328,7,39) }, -- like Cursor, but used when in IME mode |CursorIM|
-    CursorColumn  { bg = hsl(328,7,39), fg = hsl(200,31,75) }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-     CursorLine   { bg = hsl(199,31,43).darken(40), fg = hsl(199,31,43).lighten(40) }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-    Directory     { bg = hsl(328,7,39), fg = hsl(200,41,72) }, -- directory names (and other special names in listings)
-    DiffAdd       { bg = hsl(328,7,39), fg = hsl(200,41,72) }, -- diff mode: Added line |diff.txt|
-    DiffChange    { bg = hsl(328,7,39), fg = hsl(190,99,82).lighten(30)}, -- diff mode: Changed line |diff.txt|
-    DiffDelete    { bg = hsl(328,7,39), fg = hsl(201,16,56).lighten(30)}, -- diff mode: Deleted line |diff.txt|
-    DiffText      { bg = hsl(328,7,39), fg = hsl(200,41,72).lighten(40)}, -- diff mode: Changed text within a changed line |diff.txt|
-      EndOfBuffer { bg = hsl(328,7,39), fg = hsl(199,31,43).darken(55) }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
-    TermCursor    { bg = hsl(200,41,72), fg = hsl(328,7,39) }, -- cursor in a focused terminal
-    TermCursorNC  { bg = hsl(200,31,66), fg = hsl(328,7,39) }, -- cursor in an unfocused terminal
-    ErrorMsg      { bg = hsl(200,31,66).lighten(50), fg = hsl(328,7,39) }, -- error messages on the command line
-    VertSplit     { bg = hsl(201,32,38), fg = hsl(199,31,43) }, -- the column separating vertically split windows
-    Folded        { bg = hsl(328,7,39), fg = hsl(200,31,66).darken(30)}, -- line used for closed folds
-    FoldColumn    { bg = hsl(328,7,39), fg = hsl(200,31,66) }, -- 'foldcolumn'
-    SignColumn    { bg = hsl(328,7,39), fg = hsl(200,41,72) }, -- column where |signs| are displayed
-    IncSearch     { bg = hsl(200,31,75), fg = hsl(328,7,39) }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    Substitute    { bg = hsl(0,0,77), fg = hsl(328,7,39) }, -- |:substitute| replacement text highlighting
-    LineNr        { bg = hsl(328,7,39), fg = hsl(202,49,50) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr  { bg = hsl(202,49,50).lighten(35), fg = hsl(328,7,39).darken(30) }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen    { bg = hsl(328,7,39), fg = hsl(328,7,39).lighten(50) }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg       { bg = hsl(328,7,39).lighten(10), fg = hsl(200,41,72) }, -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea       { bg = hsl(328,7,39).lighten(5), fg = hsl(200,41,72).darken(15) },   -- Area for messages and cmdline
-    MsgSeparator  { bg = hsl(328,7,39).darken(80), fg = hsl(201,16,56).lighten(60) }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg       { bg = hsl(328,7,39), fg = hsl(200,41,72).lighten(10), gui = "italic" }, -- |more-prompt|
-    NonText       { bg = hsl(328,7,39), fg = hsl(199,31,43).darken(30), ctermbg=none }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal        { bg = hsl(328,7,39), fg = hsl(328,7,39).lighten(40), ctermbg=none }, -- normal text
-    NormalFloat   { bg = hsl(0,0,77), fg = hsl(199,31,43).darken(40)}, -- Normal text in floating windows.
-    NormalNC      { bg = hsl(328,7,39), fg = hsl(328,17,50).darken(70)}, -- normal text in non-current windows
-    Pmenu         { bg = hsl(328,7,39).lighten(30), fg = hsl(200,31,75) }, -- Popup menu: normal item.
-    PmenuSel      { bg = hsl(201,16,56).lighten(30), fg = hsl(202,49,50) }, -- Popup menu: selected item.
-    PmenuSbar     { bg = hsl(199,31,43), fg = hsl(328,7,39) }, -- Popup menu: scrollbar.
-    PmenuThumb    { bg = hsl(328,7,39), fg = hsl(199,31,43) }, -- Popup menu: Thumb of the scrollbar.
-    Question      { bg = hsl(328,7,39), fg = hsl(201,16,56).lighten(30)  }, -- |hit-enter| prompt and yes/no questions
-    QuickFixLine  { bg = hsl(200,31,66), fg = hsl(328,17,50)}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search        { bg = hsl(200,31,75).darken(20), fg = hsl(199,31,43).lighten(10)}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-    SpecialKey    { bg = hsl(328,7,39) , fg = hsl(200,31,75).darken(40)  }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
-    SpellBad      { bg = hsl(328,7,39), fg = hsl(200,31,66).darken(25), gui = "undercurl" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
+     Comment      { bg = hsl(348,66,48), fg = hsl(351,57,44).darken(70), gui = "italic"   }, -- any comment
+     ColorColumn  { bg = hsl(348,66,48).darken(60) }, -- used for the columns set with 'colorcolumn'
+     Conceal      { bg = hsl(348,66,48), fg = hsl(0,0,46).darken(60) }, -- placeholder characters substituted for concealed text (see 'conceallevel')
+    Cursor        { bg = hsl(348,66,48), fg = hsl(347,99,57) }, -- character under the cursor
+    lCursor       { bg = hsl(351,46,34), fg = hsl(0,15,60).darken(30) }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM      { bg = hsl(200,4,63), fg = hsl(348,66,48) }, -- like Cursor, but used when in IME mode |CursorIM|
+    CursorColumn  { bg = hsl(348,66,48), fg = hsl(180,1,19) }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+     CursorLine   { bg = hsl(0,0,46).darken(40), fg = hsl(0,0,46).lighten(40) }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
+    Directory     { bg = hsl(348,66,48), fg = hsl(200,4,63) }, -- directory names (and other special names in listings)
+    DiffAdd       { bg = hsl(348,66,48), fg = hsl(200,4,63) }, -- diff mode: Added line |diff.txt|
+    DiffChange    { bg = hsl(348,66,48), fg = hsl(351,57,44).lighten(30)}, -- diff mode: Changed line |diff.txt|
+    DiffDelete    { bg = hsl(348,66,48), fg = hsl(356,51,63).lighten(30)}, -- diff mode: Deleted line |diff.txt|
+    DiffText      { bg = hsl(348,66,48), fg = hsl(200,4,63).lighten(40)}, -- diff mode: Changed text within a changed line |diff.txt|
+      EndOfBuffer { bg = hsl(348,66,48), fg = hsl(0,0,46).darken(55) }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
+    TermCursor    { bg = hsl(200,4,63), fg = hsl(348,66,48) }, -- cursor in a focused terminal
+    TermCursorNC  { bg = hsl(351,46,34), fg = hsl(348,66,48) }, -- cursor in an unfocused terminal
+    ErrorMsg      { bg = hsl(351,46,34).lighten(50), fg = hsl(348,66,48) }, -- error messages on the command line
+    VertSplit     { bg = hsl(186,5,33), fg = hsl(0,0,46) }, -- the column separating vertically split windows
+    Folded        { bg = hsl(348,66,48), fg = hsl(351,46,34).darken(30)}, -- line used for closed folds
+    FoldColumn    { bg = hsl(348,66,48), fg = hsl(351,46,34) }, -- 'foldcolumn'
+    SignColumn    { bg = hsl(348,66,48), fg = hsl(200,4,63) }, -- column where |signs| are displayed
+    IncSearch     { bg = hsl(180,1,19), fg = hsl(348,66,48) }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Substitute    { bg = hsl(0,0,77), fg = hsl(348,66,48) }, -- |:substitute| replacement text highlighting
+    LineNr        { bg = hsl(348,66,48), fg = hsl(187,15,43) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr  { bg = hsl(187,15,43).lighten(35), fg = hsl(348,66,48).darken(30) }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    MatchParen    { bg = hsl(348,66,48), fg = hsl(348,66,48).lighten(50) }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    ModeMsg       { bg = hsl(348,66,48).lighten(10), fg = hsl(200,4,63) }, -- 'showmode' message (e.g., "-- INSERT -- ")
+    MsgArea       { bg = hsl(348,66,48).lighten(5), fg = hsl(200,4,63).darken(15) },   -- Area for messages and cmdline
+    MsgSeparator  { bg = hsl(348,66,48).darken(80), fg = hsl(356,51,63).lighten(60) }, -- Separator for scrolled messages, `msgsep` flag of 'display'
+    MoreMsg       { bg = hsl(348,66,48), fg = hsl(200,4,63).lighten(10), gui = "italic" }, -- |more-prompt|
+    NonText       { bg = hsl(348,66,48), fg = hsl(0,0,46).darken(30), ctermbg=none }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    Normal        { bg = hsl(348,66,48), fg = hsl(348,66,48).lighten(40), ctermbg=none }, -- normal text
+    NormalFloat   { bg = hsl(0,0,77), fg = hsl(0,0,46).darken(40)}, -- Normal text in floating windows.
+    NormalNC      { bg = hsl(348,66,48), fg = hsl(347,99,57).darken(70)}, -- normal text in non-current windows
+    Pmenu         { bg = hsl(348,66,48).lighten(30), fg = hsl(180,1,19) }, -- Popup menu: normal item.
+    PmenuSel      { bg = hsl(356,51,63).lighten(30), fg = hsl(187,15,43) }, -- Popup menu: selected item.
+    PmenuSbar     { bg = hsl(0,0,46), fg = hsl(348,66,48) }, -- Popup menu: scrollbar.
+    PmenuThumb    { bg = hsl(348,66,48), fg = hsl(0,0,46) }, -- Popup menu: Thumb of the scrollbar.
+    Question      { bg = hsl(348,66,48), fg = hsl(356,51,63).lighten(30)  }, -- |hit-enter| prompt and yes/no questions
+    QuickFixLine  { bg = hsl(351,46,34), fg = hsl(347,99,57)}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    Search        { bg = hsl(180,1,19).darken(20), fg = hsl(0,0,46).lighten(10)}, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    SpecialKey    { bg = hsl(348,66,48) , fg = hsl(180,1,19).darken(40)  }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+    SpellBad      { bg = hsl(348,66,48), fg = hsl(351,46,34).darken(25), gui = "undercurl" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
     SpellCap      { SpellBad}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal    { SpellBad}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare     { SpellBad}, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
-    StatusLine    { bg = hsl(328,7,39).lighten(60), fg = hsl(200,41,72).darken(60)  }, -- status line of current window
-    StatusLineNC  { bg = hsl(328,17,50).darken(70), fg = hsl(199,31,43).lighten(10)}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    StatusLine    { bg = hsl(348,66,48).lighten(60), fg = hsl(200,4,63).darken(60)  }, -- status line of current window
+    StatusLineNC  { bg = hsl(347,99,57).darken(70), fg = hsl(0,0,46).lighten(10)}, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     TabLine       { StatusLineNC}, -- tab pages line, not active tab page label
     TabLineFill   { PmenuThumb }, -- tab pages line, where there are no labels
     TabLineSel    { Search }, -- tab pages line, active tab page label
-    Title         { bg = hsl(328,7,39).lighten(10),fg = hsl(328,7,39).lighten(40) }, -- titles for output from ":set all", ":autocmd" etc.
-    Visual        { bg = hsl(328,17,50), fg = hsl(328,7,39) }, -- Visual mode selection
+    Title         { bg = hsl(348,66,48).lighten(10),fg = hsl(348,66,48).lighten(40) }, -- titles for output from ":set all", ":autocmd" etc.
+    Visual        { bg = hsl(347,99,57), fg = hsl(348,66,48) }, -- Visual mode selection
     VisualNOS     { QuickFixLine}, -- Visual mode selection when vim is "Not Owning the Selection".
-    WarningMsg    { bg = hsl(328,7,39).lighten(15), fg = hsl(200,41,72).lighten(70), gui="bold"  }, -- warning messages
+    WarningMsg    { bg = hsl(348,66,48).lighten(15), fg = hsl(200,4,63).lighten(70), gui="bold"  }, -- warning messages
     Whitespace    { NonText}, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     WildMenu      { PmenuSel}, -- current match in 'wildmenu' completion
 
@@ -124,36 +124,36 @@ local theme = lush(function()
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Constant       { bg = hsl(328,7,39), fg = hsl(200,31,75).darken(35) }, -- (preferred) any constant
+    Constant       { bg = hsl(348,66,48), fg = hsl(180,1,19).darken(35) }, -- (preferred) any constant
     -- String         { }, --   a string constant: "this is a string"
     -- Character      { }, --  a character constant: 'c', '\n'
     -- Number         { }, --   a number constant: 234, 0xff
     -- Boolean        { }, --  a boolean constant: TRUE, false
     -- Float          { }, --    a floating point constant: 2.3e10
 
-     Identifier     { bg = hsl(328,7,39), fg = hsl(201,16,56).darken(30) }, -- (preferred) any variable name
-     Function       { bg = hsl(328,7,39), fg = hsl(328,7,39).lighten(30)}, -- function name (also: methods for classes)
+     Identifier     { bg = hsl(348,66,48), fg = hsl(356,51,63).darken(30) }, -- (preferred) any variable name
+     Function       { bg = hsl(348,66,48), fg = hsl(348,66,48).lighten(30)}, -- function name (also: methods for classes)
 
-     Statement      { bg = hsl(328,7,39), fg = hsl(201,32,38).lighten(40) }, -- (preferred) any statement
-     Conditional    { bg = hsl(328,7,39), fg = hsl(201,32,38).lighten(30) }, --  if, then, else, endif, switch, etc.
-     Repeat         { bg = hsl(328,7,39), fg = hsl(200,31,66).darken(20)  }, --   for, do, while, etc.
-     Label          { bg = hsl(328,7,39), fg = hsl(199,31,43).lighten(30) }, --    case, default, etc.
+     Statement      { bg = hsl(348,66,48), fg = hsl(186,5,33).lighten(40) }, -- (preferred) any statement
+     Conditional    { bg = hsl(348,66,48), fg = hsl(186,5,33).lighten(30) }, --  if, then, else, endif, switch, etc.
+     Repeat         { bg = hsl(348,66,48), fg = hsl(351,46,34).darken(20)  }, --   for, do, while, etc.
+     Label          { bg = hsl(348,66,48), fg = hsl(0,0,46).lighten(30) }, --    case, default, etc.
     -- Operator       { }, -- "sizeof", "+", "*", etc.
     -- Keyword        { }, --  any other keyword
     -- Exception      { }, --  try, catch, throw
 
-     PreProc          { bg = hsl(328,7,39), fg = hsl(0,0,77).darken(30)}, -- (preferred) generic Preprocessor
+     PreProc          { bg = hsl(348,66,48), fg = hsl(0,0,77).darken(30)}, -- (preferred) generic Preprocessor
     -- Include        { }, --  preprocessor #include
     -- Define         { }, --   preprocessor #define
     -- Macro          { }, --    same as Define
     -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
 
-     Type             { bg = hsl(328,7,39), fg = hsl(328,7,39).lighten(70), gui = "bold" }, -- (preferred) int, long, char, etc.
+     Type             { bg = hsl(348,66,48), fg = hsl(348,66,48).lighten(70), gui = "bold" }, -- (preferred) int, long, char, etc.
     -- StorageClass   { }, -- static, register, volatile, etc.
     -- Structure      { }, --  struct, union, enum, etc.
     -- Typedef        { }, --  A typedef
 
-    Special           { bg = hsl(328,7,39), fg=hsl(200,41,72).darken(50)}, -- (preferred) any special symbol
+    Special           { bg = hsl(348,66,48), fg=hsl(200,4,63).darken(50)}, -- (preferred) any special symbol
     -- SpecialChar    { }, --  special character in a constant
     -- Tag            { }, --    you can use CTRL-] on this
     -- Delimiter      { }, --  character that needs attention
@@ -167,7 +167,7 @@ local theme = lush(function()
     -- ("Ignore", below, may be invisible...)
     -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
 
-     Error          { bg = hsl(200,41,72).darken(70), fg = hsl(190,99,82).lighten(50),gui="bold"}, -- (preferred) any erroneous construct
+     Error          { bg = hsl(200,4,63).darken(70), fg = hsl(351,57,44).lighten(50),gui="bold"}, -- (preferred) any erroneous construct
 
      Todo           { Title}, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 

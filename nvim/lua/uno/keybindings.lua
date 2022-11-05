@@ -19,7 +19,7 @@ vim.api.nvim_set_keymap("v", "<Leader>q", ":q<CR>", { noremap = true, silent = t
 -- use ZQ for :q! (quit & discard changes)
 -- Discard all changed buffers & quit
 vim.api.nvim_set_keymap("n", "<Leader>Q", ":qall!<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<Leader>Q", ":qall!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<Leader>Q", ":<C-c>qall!<CR>", { noremap = true, silent = true })
 -- write all and quit
 vim.api.nvim_set_keymap("n", "<Leader>W", ":wqall<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<Leader>W", ":wqall<CR>", { noremap = true, silent = true })
@@ -104,6 +104,7 @@ end)
 
 -- Terminal stuff
 vim.api.nvim_set_keymap("t", "<C-`>", "<C-\\><C-N>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>t", ":ToggleTerm<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>tv", ":vsplit<bar>term<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>ts", ":split<bar>term<CR>", { noremap = true, silent = true })
 

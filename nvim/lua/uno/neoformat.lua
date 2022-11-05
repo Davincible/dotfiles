@@ -14,12 +14,12 @@ vim.g.neoformat_enabled_json = { "prettier" }
 vim.g.neoformat_enabled_lua = { "stylua" }
 vim.g.neoformat_enabled_sql = { "pg_format" }
 vim.g.neoformat_enabled_json = { "prettier" }
-vim.g.neoformat_enabled_python= { "black" }
+vim.g.neoformat_enabled_python = { "black" }
 
 local fg = vim.api.nvim_create_augroup("Neoformat", { clear = true })
 -- General formater
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { ".sql", ".lua", "*.json", "*.css", "Tiltfile", "*.js", "*.jsx", "*.proto", "*.py", "*.html" },
+	pattern = { "*.sql", "*.lua", "*.json", "*.css", "Tiltfile", "*.js", "*.jsx", "*.proto", "*.py", "*.html" },
 	command = "Neoformat",
 	group = fg,
 })

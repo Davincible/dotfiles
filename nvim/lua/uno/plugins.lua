@@ -8,6 +8,15 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("packadd packer.nvim")
 end
 
+local _group = vim.api.nvim_create_augroup("PackerCompile", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "plugins.lua",
+	callback = function()
+		vim.cmd("PackerCompile")
+	end,
+	group = _group,
+})
+
 return require("packer").startup(function()
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
@@ -17,7 +26,7 @@ return require("packer").startup(function()
 		"lewis6991/impatient.nvim",
 		config = require("impatient").setup,
 	})
-	use("nathom/filetype.nvim")
+	-- use("nathom/filetype.nvim")
 
 	-- Telescope
 	use("folke/trouble.nvim")
@@ -29,10 +38,10 @@ return require("packer").startup(function()
 		"danielpieper/telescope-tmuxinator.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
 		"nvim-telescope/telescope-media-files.nvim",
-		"nvim-telescope/telescope-project.nvim",
 		"nvim-telescope/telescope-dap.nvim",
 		"nvim-telescope/telescope-fzy-native.nvim",
 		"nvim-telescope/telescope-symbols.nvim",
+		"cljoly/telescope-repo.nvim",
 	})
 
 	-- Theming
@@ -42,25 +51,26 @@ return require("packer").startup(function()
 	use("rktjmp/lush.nvim")
 	use("akinsho/nvim-bufferline.lua")
 	use("norcalli/nvim-colorizer.lua")
-	use("kyazdani42/nvim-web-devicons")
+	use("nvim-tree/nvim-web-devicons")
+	use({ "folke/tokyonight.nvim" })
+	use({ "ellisonleao/gruvbox.nvim" })
 
-	use({
-		"anuvyklack/windows.nvim",
-		requires = {
-			"anuvyklack/middleclass",
-			-- "anuvyklack/animation.nvim",
-		},
-		config = function()
-			-- vim.o.winwidth = 10
-			-- vim.o.winminwidth = 10
-			-- vim.o.equalalways = false
-			require("windows").setup()
-		end,
-	})
+	-- User Interface
+	use({ "sidebar-nvim/sidebar.nvim", rocks = { "luatz" } })
+	use({ "beauwilliams/focus.nvim" })
+
+	-- use({
+	-- 	"anuvyklack/windows.nvim",
+	-- 	requires = {
+	-- 		"anuvyklack/middleclass",
+	-- 		-- "anuvyklack/animation.nvim",
+	-- 	},
+	-- })
 
 	-- Status line
 	-- use {"joshuaMarple/galaxyline.nvim"}
 	use({ "nvim-lualine/lualine.nvim" })
+	use({ "rebelot/heirline.nvim" })
 
 	-- Software Devlopment
 	use("ekalinin/Dockerfile.vim")
@@ -83,6 +93,7 @@ return require("packer").startup(function()
 			"nvim-treesitter/playground",
 		},
 	})
+	use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- , after = "nvim-treesitter"
 
 	-- Golang
 	use({
@@ -107,7 +118,16 @@ return require("packer").startup(function()
 		after = "go.nvim",
 	})
 	use("onsails/lspkind-nvim")
-	use("tami5/lspsaga.nvim")
+	-- use("tami5/lspsaga.nvim")
+	use("stevearc/aerial.nvim")
+	use({ "simrat39/symbols-outline.nvim" })
+	use({
+		"ray-x/navigator.lua",
+		requires = {
+			{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+			{ "neovim/nvim-lspconfig" },
+		},
+	})
 
 	-- LSP Completion
 	use("hrsh7th/cmp-nvim-lsp")
@@ -122,32 +142,62 @@ return require("packer").startup(function()
 	})
 	use({ "saadparwaiz1/cmp_luasnip" }) -- , after = "cmp-npm"
 	use({ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" } }) -- , after = "cmp_luasnip"
+	use("folke/neodev.nvim") -- For Neovim plugin dev
 
 	-- Lsp Addons
 	use({ "stevearc/dressing.nvim", requires = "MunifTanjim/nui.nvim" })
 	use({ "folke/lsp-trouble.nvim" })
 	use({ "jose-elias-alvarez/nvim-lsp-ts-utils", after = { "nvim-treesitter" } })
 
+	-- Testing
+	use({
+		-- "nvim-neotest/neotest",
+		"/home/tyler/Launchpad/temp/neotest-fork",
+		requires = {
+			-- "nvim-neotest/neotest-go",
+			"/home/tyler/Launchpad/temp/neotest-go-fork",
+			"nvim-lua/plenary.nvim",
+			"nvim-neotest/neotest-python",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+		},
+	})
+
 	-- Misc
-	use("kyazdani42/nvim-tree.lua")
-	use("Pocco81/TrueZen.nvim")
+	use("nvim-tree/nvim-tree.lua") -- File tree
+	use("Pocco81/TrueZen.nvim") -- ZenMode
 	use("rktjmp/fwatch.nvim") -- file watcher for themes
 	use("sbdchd/neoformat") -- file formatting
 	use("akinsho/nvim-toggleterm.lua")
 	use({ "AndrewRadev/splitjoin.vim" }) -- to expand / contract multiline
 	use({ "numToStr/Comment.nvim" }) -- Comment stuff
-	use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- , after = "nvim-treesitter"
 	use({ "tpope/vim-repeat" })
 	use({ "tpope/vim-speeddating" })
 	use({ "tpope/vim-surround" })
-	use({ "folke/todo-comments.nvim", config = "require('todo-comments')" })
+	use("stevearc/stickybuf.nvim")
+	use({
+		"folke/todo-comments.nvim",
+		config = function()
+			require("todo-comments").setup({})
+		end,
+	})
 	use({ "antoinemadec/FixCursorHold.nvim" }) -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
-	use({ "rcarriga/nvim-notify" })
+	use({ "rcarriga/nvim-notify" }) -- Notifications
+	-- use("WhoIsSethDaniel/toggle-lsp-diagnostics.nvim")
 	use({
 		"vuki656/package-info.nvim",
 		"MunifTanjim/nui.nvim",
-		config = "require('package-info').setup()",
+		config = require("package-info").setup,
 	})
+	use({
+		"ThePrimeagen/refactoring.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	})
+
+	-- Text editing
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
@@ -158,9 +208,16 @@ return require("packer").startup(function()
 	})
 	use({ "mattn/emmet-vim" })
 	use({ "potatoesmaster/i3-vim-syntax" })
+
 	-- use {"airblade/vim-rooter"}
 	use({ "mvllow/modes.nvim" }) -- Highlights current line based on mode
-	use({ "zegervdv/nrpattern.nvim", config = "require('nrpattern').setup()" })
+	use({
+		"zegervdv/nrpattern.nvim",
+		config = function()
+			-- Gives an error
+			require("nrpattern").setup()
+		end,
+	})
 	use({ "kevinhwang91/nvim-bqf", ft = "qf" }) -- Nicer quickfix list
 	use({
 		"ahmedkhalf/project.nvim",
@@ -170,16 +227,34 @@ return require("packer").startup(function()
 	})
 	use("Pocco81/HighStr.nvim") -- Highlight lines
 
+	-- Workspaces+sessions
+	use({ "natecraddock/workspaces.nvim" })
+	use({ "natecraddock/sessions.nvim" })
+
 	-- Git stuff
 	use("ThePrimeagen/git-worktree.nvim") -- look into how this works
 	use("tpope/vim-fugitive") -- what is this again?
 	use({ "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" })
+	use({ "lewis6991/gitsigns.nvim" })
 
 	use("ThePrimeagen/harpoon") -- what is this again?
+	use({
+		"pwntester/octo.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"kyazdani42/nvim-web-devicons",
+		},
+		config = function()
+			require("octo").setup()
+		end,
+	})
+
 	use("famiu/nvim-reload")
 	-- use("dlee/nvim-reload")
 
-	use({ "lewis6991/gitsigns.nvim" })
+	-- Code Window
+	use({ "gorbit99/codewindow.nvim" })
 
 	-- use 'dstein64/vim-startuptime'
 end)

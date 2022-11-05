@@ -3,7 +3,8 @@ source $ZSH_CONFIG_PATH/plugins/kitty.zsh
 
 
 # Vi mode
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# Conflicts with transient mode
+# source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $ZSH_CONFIG_PATH/plugins/vimode.zsh 
 
 # Command completions

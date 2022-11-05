@@ -49,6 +49,12 @@ require("nvim-treesitter.configs").setup({
 			scope_incremental = "grc", -- increment to the upper scope (as defined in locals.scm)
 			node_decremental = "grm", -- decrement to the previous node
 		},
+		context_commentstring = {
+			enable = true,
+			config = {
+				go = "// %s",
+			},
+		},
 	},
 
 	textobjects = {

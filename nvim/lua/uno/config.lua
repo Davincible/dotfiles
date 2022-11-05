@@ -10,7 +10,7 @@ vim.go.scrolloff = 12
 vim.go.sidescrolloff = 21
 --  vim.go.completeopt  = "menuone,noinsert,preview"
 vim.go.completeopt = "menuone,noselect"
-vim.go.cmdheight = 2
+vim.go.cmdheight = 1
 vim.go.mouse = "a"
 vim.go.clipboard = "unnamedplus"
 vim.go.wildmenu = true
@@ -40,14 +40,19 @@ vim.bo.shiftwidth = 2
 vim.bo.expandtab = true
 vim.bo.smartindent = true
 vim.bo.autoindent = true
-vim.bo.swapfile = true
+vim.bo.swapfile = false
 vim.bo.undofile = true
 
 -- Global Variables
 vim.g.mapleader = " "
 vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.mkdp_browser = "/usr/bin/" .. vim.fn.expand("$BROWSER")
--- vim.g.colorizer_auto_color = 1  -- might not be needed
+
+-- Statusline options
+vim.g.icons_enabled = true -- heirline icons instead of text icons
+vim.g.status_diagnostics_enabled = true
+vim.g.diagnostics_enabled = true
+vim.g.neotest_result_enabled = true
 
 vim.opt.wildignore = {
 	"*.pyc",
@@ -65,7 +70,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	callback = function()
 		vim.wo.relativenumber = false
 		vim.wo.number = false
-		vim.cmd("startinsert")
+		-- vim.cmd("startinsert")
 	end,
 	group = _term,
 })
@@ -88,5 +93,38 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	group = _ft,
 })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "Outline",
+	callback = function()
+		vim.wo.signcolumn = "no"
+	end,
+	group = _ft,
+})
 
+-- Auto lushify theme file when editing
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "pywal.lua",
+	callback = function()
+		-- Disable diagnostics for current window
+		vim.diagnostic.disable(0)
+		vim.wo.cursorline = false
 
+		local opts = { natural_timeout = 200, error_timeout = 500 }
+		-- Lushify to update colors in real time
+		require("lush").ify(opts)
+
+		-- Re-enable lushify on colorscheme change
+		vim.api.nvim_create_augroup("Lushify", { clear = true })
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			group = "Lushify",
+			desc = "Enable Lushify",
+			callback = function()
+				vim.schedule(function()
+					vim.wo.cursorline = false
+					require("lush").ify(opts)
+				end)
+			end,
+		})
+	end,
+	group = _ft,
+})

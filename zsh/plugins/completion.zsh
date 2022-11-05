@@ -1,3 +1,6 @@
+# Disable ZSH command completion
+ unsetopt correct_all
+
 # Command completions
 [[ /sbin/kubectl ]] && zsh-defer -c "source <(kubectl completion zsh)"
 [[ /sbin/k3d ]] && zsh-defer -c "source <(k3d completion zsh)"
