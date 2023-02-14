@@ -12,10 +12,12 @@ require("dressing").setup({
 		prefer_width = 40,
 		max_width = nil,
 		min_width = 20,
-		-- Window transparency (0-100)
-		winblend = 10,
 		-- see :help dressing_get_config
 		get_config = nil,
+	},
+	win_options = {
+		-- Window transparency (0-100)
+		winblend = 10,
 	},
 	select = {
 		-- Priority list of preferred vim.select implementations
@@ -58,8 +60,6 @@ require("dressing").setup({
 			-- row = 0,
 			-- col = 0,
 			border = "rounded",
-			-- Window transparency (0-100)
-			winblend = 10,
 			-- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
 			width = nil,
 			max_width = 0.8,
@@ -67,6 +67,10 @@ require("dressing").setup({
 			height = nil,
 			max_height = 0.9,
 			min_height = 10,
+			win_options = {
+				-- Window transparency (0-100)
+				winblend = 10,
+			},
 		},
 		-- Used to override format_item. See :help dressing-format
 		format_item_override = {},

@@ -168,6 +168,7 @@ return require("packer").startup(function()
 	use("Pocco81/TrueZen.nvim") -- ZenMode
 	use("rktjmp/fwatch.nvim") -- file watcher for themes
 	use("sbdchd/neoformat") -- file formatting
+	use("mhartington/formatter.nvim")
 	use("akinsho/nvim-toggleterm.lua")
 	use({ "AndrewRadev/splitjoin.vim" }) -- to expand / contract multiline
 	use({ "numToStr/Comment.nvim" }) -- Comment stuff
@@ -196,6 +197,7 @@ return require("packer").startup(function()
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	})
+	use({ "uga-rosa/translate.nvim" })
 
 	-- Text editing
 	use({

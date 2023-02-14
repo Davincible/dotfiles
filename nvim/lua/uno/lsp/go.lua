@@ -13,7 +13,7 @@ require("go").setup({
 	lsp_cfg = false,
 	lsp_keymaps = false,
 	icons = { breakpoint = "🔺", currentpos = "♥️" }, -- set to false to disable
-	run_in_floaterm = true, -- set to true to run in float window.
+	run_in_floaterm = false, -- set to true to run in float window.
 	dap_debug = true,
 	dap_debug_keymap = false,
 	trouble = true,

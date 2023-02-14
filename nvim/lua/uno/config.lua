@@ -94,6 +94,24 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = _ft,
 })
 vim.api.nvim_create_autocmd("FileType", {
+	pattern = "javascript",
+	callback = function()
+		vim.bo.expandtab = true
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+	end,
+	group = _ft,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "json",
+	callback = function()
+		vim.bo.expandtab = true
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+	end,
+	group = _ft,
+})
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = "Outline",
 	callback = function()
 		vim.wo.signcolumn = "no"

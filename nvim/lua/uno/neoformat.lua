@@ -1,3 +1,60 @@
+-- vim.g.neoformat_enabled_json = { "prettier" }
+-- vim.g.neoformat_enabled_lua = { "stylua" }
+-- -- vim.g.neoformat_enabled_sql = { "pg_format" }
+-- vim.g.neoformat_enabled_json = { "prettier" }
+-- vim.g.neoformat_enabled_python = { "black" }
+--
+-- local fg = vim.api.nvim_create_augroup("Neoformat", { clear = true })
+-- -- General formater
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	pattern = { "*.sql", "*.lua", "*.json", "*.css", "Tiltfile", "*.js", "*.jsx", "*.proto", "*.py", "*.html" },
+-- 	command = "Neoformat",
+-- 	group = fg,
+-- })
+
+-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+local config = {
+	logging = true,
+	log_level = vim.log.levels.WARN,
+	filetype = vim.tbl_deep_extend("force", require("formatter.filetypes"), {
+		lua = require("formatter.filetypes.lua").stylua,
+		go = require("formatter.filetypes.go").goimports,
+		-- sql = {
+		-- 	function()
+		-- 		return {
+		-- 			exe = "sql-formatter",
+		-- 			args = {
+		-- 				"-l",
+		-- 				"postgresql",
+		-- 			},
+		-- 			stdin = true,
+		-- 		}
+		-- 	end,
+		-- },
+		-- 	Dockerfile = {
+		-- 		function()
+		-- 			return {
+		-- 				exe = "dockfmt",
+		-- 				args = {
+		-- 					"fmt",
+		-- 				},
+		-- 				stdin = true,
+		-- 			}
+		-- 		end,
+		-- 	},
+	}),
+}
+
+require("formatter").setup(config)
+
+local fg = vim.api.nvim_create_augroup("Neoformat", { clear = true })
+-- General formater
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = { "*" },
+	command = "FormatWrite",
+	group = fg,
+})
+
 -- Load tilt file
 local tg = vim.api.nvim_create_augroup("Tiltfile", { clear = true })
 vim.api.nvim_create_autocmd("BufRead", {
@@ -10,28 +67,14 @@ vim.api.nvim_create_autocmd("BufRead", {
 	group = tg,
 })
 
-vim.g.neoformat_enabled_json = { "prettier" }
-vim.g.neoformat_enabled_lua = { "stylua" }
-vim.g.neoformat_enabled_sql = { "pg_format" }
-vim.g.neoformat_enabled_json = { "prettier" }
-vim.g.neoformat_enabled_python = { "black" }
-
-local fg = vim.api.nvim_create_augroup("Neoformat", { clear = true })
--- General formater
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.sql", "*.lua", "*.json", "*.css", "Tiltfile", "*.js", "*.jsx", "*.proto", "*.py", "*.html" },
-	command = "Neoformat",
-	group = fg,
-})
-
 -- SQL tabs
 local sg = vim.api.nvim_create_augroup("Sql", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "sql" },
 	callback = function()
-		vim.bo.tabstop = 8
+		vim.bo.tabstop = 4
 		vim.bo.softtabstop = 0
-		vim.bo.shiftwidth = 4
+		vim.bo.shiftwidth = 2
 		vim.bo.smartindent = true
 		vim.bo.expandtab = true
 	end,

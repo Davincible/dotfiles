@@ -249,7 +249,7 @@ end
 -- @usage local heirline_component = { provider = unoline.status.provider.mode_text() }
 -- @see unoline.status.utils.stylize
 function unoline.status.provider.mode_text(opts)
-	local max_length = math.max(table.unpack(vim.tbl_map(function(str)
+	local max_length = math.max(unpack(vim.tbl_map(function(str)
 		return #str[1]
 	end, vim.tbl_values(unoline.status.env.modes))))
 	return function()
@@ -397,9 +397,9 @@ function unoline.status.provider.unique_path(opts)
 		end
 		return unoline.status.utils.stylize(
 			(
-			opts.max_length > 0
-					and #unique_path > opts.max_length
-					and string.sub(unique_path, 1, opts.max_length - 2) .. unoline.get_icon("Ellipsis") .. "/"
+				opts.max_length > 0
+				and #unique_path > opts.max_length
+				and string.sub(unique_path, 1, opts.max_length - 2) .. unoline.get_icon("Ellipsis") .. "/"
 			) or unique_path,
 			opts
 		)
@@ -536,10 +536,14 @@ function unoline.status.provider.neotest_running(opts)
 		return math.floor(vim.loop.hrtime() / 12e7) % len + 1
 	end
 
+	local function get_index_long(len)
+		return math.floor(vim.loop.hrtime() / 50e7) % len + 1
+	end
+
 	local icons = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 	return function(self)
 		local f = vim.tbl_values(require("neotest").state.running())
-		local testing = string.match(f[get_index(#f)].path, "[^/]*/[^/]*$")
+		local testing = string.match(f[get_index_long(#f)].path, "[^/]*/[^/]*$")
 		local str = string.format("Testing %s %s", testing, icons[get_index(#icons)])
 		return unoline.status.utils.stylize(str, opts)
 	end
@@ -555,18 +559,18 @@ function unoline.status.provider.lsp_progress(opts)
 		local Lsp = vim.lsp.util.get_progress_messages()[1]
 		return unoline.status.utils.stylize(
 			Lsp
-			and string.format(
-				" %%<%s %s %s (%s%%%%) ",
-				unoline.get_icon("LSP" .. ((Lsp.percentage or 0) >= 70 and { "Loaded", "Loaded", "Loaded" } or {
-					"Loading1",
-					"Loading2",
-					"Loading3",
-				})[math.floor(vim.loop.hrtime() / 12e7) % 3 + 1]),
-				Lsp.title or "",
-				Lsp.message or "",
-				Lsp.percentage or 0
-			)
-			or "",
+					and string.format(
+						" %%<%s %s %s (%s%%%%) ",
+						unoline.get_icon("LSP" .. ((Lsp.percentage or 0) >= 70 and { "Loaded", "Loaded", "Loaded" } or {
+							"Loading1",
+							"Loading2",
+							"Loading3",
+						})[math.floor(vim.loop.hrtime() / 12e7) % 3 + 1]),
+						Lsp.title or "",
+						Lsp.message or "",
+						Lsp.percentage or 0
+					)
+				or "",
 			opts
 		)
 	end
@@ -753,7 +757,7 @@ function unoline.status.utils.stylize(str, opts)
 	return str
 			and (str ~= "" or opts.show_empty)
 			and opts.separator.left .. unoline.pad_string(icon .. str, opts.padding) .. opts.separator.right
-			or ""
+		or ""
 end
 
 --- A Heirline component for filling in the empty space of the bar
@@ -809,7 +813,7 @@ function unoline.status.component.file_info(opts)
 					hl = opts[key].highlight and unoline.status.hl.filetype_color or opts[key].hl,
 					on_click = opts[key].on_click,
 				}
-				or false
+			or false
 	end
 	return unoline.status.component.builder(opts)
 end
@@ -1022,7 +1026,7 @@ function unoline.status.component.neotest_status(opts)
 		end
 		opts[i] = opts[status]
 				and { provider = "neotest_status", opts = opts[status], hl = { fg = "neotest_" .. status } }
-				or false
+			or false
 	end
 
 	return unoline.status.component.builder(opts)
@@ -1096,7 +1100,7 @@ function unoline.status.component.lsp(opts)
 						{ provider = unoline.status.provider[provider](opts[provider]) },
 						{ provider = unoline.status.provider.str(opts[provider]) }
 					)
-					or { provider = provider, opts = opts[provider] }
+				or { provider = provider, opts = opts[provider] }
 			if provider == "lsp_client_names" then
 				new_provider.update = { "LspAttach", "LspDetach", "BufEnter" }
 			end
@@ -1117,10 +1121,11 @@ function unoline.status.component.builder(opts)
 		table.insert(children, { provider = unoline.pad_string(" ", { left = opts.padding.left - 1 }) })
 	end
 	for key, entry in pairs(opts) do
-		if type(key) == "number"
-				and type(entry) == "table"
-				and unoline.status.provider[entry.provider]
-				and (entry.opts == nil or type(entry.opts) == "table")
+		if
+			type(key) == "number"
+			and type(entry) == "table"
+			and unoline.status.provider[entry.provider]
+			and (entry.opts == nil or type(entry.opts) == "table")
 		then
 			entry.provider = unoline.status.provider[entry.provider](entry.opts)
 		end
@@ -1136,7 +1141,7 @@ function unoline.status.component.builder(opts)
 				children,
 				opts.surround.condition
 			)
-			or children
+		or children
 end
 
 --- A utility function to get the width of the bar

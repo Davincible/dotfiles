@@ -134,7 +134,10 @@ local heirline_opts = {
 
 local setupHeirline = function()
 	heirline.load_colors(setup_colors())
-	heirline.setup(heirline_opts.status_line, heirline_opts.win_bar)
+	heirline.setup({
+		statusline = heirline_opts.status_line,
+		winbar = heirline_opts.win_bar,
+	})
 end
 
 setupHeirline()

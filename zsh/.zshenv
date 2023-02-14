@@ -1,6 +1,6 @@
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="brave"
+export BROWSER="firefox"
 export READER="zathura"
 export FILE="ranger"
 
@@ -15,7 +15,7 @@ export PATH="$PATH:/home/$USER/.cargo/bin"
 # Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GOPRIVATE="github.com/sweetstreams/*"
+export GOPRIVATE="github.com/sweetstreams/*,github.com/Davincible/go-tiktok-signer,github.com/Davincible/go-tiktok"
 
 # Selenium
 export PATH="$PATH:$HOME/Applications/ChromeDriver"

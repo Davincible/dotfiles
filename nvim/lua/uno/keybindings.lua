@@ -108,6 +108,9 @@ vim.api.nvim_set_keymap("n", "<Leader>t", ":ToggleTerm<CR>", { noremap = true, s
 vim.api.nvim_set_keymap("n", "<Leader>tv", ":vsplit<bar>term<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>ts", ":split<bar>term<CR>", { noremap = true, silent = true })
 
+-- Translate
+vim.api.nvim_set_keymap("v", "<Leader>t", ":Translate EN -output=replace<CR>", { noremap = true, silent = true })
+
 -- local maps = {
 --   n =    {
 --     ["<F10>"] = ":10sp term://fish<CR>i",

@@ -8,7 +8,7 @@ passStyle:
   foreground: "#56a36e"
 failStyle:
   bold: true
-  foreground: "#821515"
+  foreground: "#bd1919"
 skipStyle:
   foreground: "#638196"
 passPackageStyle:
@@ -16,10 +16,10 @@ passPackageStyle:
   hide: false
 failPackageStyle:
   bold: true
-  foreground: "#821515"
+  foreground: "#bd1919"
 coverThreshold: 80
 coveredStyle:
-  foreground: "#2b5c19"
+  foreground: "#3f8f22"
 uncoveredStyle:
   bold: true
   foreground: "#deaa18"

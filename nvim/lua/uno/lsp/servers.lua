@@ -35,7 +35,7 @@ local servers = {
 	"cssls",
 	"denols",
 	"dockerls",
-	"eslint",
+	-- "eslint",
 	"gopls",
 	"golangci_lint_ls",
 	"graphql",
@@ -45,7 +45,7 @@ local servers = {
 	"jsonls",
 	"jdtls", -- java
 	"ltex",
-	"sumneko_lua",
+	"lua_ls",
 	-- "pyright",
 	"jedi_language_server",
 	"sqls",
@@ -93,8 +93,8 @@ local function common_on_attach(client, bufnr)
 	end
 
 	-- Navigator setup
-	require("navigator.lspclient.mapping").setup({ client = client, bufnr = bufnr }) -- setup navigator keymaps here,
-	--require("navigator.dochighlight").documentHighlight(bufnr)
+	-- require("navigator.lspclient.mapping").setup({ client = client, bufnr = bufnr }) -- setup navigator keymaps here,
+	-- require("navigator.dochighlight").documentHighlight(bufnr)
 	-- require("navigator.codeAction").code_action_prompt(bufnr)
 	-- require("navigator.diagnostics").config(cfg.lsp.diagnostic)
 end
@@ -149,7 +149,7 @@ mason_lsp.setup_handlers({
 		lsp_config[server].setup(opts)
 	end,
 
-	["sumneko_lua"] = function(server)
+	["lua_ls"] = function(server)
 		local opts = vim.deepcopy(default_lsp_opts)
 
 		opts.settings = {
@@ -231,6 +231,14 @@ mason_lsp.setup_handlers({
 
 		lsp_config[server].setup(opts)
 	end,
+
+	-- ["sqlls"] = function(server)
+	-- 	local opts = vim.deepcopy(default_lsp_opts)
+	--
+	-- 	opts.root_dir = lsp_config.util.root_pattern("sqlc.yaml")
+	--
+	-- 	lsp_config[server].setup(opts)
+	-- end,
 
 	["gopls"] = function(server)
 		-- Get default config from Ray-x Go plugin

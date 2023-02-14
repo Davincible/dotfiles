@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/tyler/.config/wpg/wallpapers/Verstappen-2021-FrenchGP.jpg",
+    "alpha": "91",
+
+    "special": {
+        "background": "#151515",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#151515",
+        "color1": "#6d1e1e",
+        "color2": "#4f5460",
+        "color3": "#757783",
+        "color4": "#464c58",
+        "color5": "#989cab",
+        "color6": "#a4a8b7",
+        "color7": "#c4c4c4",
+        "color8": "#2e2e2e",
+        "color9": "#961d1d",
+        "color10": "#5b6888",
+        "color11": "#888fba",
+        "color12": "#505f7c",
+        "color13": "#b0bef3",
+        "color14": "#becdff",
+        "color15": "#ffffff"
+    }
+}

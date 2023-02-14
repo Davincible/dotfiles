@@ -456,6 +456,9 @@ local theme = lush(function()
 
 		-- Navigator
 		GuihuaListSelHl { bg = CursorLine.bg },
+
+		-- Octo
+		OctoBubble { bg = cyan.darken(30), fg = white, bold = true },
 	}
 end)
 

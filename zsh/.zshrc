@@ -5,6 +5,9 @@ export POWERLEVEL9K_INSTALLATION_DIR="/usr/share/zsh-theme-powerlevel10k"
 
 # Config
 export HISTFILE="$HOME/.cache/zsh/history"
+HISTSIZE=100000
+SAVEHIST=100000
+setopt SHARE_HISTORY
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 
