@@ -73,6 +73,7 @@ return require("packer").startup(function()
 	use({ "rebelot/heirline.nvim" })
 
 	-- Software Devlopment
+	use({ "kiyoon/jupynium.nvim", run = "pip3 install --user ." })
 	use("ekalinin/Dockerfile.vim")
 	use("windwp/nvim-autopairs")
 	use({
@@ -164,6 +165,7 @@ return require("packer").startup(function()
 	})
 
 	-- Misc
+	use("github/copilot.vim")
 	use("nvim-tree/nvim-tree.lua") -- File tree
 	use("Pocco81/TrueZen.nvim") -- ZenMode
 	use("rktjmp/fwatch.nvim") -- file watcher for themes
@@ -175,7 +177,7 @@ return require("packer").startup(function()
 	use({ "tpope/vim-repeat" })
 	use({ "tpope/vim-speeddating" })
 	use({ "tpope/vim-surround" })
-	use("stevearc/stickybuf.nvim")
+	use({ "stevearc/stickybuf.nvim" })
 	use({
 		"folke/todo-comments.nvim",
 		config = function()

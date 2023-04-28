@@ -117,11 +117,16 @@ cmp.setup({
 			local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
 			local strings = vim.split(kind.kind, "%s", { trimempty = true })
 
-			if entry.source.name == "cmp_tabnine" then
-				if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-					strings[2] = entry.completion_item.data.detail .. " " .. strings[2]
-				end
+			if strings[1] == "TabNine" then
+				-- if entry.completion_item.data ~= nil and entry.completion_item.data.completion_metadata ~= nil then
+				-- 	strings[2] = entry.completion_item.data.completion_metadata.detail .. " " .. strings[2]
+				-- end
+				strings[2] = "TabNine"
 				strings[1] = ""
+			end
+
+			if #strings ~= 2 then
+				vim.notify(vim.inspect(entry))
 			end
 
 			kind.kind = " " .. strings[1] .. " "

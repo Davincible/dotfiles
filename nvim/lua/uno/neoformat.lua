@@ -1,7 +1,8 @@
 -- vim.g.neoformat_enabled_json = { "prettier" }
 -- vim.g.neoformat_enabled_lua = { "stylua" }
 -- -- vim.g.neoformat_enabled_sql = { "pg_format" }
--- vim.g.neoformat_enabled_json = { "prettier" }
+vim.g.neoformat_enabled_json = { "prettier" }
+vim.g.neoformat_enabled_javascript = { "prettier" }
 -- vim.g.neoformat_enabled_python = { "black" }
 --
 -- local fg = vim.api.nvim_create_augroup("Neoformat", { clear = true })
@@ -19,18 +20,30 @@ local config = {
 	filetype = vim.tbl_deep_extend("force", require("formatter.filetypes"), {
 		lua = require("formatter.filetypes.lua").stylua,
 		go = require("formatter.filetypes.go").goimports,
-		-- sql = {
-		-- 	function()
-		-- 		return {
-		-- 			exe = "sql-formatter",
-		-- 			args = {
-		-- 				"-l",
-		-- 				"postgresql",
-		-- 			},
-		-- 			stdin = true,
-		-- 		}
-		-- 	end,
-		-- },
+		sql = {
+			function()
+				local config = [[
+          {
+            "language": "postgresql",
+            "tabWidth": 2,
+            "keywordCase": "upper",
+            "linesBetweenQueries": 2,
+            "paramTypes": { "named": ["@", "sqlc.narg"] }
+          }
+				]]
+
+				local file = string.format("<(echo '%s')", config)
+
+				return {
+					exe = "sql-formatter",
+					args = {
+						"--config",
+						file,
+					},
+					stdin = true,
+				}
+			end,
+		},
 		-- 	Dockerfile = {
 		-- 		function()
 		-- 			return {
@@ -51,7 +64,13 @@ local fg = vim.api.nvim_create_augroup("Neoformat", { clear = true })
 -- General formater
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = { "*" },
-	command = "FormatWrite",
+	callback = function()
+		if vim.bo.filetype == "sql" then
+			return
+		end
+
+		vim.cmd("FormatWrite")
+	end,
 	group = fg,
 })
 

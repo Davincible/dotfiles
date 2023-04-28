@@ -48,7 +48,7 @@ local servers = {
 	"lua_ls",
 	-- "pyright",
 	"jedi_language_server",
-	"sqls",
+	"sqlls",
 	"tsserver",
 	"yamlls",
 }
