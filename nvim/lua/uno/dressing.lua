@@ -5,7 +5,7 @@ require("dressing").setup({
 		-- When true, <Esc> will close the modal
 		insert_only = true,
 		-- These are passed to nvim_open_win
-		anchor = "SW",
+		-- anchor = "SW",
 		relative = "cursor",
 		border = "rounded",
 		-- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -55,7 +55,7 @@ require("dressing").setup({
 		-- Options for built-in selector
 		builtin = {
 			-- These are passed to nvim_open_win
-			anchor = "NW",
+			-- anchor = "NW",
 			relative = "cursor",
 			-- row = 0,
 			-- col = 0,

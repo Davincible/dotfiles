@@ -73,7 +73,18 @@ return require("packer").startup(function()
 	use({ "rebelot/heirline.nvim" })
 
 	-- Software Devlopment
-	use({ "kiyoon/jupynium.nvim", run = "pip3 install --user ." })
+	use({
+		"kiyoon/jupynium.nvim",
+		run = "pip3 install --user .",
+		config = function()
+			require("jupynium").setup({
+				auto_start_server = {
+					enable = false,
+					file_pattern = { "*.ju.*" },
+				},
+			})
+		end,
+	})
 	use("ekalinin/Dockerfile.vim")
 	use("windwp/nvim-autopairs")
 	use({

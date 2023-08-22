@@ -21,25 +21,25 @@ screenchange-reload = true
 enable-ipc = true
 
 [colors]
-background = #e8181819
+background = #e8191919
 ; old background #2b2f37
 foreground = #adb1b9   
 
-color0 = #181819
-color1 = #5b7f90
-color2 = #365065
-color3 = #678d9e
-color4 = #466b7e
-color5 = #7ba0ac
-color6 = #4c8a9c
+color0 = #191919
+color1 = #724148
+color2 = #4e575b
+color3 = #c78782
+color4 = #536065
+color5 = #797778
+color6 = #a3acad
 color7 = #c5c5c5
-color8 = #4c4c52
-color9 = #67aaca
-color10 = #3c698d
-color11 = #74bdde
-color12 = #4e8fb0
-color13 = #8cd9f2
-color14 = #53bbd9
+color8 = #323232
+color9 = #9f4855
+color10 = #5a7581
+color11 = #ff9d93
+color12 = #60828f
+color13 = #ac8b9c
+color14 = #bef0f6
 color15 = #ffffff
 dark-light = #272A2B 
 active-light = #313435
