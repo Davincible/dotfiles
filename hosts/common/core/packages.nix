@@ -16,6 +16,10 @@
     gdu
     tealdeer # tldr, but in rust
     nh # Better nix experience
+    lsd
+    lazygit
+    git
+    gnupg  # GPG signing for git commits
 
     # System Deps
     wget

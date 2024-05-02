@@ -8,13 +8,13 @@ let
 in
 {
   # Decrypt ta-password to /run/secrets-for-users/ so it can be used to create the user
-  sops.secrets."${passwordSecret}".neededForUsers = true;
-  users.mutableUsers = false; # Required for password to be set via sops during system activation!
+  # sops.secrets."${passwordSecret}".neededForUsers = true;
+  # users.mutableUsers = false; # Required for password to be set via sops during system activation!
 
   users.users.${username} = {
     name = username;
     isNormalUser = true;
-    hashedPasswordFile = sopsHashedPasswordFile;
+    # hashedPasswordFile = sopsHashedPasswordFile;
     extraGroups = [
       "wheel"
     ] ++ ifTheyExist [

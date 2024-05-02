@@ -47,28 +47,33 @@
 
       # TODO: spaces before comment are removed by nixpkgs-fmt
       # See: https://github.com/nix-community/nixpkgs-fmt/issues/305
-      borgbackup# backups
-      btop# resource monitor
-      coreutils# basic gnu utils
-      # curl
-      eza# ls replacement
-      fd# tree style ls
-      findutils# find
-      fzf# fuzzy search
-      jq# JSON pretty printer and manipulator
-      nix-tree# nix package tree viewer
-      ncdu# TUI disk usage
+      borgbackup  # backups
+      btop  # resource monitor
+      coreutils  # basic gnu utils
+      curl
+      eza  # ls replacement
+      fd  # tree style ls
+      findutils  # find
+      fzf  # fuzzy search
+      jq  # JSON pretty printer and manipulator
+      nix-tree  # nix package tree viewer
+      ncdu  # TUI disk usage
       pciutils
-      pfetch# system info
-      pre-commit# git hooks
-      p7zip# compression & encryption
-      ripgrep# better grep
+      pfetch  # system info
+      pre-commit  # git hooks
+      p7zip  # compression & encryption
+      ripgrep 
       usbutils
-      tree# cli dir tree viewer
-      unzip# zip extraction
-      unrar# rar extraction
-      wget# downloader
-      zip; # zip compression
+      tree 
+      unzip
+      unrar 
+      wget
+      zip  # zip compression
+      lsd  # Better ls
+
+      # Browsers
+      chromium
+      opera;
   };
 
   nixpkgs = {

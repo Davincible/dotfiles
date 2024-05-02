@@ -9,7 +9,7 @@
     ./nvim.nix  # Bare bones nvim
     ./packages.nix
     ./networking.nix
-    ./sops.nix # secrets management
+    # ./sops.nix # secrets management
 
     inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -37,5 +37,15 @@
         updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
       };
     };
+  };
+
+  # Git commit singing with GPG
+  # TODO: find a better place to put this
+  services.pcscd.enable = true;
+  programs.seahorse.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 }
