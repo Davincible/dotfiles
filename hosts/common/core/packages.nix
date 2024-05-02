@@ -30,5 +30,8 @@
     age # Age keygen encryption util, used for Sops
     xclip # clipboard for X11
     wl-clipboard # clipboard for Wayland
+    git
+    htop
+    bat  # cat alternative
   ];
 }
