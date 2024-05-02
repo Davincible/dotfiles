@@ -1,7 +1,7 @@
 # Paths
 export ZSH_CONFIG_PATH="$HOME/.config/zsh"
 export KITTY_CONFIG_PATH="$HOME/.config/kitty"
-export POWERLEVEL9K_INSTALLATION_DIR="/usr/share/zsh-theme-powerlevel10k"
+export POWERLEVEL9K_INSTALLATION_DIR="$HOME/powerlevel10k"
 
 # Config
 export HISTFILE="$HOME/.cache/zsh/history"
@@ -18,6 +18,7 @@ load $ZSH_CONFIG_PATH/plugins/zsh-defer/zsh-defer.plugin.zsh
 
 ### source other config scripts
 # load $ZSH_CONFIG_PATH/ohmy.zsh
+defer_load $ZSH_CONFIG_PATH/.zshenv
 defer_load $ZSH_CONFIG_PATH/plugins/init.zsh
 defer_load $ZSH_CONFIG_PATH/aliases.zsh
 defer_load $ZSH_CONFIG_PATH/keybindings.zsh
@@ -39,4 +40,3 @@ zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*' group-name ''
-

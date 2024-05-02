@@ -148,3 +148,31 @@ vim.api.nvim_set_keymap("v", "<Leader>t", ":Translate EN -output=replace<CR>", {
 --     end
 --   end
 -- end
+
+-- GitHub Co-Pilot
+vim.go.copilot_no_tab_map = true
+
+vim.api.nvim_set_keymap("i", "<S-CR>", "copilot#Accept('<CR>')", { expr = true, silent = true })
+
+local function SuggestOneCharacter()
+	local suggestion = vim.fn["copilot#Accept"]("")
+	local bar = vim.fn["copilot#TextQueuedForInsertion"]()
+	return bar:sub(1, 1)
+end
+
+local function SuggestOneWord()
+	local suggestion = vim.fn["copilot#Accept"]("")
+	local bar = vim.fn["copilot#TextQueuedForInsertion"]()
+	return vim.fn.split(bar, [[[ .]\zs]])[1]
+end
+
+local function accept_line()
+	vim.fn["copilot#Accept"]("")
+	local bar = vim.fn["copilot#TextQueuedForInsertion"]()
+	return vim.fn.split(bar, [[[\n]\zs]])[1]
+end
+
+local map = vim.keymap.set
+map("i", "<C-l>", SuggestOneCharacter, { expr = true, remap = false })
+map("i", "<C-left>", SuggestOneWord, { expr = true, remap = false })
+map("i", "<M-l>", accept_line, { expr = true, remap = false })

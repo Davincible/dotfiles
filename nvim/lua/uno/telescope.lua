@@ -7,6 +7,54 @@ local trouble = require("trouble.providers.telescope")
 
 local M = {}
 
+local exclude_patterns = {
+	".git/*",
+	"node_modules/*",
+	"public/*",
+	"abi/*",
+	"assets/*",
+	".next/*",
+	"vendor/*",
+	"package-lock.json",
+	"yarn.lock",
+	"build/*",
+	"dist/*",
+	".DS_Store",
+	"svg/*",
+	"*.log",
+	"*.svg",
+	"tmp/*",
+	"coverage/*",
+	"cache/*",
+	"logs/*",
+	"artifacts/*",
+	"contracts/build/*",
+	"contracts/out/*",
+	"contracts/artifacts/*",
+	"contracts/cache/*",
+}
+
+-- Combine the patterns into a single string with glob patterns
+local exclude_string = "!{" .. table.concat(exclude_patterns, ",") .. "}"
+
+-- Start configuring the find_command
+local find_command = {
+	"fd", -- Using fd for searching
+	"--max-depth",
+	"8",
+	"--hidden",
+	"--follow",
+	"--type",
+	"f",
+	"--strip-cwd-prefix",
+}
+
+-- Append each pattern with --exclude flag
+for _, pattern in ipairs(exclude_patterns) do
+	table.insert(find_command, "--exclude")
+	table.insert(find_command, pattern)
+end
+
 telescope.setup({
 	defaults = {
 		-- find_command = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--max-depth 5'},
@@ -26,11 +74,7 @@ telescope.setup({
 			vertical = { mirror = false },
 		},
 		-- file_sorter = require("telescope.sorters").get_fzy_sorter,
-		file_ignore_patterns = {
-			"node_modules/",
-			"vendor/",
-			".git/",
-		},
+		file_ignore_patterns = exclude_patterns,
 		-- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 		path_display = {
 			shorten = {
@@ -102,31 +146,27 @@ telescope.setup({
 			require("telescope.themes").get_dropdown({}),
 		},
 	},
+	vimgrep_arguments = {
+		"rg", -- Using ripgrep for searching
+		"--hidden", -- Include hidden files in the search
+		"--glob", -- This flag allows you to exclude specified files and folders
+		exclude_string, -- Excluding the patterns defined above
+	},
 	pickers = {
+		live_grep = {},
 		grep_in_folder = my_pickers.live_grep_in_folder,
 		find_files = {
-			find_command = {
-				"fd",
-				"--max-depth",
-				"8",
-				"--hidden",
-				"--follow",
-				"--type",
-				"f",
-				"--strip-cwd-prefix",
-				"--follow",
-				"--no-ignore-vcs",
-			},
+			find_command = find_command,
 		},
 	},
 })
 
 require("telescope").load_extension("fzy_native")
 -- require("telescope").load_extension("fzf")
-require("telescope").load_extension("projects") -- ahmedkhalf/project.nvim
+-- require("telescope").load_extension("projects") -- ahmedkhalf/project.nvim
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("ui-select")
-require("telescope").load_extension("tmuxinator")
+-- require("telescope").load_extension("tmuxinator")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("dap")

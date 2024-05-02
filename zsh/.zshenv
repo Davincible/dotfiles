@@ -1,12 +1,13 @@
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="firefox"
+export BROWSER="opera"
 export READER="zathura"
 export FILE="ranger"
 
 # Wordlists
 export ROCKYOU="/usr/share/wordlists/rockyou.txt"
 
+export PATH="$PATH:/home/$USER/.local/bin"
 export PATH="$PATH:/home/$USER/Scripts"
 
 # Rust
@@ -15,7 +16,7 @@ export PATH="$PATH:/home/$USER/.cargo/bin"
 # Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GOPRIVATE="github.com/sweetstreams/*,github.com/Davincible/go-tiktok-signer,github.com/Davincible/go-tiktok"
+export GOPRIVATE="github.com/sweetstreams/*,github.com/Davincible/*"
 
 # Selenium
 export PATH="$PATH:$HOME/Applications/ChromeDriver"

@@ -69,6 +69,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 			return
 		end
 
+		if vim.bo.filetype == "go" then
+			vim.cmd("Neoformat")
+			vim.cmd("w")
+			return
+		end
+
 		vim.cmd("FormatWrite")
 	end,
 	group = fg,

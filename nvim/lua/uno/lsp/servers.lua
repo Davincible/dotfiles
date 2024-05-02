@@ -208,10 +208,10 @@ mason_lsp.setup_handlers({
 		lsp_config[server].setup(opts)
 	end,
 
-	["tailwindcss"] = function(server)
+	["tailwindcss-language-server"] = function(server)
 		local opts = vim.deepcopy(default_lsp_opts)
 
-		opts.filetypes = { "html", "eta", "js", "jsx", "javascript", "javascriptreact" }
+		opts.filetypes = { "html", "eta", "ts", "tsx", "js", "jsx", "javascript", "javascriptreact", "typescript" }
 
 		lsp_config[server].setup(opts)
 	end,
@@ -244,6 +244,9 @@ mason_lsp.setup_handlers({
 		-- Get default config from Ray-x Go plugin
 		local opts = vim.deepcopy(require("go.lsp").config())
 
+		-- Print opts
+		-- print(vim.inspect(opts))
+
 		local attach = opts.on_attach
 		opts.on_attach = function(client, bufnr)
 			common_on_attach(client, bufnr)
@@ -251,6 +254,29 @@ mason_lsp.setup_handlers({
 		end
 
 		--  opts.settings.gopls.buildFlags = { "-tags=wireinject" }
+		--
+		opts.settings.gopls.analyses.fieldalignment = true
+
+		lsp_config[server].setup(opts)
+	end,
+
+	["solang"] = function(server)
+		local opts = vim.deepcopy(default_lsp_opts)
+
+		local attach = opts.on_attach
+		opts.on_attach = function(client, bufnr)
+			common_on_attach(client, bufnr)
+			attach(client, bufnr)
+		end
+
+		opts.cmd = {
+			"solang",
+			"--language-server",
+			"--target",
+			"ewasm",
+			"--importmap=@openzeppelin=node_modules/@openzeppelin",
+			"--importmap=hardhat=node_modules/hardhat",
+		}
 
 		lsp_config[server].setup(opts)
 	end,

@@ -53,6 +53,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.go",
-	command = "GoImport",
+	command = "GoImports",
 	group = _go,
 })

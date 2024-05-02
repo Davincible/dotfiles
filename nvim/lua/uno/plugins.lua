@@ -224,7 +224,7 @@ return require("packer").startup(function()
 	use({ "mattn/emmet-vim" })
 	use({ "potatoesmaster/i3-vim-syntax" })
 
-	-- use {"airblade/vim-rooter"}
+	use({ "airblade/vim-rooter" })
 	use({ "mvllow/modes.nvim" }) -- Highlights current line based on mode
 	use({
 		"zegervdv/nrpattern.nvim",
@@ -234,12 +234,12 @@ return require("packer").startup(function()
 		end,
 	})
 	use({ "kevinhwang91/nvim-bqf", ft = "qf" }) -- Nicer quickfix list
-	use({
-		"ahmedkhalf/project.nvim",
-		config = function()
-			require("project_nvim").setup()
-		end,
-	})
+	-- use({
+	-- 	"ahmedkhalf/project.nvim",
+	-- 	config = function()
+	-- 		require("project_nvim").setup()
+	-- 	end,
+	-- })
 	use("Pocco81/HighStr.nvim") -- Highlight lines
 
 	-- Workspaces+sessions
@@ -251,6 +251,13 @@ return require("packer").startup(function()
 	use("tpope/vim-fugitive") -- what is this again?
 	use({ "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/gitsigns.nvim" })
+	use({
+		"akinsho/git-conflict.nvim",
+		tag = "*",
+		config = function()
+			require("git-conflict").setup()
+		end,
+	})
 
 	use("ThePrimeagen/harpoon") -- what is this again?
 	use({

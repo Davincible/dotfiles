@@ -165,7 +165,7 @@ require("nvim-tree").setup({
 	open_on_tab = false,
 	hijack_cursor = false,
 	update_cwd = true,
-	sync_root_with_cwd = false,
+	sync_root_with_cwd = true,
 	diagnostics = {
 		enable = true,
 		icons = {
