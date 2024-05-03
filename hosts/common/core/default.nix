@@ -1,6 +1,7 @@
 { inputs, outputs, config, lib, specialArgs, home-manager, ... }:
 
-{
+let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh";
+  in {
   imports = [
     ./options.nix
     ./locale.nix # localization settings
@@ -10,6 +11,8 @@
     ./packages.nix
     ./networking.nix
     # ./sops.nix # secrets management
+
+    ./scripts/source-hm.nix
 
     inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -27,6 +30,19 @@
   # I saw this somewhere but can't find it?
   # programs.home-manager.enable = true;
   home-manager.extraSpecialArgs = { inherit inputs outputs specialArgs; };
+
+  environment.shellInit = ''
+    echo "Hello from shellInit 1 ${homeManagerSessionVars}"
+    [[ -f ${homeManagerSessionVars} ]] && source ${homeManagerSessionVars}
+    [[ -f ${homeManagerSessionVars} ]] && echo "file exists" || echo "file doesn't exist"
+  '';
+
+  environment.loginShellInit = ''
+  	if [ -e $HOME/.profile ]
+  	then
+  		. $HOME/.profile
+  	fi
+  '';
 
   hardware = {
     enableAllFirmware = true;
