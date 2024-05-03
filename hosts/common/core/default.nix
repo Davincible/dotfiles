@@ -10,9 +10,9 @@ let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-sess
     ./nvim.nix  # Bare bones nvim
     ./packages.nix
     ./networking.nix
+    ./scripts
     # ./sops.nix # secrets management
 
-    ./scripts/source-hm.nix
 
     inputs.home-manager.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -25,7 +25,7 @@ let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-sess
       Defaults timestamp_timeout=120 # only ask for password every 2h
       # Keep SSH_AUTH_SOCK so that pam_ssh_agent_auth.so can do its magic.
       # Defaults env_keep + =SSH_AUTH_SOCK
-    '';
+  '';
 
   # I saw this somewhere but can't find it?
   # programs.home-manager.enable = true;
@@ -38,10 +38,10 @@ let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-sess
   '';
 
   environment.loginShellInit = ''
-  	if [ -e $HOME/.profile ]
-  	then
-  		. $HOME/.profile
-  	fi
+    if [ -e $HOME/.profile ]
+    then
+    	. $HOME/.profile
+    fi
   '';
 
   hardware = {

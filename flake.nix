@@ -73,7 +73,7 @@
 
       inherit (nixpkgs) lib;
 
-      configLib = import ./lib { inherit lib; };
+      configLib = import ./lib { inherit lib; pkgs = nixpkgs.legacyPackages.x86_64-linux; };
 
       specialArgs = { inherit inputs outputs configLib nixpkgs; };
     in

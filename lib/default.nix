@@ -1,5 +1,21 @@
-{ lib, ... }:
+{ lib, pkgs }:
+
 {
+  # import = [
+  #   ./makeScriptsPackage.nix
+  # ];
+  # Function to handle scripts in a directory
+  scriptsDirPath = import ./makeScriptsPackage.nix { inherit lib pkgs; };
+  # scriptsDirPath = (import ./make.nix { inherit lib pkgs; });
+
+  testFunc = myPath: let 
+    files = builtins.filter (name: builtins.match ".*\\.sh" name != null) (builtins.attrNames (builtins.readDir myPath));
+    named = "${myPath}/yay";
+  in {
+   files = files;
+   named = named;
+  };
+
   # use path relative to the root of the project
   relativeToRoot = lib.path.append ../.;
 
