@@ -70,6 +70,7 @@
       wget
       zip  # zip compression
       lsd  # Better ls
+      bat  # Better man
 
       # Browsers
       chromium
