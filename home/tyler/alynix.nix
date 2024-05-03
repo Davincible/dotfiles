@@ -1,4 +1,4 @@
-{ ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -6,6 +6,5 @@
     ./core #required
 
     #################### Host-specific Optional Configs ####################
-
   ];
 }

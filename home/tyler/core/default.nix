@@ -20,61 +20,80 @@
     # ./shellcolor.nix
   ];
 
-  services.ssh-agent.enable = true;
-
   home = {
+    language.base = "en_US.UTF-8";
+
     username = lib.mkDefault "tyler";
+
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "23.05";
+
+    stateVersion = lib.mkDefault "23.11";
+
     sessionPath = [
       "$HOME/.local/bin"
       "$HOME/scripts"
     ];
+
     sessionVariables = {
-      FLAKE = "$HOME/src/nix-config";
+      FLAKE = "/home/tyler/dotfiles";
       SHELL = "zsh";
       TERM = "kitty";
       TERMINAL = "kitty";
       EDITOR = "nvim";
       MANPAGER = "batman"; # see ./cli/bat.nix
     };
-  };
 
-  home.packages = builtins.attrValues {
-    inherit (pkgs)
+    # Home Manager is pretty good at managing dotfiles. The primary way to manage
+    # plain files is through 'home.file'.
+    file = {
+      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+      # # symlink to the Nix store copy.
+      # ".screenrc".source = dotfiles/screenrc;
 
-      # Packages that don't have custom configs go here
+      # # You can also set the file content immediately.
+      # ".gradle/gradle.properties".text = ''
+      #   org.gradle.console=verbose
+      #   org.gradle.daemon.idletimeout=3600000
+      # '';
+    };
 
-      # TODO: spaces before comment are removed by nixpkgs-fmt
-      # See: https://github.com/nix-community/nixpkgs-fmt/issues/305
-      borgbackup  # backups
-      btop  # resource monitor
-      coreutils  # basic gnu utils
-      curl
-      eza  # ls replacement
-      fd  # tree style ls
-      findutils  # find
-      fzf  # fuzzy search
-      jq  # JSON pretty printer and manipulator
-      nix-tree  # nix package tree viewer
-      ncdu  # TUI disk usage
-      pciutils
-      pfetch  # system info
-      pre-commit  # git hooks
-      p7zip  # compression & encryption
-      ripgrep 
-      usbutils
-      tree 
-      unzip
-      unrar 
-      wget
-      zip  # zip compression
-      lsd  # Better ls
-      bat  # Better man
+    packages = builtins.attrValues {
+      inherit (pkgs)
 
-      # Browsers
-      chromium
-      opera;
+        # Packages that don't have custom configs go here
+
+        # TODO: spaces before comment are removed by nixpkgs-fmt
+        # See: https://github.com/nix-community/nixpkgs-fmt/issues/305
+        borgbackup  # backups
+        btop  # resource monitor
+        coreutils  # basic gnu utils
+        curl
+        eza  # ls replacement
+        fd  # tree style ls
+        findutils  # find
+        fzf  # fuzzy search
+        jq  # JSON pretty printer and manipulator
+        nix-tree  # nix package tree viewer
+        ncdu  # TUI disk usage
+        pciutils
+        pfetch  # system info
+        pre-commit  # git hooks
+        p7zip  # compression & encryption
+        ripgrep 
+        usbutils
+        tree 
+        unzip
+        unrar 
+        wget
+        zip  # zip compression
+        lsd  # Better ls
+        bat  # Better man
+
+        # Browsers
+        chromium
+        opera;
+    };
   };
 
   nixpkgs = {
@@ -95,6 +114,7 @@
   };
 
   programs = {
+    # Let Home Manager install and manage itself.
     home-manager.enable = true;
   };
 
