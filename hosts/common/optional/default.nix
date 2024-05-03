@@ -1,7 +1,7 @@
 { config, ... }: {
   imports = [
-    ./x11.nix
     ./desktop.nix
+    ./x11.nix
     ./nvidia.nix
   ];
 }

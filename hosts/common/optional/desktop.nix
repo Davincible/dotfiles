@@ -7,7 +7,7 @@
     # Enable CUPS to print documents.
     printing.enable = lib.mkDefault true;
 
-    # Enable touchpad support (enabled default in most desktopManager).
+    # Enable touchpad support (enabled by default in most desktopManager).
     libinput.enable = lib.mkDefault true;
 
     # Fingerprint Sensor
