@@ -7,11 +7,12 @@ let
   extractLineWith = { pattern, scriptContent }:
     let
       matchedLines = builtins.match pattern scriptContent;
-      extracted = if (matchedLines != null && builtins.length matchedLines > 0) 
-        then 
-	  lib.splitString " " (builtins.head matchedLines)
-	else 
-	  null;
+      extracted =
+        if (matchedLines != null && builtins.length matchedLines > 0)
+        then
+          lib.splitString " " (builtins.head matchedLines)
+        else
+          null;
     in
     extracted;
 
@@ -20,12 +21,13 @@ let
     scriptContent = scriptContent;
   };
 
-  extractOptions = scriptContent: let
-    defaultOptions = [ "errexit" "nounset" ];
-    optionsPattern = ".*#[ ]+options:[ ]+([a-zA-Z0-9 \-]+).*";
-    options = extractLineWith { pattern = optionsPattern; scriptContent = scriptContent; };
-  in
-    if options == null || options == [] then defaultOptions
+  extractOptions = scriptContent:
+    let
+      defaultOptions = [ "errexit" "nounset" ];
+      optionsPattern = ".*#[ ]+options:[ ]+([a-zA-Z0-9 \-]+).*";
+      options = extractLineWith { pattern = optionsPattern; scriptContent = scriptContent; };
+    in
+    if options == null || options == [ ] then defaultOptions
     else options;
 
   makeScriptPackage = { name, scriptContent }:
@@ -35,12 +37,12 @@ let
       packageName = builtins.replaceStrings [ ".sh" ] [ "" ] name;
     in
     pkgs.writeShellApplication {
-        inherit name;
-        text = scriptContent;
-        runtimeInputs = deps;
-        inherit bashOptions;
-	extraShellCheckFlags = [ "--severity=error" ];
-      };
+      inherit name;
+      text = scriptContent;
+      runtimeInputs = deps;
+      inherit bashOptions;
+      extraShellCheckFlags = [ "--severity=error" ];
+    };
 
   readScriptsAndMakePackages = scriptsDir:
     let
@@ -55,4 +57,4 @@ let
     in
     map makePackages scriptFiles;
 in
-  readScriptsAndMakePackages scriptsDirPath
+readScriptsAndMakePackages scriptsDirPath
