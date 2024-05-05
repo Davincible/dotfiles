@@ -23,6 +23,13 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [
+         libGL
+         libGL.dev
+         # libglvnd
+         # libglvnd.dev
+       ];
+       setLdLibraryPath = true;
     };
 
     logitech = {

@@ -69,10 +69,10 @@
   #
   #  /etc/profiles/per-user/tyler/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-    FLAKE = "/home/tyler/dotfiles";
-  };
+  # home.sessionVariables = {
+  #   # EDITOR = "emacs";
+  #   FLAKE = "/home/tyler/dotfiles";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -23,10 +23,6 @@
 
   # services.ssh-agent.enable = true;
 
-  environment.shellInit = ''
-    echo "Hello from shellInit 2"
-  '';
-
   hostConfig = {
     addSshKeys = true;
   };

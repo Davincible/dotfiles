@@ -27,8 +27,12 @@ let
       optionsPattern = ".*#[ ]+options:[ ]+([a-zA-Z0-9 \-]+).*";
       options = extractLineWith { pattern = optionsPattern; scriptContent = scriptContent; };
     in
-    if options == null || options == [ ] then defaultOptions
-    else options;
+    if options == null then 
+      defaultOptions
+    else if options == [] || options == ["none"] then
+      []
+    else 
+      options;
 
   makeScriptPackage = { name, scriptContent }:
     let
@@ -40,7 +44,8 @@ let
       name = packageName;
       text = scriptContent;
       runtimeInputs = deps;
-      inherit bashOptions;
+      # TODO: change back
+      bashOptions = [];
       extraShellCheckFlags = [ "--severity=error" ];
     };
 

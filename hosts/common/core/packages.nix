@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  virtualisation.docker.enable = true;
+
   environment.systemPackages = with pkgs; [
     # dev
     podman
@@ -32,6 +34,18 @@
     wl-clipboard # clipboard for Wayland
     git
     htop
-    bat  # cat alternative
+    cargo
+    gnumake
+    openssh
+
+    # TODO: remove later
+    docker
+    nodejs_20
+    prettierd
+
+    # TODO: move
+    telegram-desktop
+    signal-desktop
+    (opera.override { proprietaryCodecs = true; })
   ];
 }

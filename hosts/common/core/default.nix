@@ -27,21 +27,17 @@ let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-sess
       # Defaults env_keep + =SSH_AUTH_SOCK
   '';
 
-  # I saw this somewhere but can't find it?
+  # Let Home Manager install and manage itself.
   # programs.home-manager.enable = true;
   home-manager.extraSpecialArgs = { inherit inputs outputs specialArgs; };
 
   environment.shellInit = ''
-    echo "Hello from shellInit 1 ${homeManagerSessionVars}"
-    [[ -f ${homeManagerSessionVars} ]] && source ${homeManagerSessionVars}
-    [[ -f ${homeManagerSessionVars} ]] && echo "file exists" || echo "file doesn't exist"
+    # Sourcing Home Manager ENV
+    source $(which source-hm)
   '';
 
   environment.loginShellInit = ''
-    if [ -e $HOME/.profile ]
-    then
-    	. $HOME/.profile
-    fi
+    [[ -f $HOME/.profile ]] && source $HOME/.profile
   '';
 
   hardware = {

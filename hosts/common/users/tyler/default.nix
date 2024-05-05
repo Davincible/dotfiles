@@ -17,10 +17,10 @@ in
     # hashedPasswordFile = sopsHashedPasswordFile;
     extraGroups = [
       "wheel"
+      "docker"
     ] ++ ifTheyExist [
       "audio"
       "video"
-      "docker"
       "git"
       "networkmanager"
     ];
