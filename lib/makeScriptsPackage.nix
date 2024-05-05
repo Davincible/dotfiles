@@ -12,7 +12,7 @@ let
         then
           lib.splitString " " (builtins.head matchedLines)
         else
-          null;
+          [];
     in
     extracted;
 
@@ -37,7 +37,7 @@ let
       packageName = builtins.replaceStrings [ ".sh" ] [ "" ] name;
     in
     pkgs.writeShellApplication {
-      inherit name;
+      name = packageName;
       text = scriptContent;
       runtimeInputs = deps;
       inherit bashOptions;
