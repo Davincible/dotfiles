@@ -1,6 +1,8 @@
 local ts_config = require("nvim-treesitter.configs")
 
 ts_config.setup({
+	auto_install = true,
+	sync_install = false,
 	ensure_installed = {
 		"javascript",
 		"typescript",
@@ -27,6 +29,7 @@ ts_config.setup({
 		"markdown",
 		"proto",
 		"sql",
+		"nix",
 	},
 	-- This doesn't fix it
 	-- indent = {

@@ -208,7 +208,7 @@ mason_lsp.setup_handlers({
 		lsp_config[server].setup(opts)
 	end,
 
-	["tailwindcss-language-server"] = function(server)
+	["tailwindcss"] = function(server)
 		local opts = vim.deepcopy(default_lsp_opts)
 
 		opts.filetypes = { "html", "eta", "ts", "tsx", "js", "jsx", "javascript", "javascriptreact", "typescript" }

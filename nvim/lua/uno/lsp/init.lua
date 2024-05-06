@@ -1,4 +1,4 @@
-require("uno.lsp.neodev")
+-- require("uno.lsp.neodev")
 require("uno.lsp.mason")
 require("uno.lsp.dap")
 require("uno.lsp.go")
