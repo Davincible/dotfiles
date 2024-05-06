@@ -30,7 +30,7 @@ require("uno.quickfix")
 require("uno.heirline.heirline")
 -- require("uno.lualine.evil")
 require("uno.windows")
--- require("uno.neotest")
+require("uno.neotest")
 
 -- Experimental
 -- require("uno.sidebar")

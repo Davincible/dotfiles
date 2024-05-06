@@ -695,21 +695,34 @@ function unoline.status.condition.has_diagnostics()
 end
 
 --- A condition function if the current file has any neotest results
--- @return boolean of wether or not the current file has any test results
--- @usage local heirline_component = { provider = "Example Provider", condition = unoline.status.condition.has_diagnostics }
+-- @return boolean of whether or not the current file has any test results
+-- @usage local heirline_component = { provider = "Example Provider", condition = unoline.status.condition.has_test_results }
 function unoline.status.condition.has_test_results()
-	local fname = vim.api.nvim_buf_get_name(0)
-	local status = require("neotest").state.get_status({ query = fname, total = true })
-	return vim.g.neotest_result_enabled and status
+    local fname = vim.api.nvim_buf_get_name(0)
+    local neotest = require("neotest")
+    if neotest and neotest.state and vim.g.neotest_result_enabled then
+        local status = neotest.state.status_counts(fname)
+				if status and status.total > 0 then
+          return status.total
+		  	end
+    end
+    return false
 end
 
 --- A condition function if neotest is currently running
--- @return boolean of wether or not the current file has any diagnostics
--- @usage local heirline_component = { provider = "Example Provider", condition = unoline.status.condition.has_diagnostics }
+-- @return boolean of whether or not the current file has any diagnostics
+-- @usage local heirline_component = { provider = "Example Provider", condition = unoline.status.condition.is_neotest_running }
 function unoline.status.condition.is_neotest_running()
-	local fname = vim.api.nvim_buf_get_name(0)
-	local status = require("neotest").state.running({ adapter_id = fname, fuzzy = true })
-	return vim.g.neotest_result_enabled and status ~= nil
+    local fname = vim.api.nvim_buf_get_name(0)
+    local neotest = require("neotest")
+    if neotest and neotest.state and vim.g.neotest_result_enabled then
+        -- local status = neotest.state.running({ adapter_id = fname, fuzzy = true })
+        local status = neotest.state.status_counts(fname)
+				if status and status.running > 0 then
+          return status.running
+		  	end
+    end
+    return false
 end
 
 --- A condition function if there is a defined filetype
