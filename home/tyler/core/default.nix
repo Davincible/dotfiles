@@ -1,13 +1,11 @@
 { config, lib, pkgs, outputs, ... }:
 {
   imports = [
-
     # Packages with custom configs go here
 
     ./zsh # primary shell: includes zsh, oh-my-zsh, and p10k theme
     ./bat.nix # cat with better syntax highlighting and extras like batgrep.
     ./fzf.nix
-    # ./kitty.nix
 
     # ./bash.nix # backup shell
     # ./direnv.nix # shell environment manager. Hooks inot shell direnv to look for .envrc before prompts
@@ -67,40 +65,40 @@
 
         # TODO: spaces before comment are removed by nixpkgs-fmt
         # See: https://github.com/nix-community/nixpkgs-fmt/issues/305
-        borgbackup  # backups
-        btop  # resource monitor
-        coreutils  # basic gnu utils
+        borgbackup# backups
+        btop# resource monitor
+        coreutils# basic gnu utils
         curl
-        eza  # ls replacement
-        fd  # tree style ls
-        findutils  # find
-        fzf  # fuzzy search
-        jq  # JSON pretty printer and manipulator
-        nix-tree  # nix package tree viewer
-        ncdu  # TUI disk usage
+        eza# ls replacement
+        fd# tree style ls
+        findutils# find
+        fzf# fuzzy search
+        jq# JSON pretty printer and manipulator
+        nix-tree# nix package tree viewer
+        ncdu# TUI disk usage
         pciutils
-        pfetch  # system info
-        pre-commit  # git hooks
-        p7zip  # compression & encryption
-        ripgrep 
+        pfetch# system info
+        pre-commit# git hooks
+        p7zip# compression & encryption
+        ripgrep
         usbutils
-        tree 
+        tree
         unzip
-        unrar 
+        unrar
         wget
-        zip  # zip compression
-        lsd  # Better ls
-        bat  # Better man
-        openssh
+        zip# zip compression
+        lsd# Better ls
+        bat# Better man
 
-	nerdfonts
+        nerdfonts
 
-	# Dev stuff
-	gnumake
+        # Dev stuff
+        gnumake
 
         # Browsers
         # opera
-	chromium;
+        # chromium;
+	;
     };
   };
 

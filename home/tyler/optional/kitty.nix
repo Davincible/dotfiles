@@ -1,3 +1,4 @@
+# Example: https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/home/programs/kitty/default.nix
 {
   programs.kitty = {
     enable = true;

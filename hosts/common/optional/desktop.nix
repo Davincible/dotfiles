@@ -12,8 +12,15 @@
 
     # Fingerprint Sensor
     fprintd.enable = lib.mkDefault true;
-
   };
+
+  nixpkgs.config.packageOverrides =
+    pkgs: {
+      vaapiIntel = pkgs.vaapiIntel.override {
+        enableHybridCodec = true;
+      };
+    };
+
 
   # Emulate mouse wheel on trackpoint
   # hardware.trackpoint.emulateWheel = true;
@@ -24,12 +31,17 @@
       driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
-         libGL
-         libGL.dev
-         # libglvnd
-         # libglvnd.dev
-       ];
-       setLdLibraryPath = true;
+        # libGL
+        # libGL.dev
+        # libglvnd
+        # libglvnd.dev
+
+        intel-media-driver
+        # vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+      setLdLibraryPath = true;
     };
 
     logitech = {

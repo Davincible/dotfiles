@@ -1,13 +1,13 @@
-{ inputs, outputs, config, lib, specialArgs, home-manager, ... }:
+{ inputs, outputs, config, lib, specialArgs, home-manager, pkgs, ... }:
 
 let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh";
-  in {
+in {
   imports = [
     ./options.nix
     ./locale.nix # localization settings
     ./nix.nix # nix settings and garbage collection
     ./zsh.nix
-    ./nvim.nix  # Bare bones nvim
+    ./nvim.nix # Bare bones nvim
     ./packages.nix
     ./networking.nix
     ./scripts
@@ -25,7 +25,7 @@ let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-sess
       Defaults timestamp_timeout=120 # only ask for password every 2h
       # Keep SSH_AUTH_SOCK so that pam_ssh_agent_auth.so can do its magic.
       # Defaults env_keep + =SSH_AUTH_SOCK
-  '';
+    '';
 
   # Let Home Manager install and manage itself.
   # programs.home-manager.enable = true;
@@ -60,4 +60,11 @@ let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-sess
     enable = true;
     enableSSHSupport = true;
   };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.package = pkgs.nix-ld-rs;
+
+  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
+
+  environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
 }

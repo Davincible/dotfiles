@@ -1,12 +1,17 @@
 { lib, pkgs }:
 
+let
+  # Import the entire module as a set of functions
+  scriptUtilities = import ./makeScriptsPackage.nix { inherit lib pkgs; };
+in
 {
   # import = [
   #   ./makeScriptsPackage.nix
   # ];
-  # Function to handle scripts in a directory
-  scriptsDirPath = import ./makeScriptsPackage.nix { inherit lib pkgs; };
-  # scriptsDirPath = (import ./make.nix { inherit lib pkgs; });
+
+  # Function to handle scripts in a directory using a specific function from the imported set
+  scriptsDirPath = scriptUtilities.makePackagesFromScripts;
+  makeScriptPkg = scriptUtilities.makePackageFromScript;
 
   testFunc = myPath:
     let

@@ -1,14 +1,26 @@
 { config, lib, pkgs, ... }: {
   # NVIDIA drivers are unfree.
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-    ];
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "nvidia-x11"
+      ];
+
+    packageOverrides =
+      pkgs: {
+        vaapiIntel = pkgs.vaapiIntel.override {
+          enableHybridCodec = true;
+        };
+      };
+  };
+
+  environment.systemPackages = with pkgs; [
+    nvtop
+  ];
 
   # Tell Xorg to use the nvidia driver
   # NOTE: this conflicts with manually setting an nvidia packae version
   # services.xserver.videoDrivers = [ "nvidia" ];
-
 
   hardware.nvidia = {
     # Modesetting is needed for most wayland compositors

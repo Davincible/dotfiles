@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
-
 {
   imports = [
     #################### Required Configs ####################
     ./core #required
 
     #################### Host-specific Optional Configs ####################
-    # ./optional/browsers/chromium.nix
+    ./optional/desktops
+    ./optional/browsers/chromium.nix
+    # ./optional/kitty.nix
   ];
 }

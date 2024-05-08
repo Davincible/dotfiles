@@ -65,7 +65,7 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = lib.mkDefault "ondemand";
+    cpuFreqGovernor = lib.mkDefault "performance";
 
     # Enable PowerTop autotune on startup
     powertop = {

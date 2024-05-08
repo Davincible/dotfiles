@@ -1,4 +1,4 @@
-{ config, ... }: {
+{
   imports = [
     ./desktop.nix
     ./x11.nix

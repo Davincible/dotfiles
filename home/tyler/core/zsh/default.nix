@@ -1,10 +1,10 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 {
   programs.starship = {
     enable = false;
     enableZshIntegration = true;
     enableTransience = true;
-    
+
     settings = {
       add_newline = true;
     };
@@ -38,8 +38,8 @@
     plugins = [
       {
         name = "powerlevel10k";
-	src = pkgs.zsh-powerlevel10k;
-	file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       }
       {
         name = "powerlevel10k-config";
@@ -69,6 +69,10 @@
       }
 
       # eval "$(starship init zsh)"
+
+      # This command let's me execute arbitrary binaries downloaded through channels such as mason.
+      # TODO: refactor lsps https://pastebin.ai/xnzful32hm
+      # export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
     '';
 
     oh-my-zsh = {
@@ -107,6 +111,7 @@
 
       #-------------Config---------------
       enix = "edit_config ~/dotfiles";
+      envim = "edit_config ~/Launchpad/dotfiles/davincible/nvim";
 
       #-----------Nix related----------------
       ne = "nix-instantiate --eval";

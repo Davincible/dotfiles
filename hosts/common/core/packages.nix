@@ -21,7 +21,7 @@
     lsd
     lazygit
     git
-    gnupg  # GPG signing for git commits
+    gnupg # GPG signing for git commits
 
     # System Deps
     wget
@@ -37,13 +37,25 @@
     cargo
     gnumake
     openssh
+    gcc
+    nix-ld-rs # Run aribrary binaries on Nix
 
-    # TODO: remove later
+    # TODO: remove later / dev env
     docker
     nodejs_20
     prettierd
+    yarn
+    stylua
+    richgo
+    python3
+    tree-sitter
+    findutils
+    glow # markdown preview for telescope
 
     # TODO: move
+    gh
+    sqlc
+    dbeaver
     telegram-desktop
     signal-desktop
     (opera.override { proprietaryCodecs = true; })

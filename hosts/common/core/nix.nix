@@ -12,6 +12,19 @@
 
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
       warn-dirty = false;
+
+      trusted-users = [
+        "root"
+	"tyler"
+      ];
+
+      substituters = lib.mkBefore [
+        "https://hyprland.cachix.org"
+      ];
+
+      trusted-public-keys = lib.mkBefore [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
     };
 
     gc = {

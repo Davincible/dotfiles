@@ -11,6 +11,16 @@ in
   # sops.secrets."${passwordSecret}".neededForUsers = true;
   # users.mutableUsers = false; # Required for password to be set via sops during system activation!
 
+  services.displayManager = {
+    # sddm = {
+    #   enable = true;
+    #   wayland.enable = true;
+    #   # theme = "hyprland";
+    # };
+
+    # defaultSession = "hyprland";
+  };
+
   users.users.${username} = {
     name = username;
     isNormalUser = true;
