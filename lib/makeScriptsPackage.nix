@@ -38,7 +38,7 @@ let
       options;
 
   # Create a Nix package from a specific script
-  makeScriptPackage = { scriptPath }:
+  makeScriptPackage = scriptPath:
     let
       scriptContent = readScript scriptPath;
       name = builtins.baseNameOf scriptPath;
@@ -63,14 +63,12 @@ in
           scriptFiles = builtins.filter
             (name: let type = builtins.getAttr name directoryContents; in type == "regular" && builtins.match ".*\\.sh$" name != null)
             (builtins.attrNames directoryContents);
-          makePackages = name: makeScriptPackage {
-            scriptPath = "${scriptsDir}/${name}";
-          };
+          makePackages = name: makeScriptPackage "${scriptsDir}/${name}";
         in
         map makePackages scriptFiles;
     in
     readScriptsAndMakePackages scriptsDirPath;
 
   # Expose the single script package creator as an attribute
-  makePackageFromScript = makeScriptPackage;
+  makeScriptPkg = makeScriptPackage;
 }

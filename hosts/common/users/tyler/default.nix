@@ -17,8 +17,18 @@ in
     #   wayland.enable = true;
     #   # theme = "hyprland";
     # };
-
     # defaultSession = "hyprland";
+  };
+
+  security.polkit.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland --user-menu-min-uid 1000";
+        user = "greeter";
+      };
+    };
   };
 
   users.users.${username} = {

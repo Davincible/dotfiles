@@ -11,7 +11,7 @@
     libinput.enable = lib.mkDefault true;
 
     # Fingerprint Sensor
-    fprintd.enable = lib.mkDefault true;
+    fprintd.enable = lib.mkDefault false;
   };
 
   nixpkgs.config.packageOverrides =

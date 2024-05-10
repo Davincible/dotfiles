@@ -89,8 +89,14 @@
         zip# zip compression
         lsd# Better ls
         bat# Better man
+	ffmpeg
+	openssh
+
+	taskwarrior
+	vit
 
         nerdfonts
+	slack
 
         # Dev stuff
         gnumake

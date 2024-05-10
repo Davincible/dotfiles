@@ -1,4 +1,4 @@
-{ inputs, outputs, config, lib, specialArgs, home-manager, pkgs, ... }:
+{ inputs, outputs, config, lib, configLib, specialArgs, home-manager, pkgs, ... }:
 
 let homeManagerSessionVars = "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh";
 in {
@@ -29,7 +29,7 @@ in {
 
   # Let Home Manager install and manage itself.
   # programs.home-manager.enable = true;
-  home-manager.extraSpecialArgs = { inherit inputs outputs specialArgs; };
+  home-manager.extraSpecialArgs = { inherit inputs outputs configLib specialArgs; };
 
   environment.shellInit = ''
     # Sourcing Home Manager ENV

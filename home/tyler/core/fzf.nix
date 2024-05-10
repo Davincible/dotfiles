@@ -33,6 +33,8 @@ in
   programs.fzf = {
     enable = true;
 
+    enableZshIntegration = lib.mkForce false;
+
     inherit defaultCommand changeDirWidgetCommand;
   };
 

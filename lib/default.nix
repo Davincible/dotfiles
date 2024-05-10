@@ -11,7 +11,7 @@ in
 
   # Function to handle scripts in a directory using a specific function from the imported set
   scriptsDirPath = scriptUtilities.makePackagesFromScripts;
-  makeScriptPkg = scriptUtilities.makePackageFromScript;
+  makeScriptPkg = scriptUtilities.makeScriptPkg;
 
   testFunc = myPath:
     let

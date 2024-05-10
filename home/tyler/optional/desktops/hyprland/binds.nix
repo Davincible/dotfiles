@@ -1,16 +1,41 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
+let
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
+in
 {
   wayland.windowManager.hyprland = {
     settings = {
       binds = {
         # focus_window_on_workspace_c# For Auto-run stuff see execs.confhange = true
         scroll_event_delay = 0;
+        allow_workspace_cycles = true;
       };
 
       bindm = [
         "SUPER,mouse:272,movewindow"
         "SUPER,mouse:273,resizewindow"
       ];
+
+      bindle = [
+        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
+        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
+        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+      ];
+
+      bindl = [
+        ",XF86AudioPlay,    exec, ${playerctl} play-pause"
+        ",XF86AudioStop,    exec, ${playerctl} pause"
+        ",XF86AudioPause,   exec, ${playerctl} pause"
+        ",XF86AudioPrev,    exec, ${playerctl} previous"
+        ",XF86AudioNext,    exec, ${playerctl} next"
+        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+      ];
+
 
       bind =
         let
@@ -38,6 +63,7 @@
             "F11"
             "F12"
           ];
+
           # Map keys (arrows and hjkl) to hyprland directions (l, r, u, d)
           directions = rec {
             left = "l";
@@ -75,7 +101,8 @@
         in
         [
           #################### Program Launch ####################
-          "SHIFTALT,Return,exec,kitty"
+          "SUPER,Return,exec,kitty"
+          "ALT,space,exec,rofi -show drun"
 
           #################### Basic Bindings ####################
           "SHIFTALT,q,killactive"
@@ -84,6 +111,7 @@
           "SUPER,s,togglesplit"
           "SUPER,f,fullscreen,1"
           "SUPERSHIFT,f,fullscreen,0"
+          "ALT,f,fakefullscreen"
           "SUPERSHIFT,space,togglefloating"
 
           "SUPER,minus,splitratio,-0.25"
@@ -104,7 +132,7 @@
         # Change workspace
         (map
           (n:
-            "ALT,${n},workspace,name:${n}"
+            "SUPER,${n},workspace,name:${n}"
           )
           workspaces) ++
 

@@ -11,13 +11,14 @@
 
     kernelParams = [
       "acpi_backlight=native"
+      "intel_pstate=disable"
       # "module_blacklist=i915" 
     ];
 
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 12;
+      systemd-boot.configurationLimit = 22;
     };
 
     initrd = {
@@ -63,9 +64,11 @@
     };
   };
 
+  services.thermald.enable = true;
+
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = lib.mkDefault "performance";
+    cpuFreqGovernor = lib.mkForce "performance";
 
     # Enable PowerTop autotune on startup
     powertop = {
