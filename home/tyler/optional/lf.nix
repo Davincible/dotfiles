@@ -16,7 +16,6 @@
     gnutar
     pistol
     file
-    (callPackage ./gorun.nix { inherit pkgs; })
   ];
 
   programs.lf = {

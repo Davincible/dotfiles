@@ -67,4 +67,6 @@ in {
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
   environment.pathsToLink = [ "/share/xdg-desktop-portal" "/share/applications" ];
+
+  services.throttled.enable = true;
 }

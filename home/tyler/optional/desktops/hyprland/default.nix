@@ -5,7 +5,7 @@
 # https://github.com/HeinzDev/Hyprland-dotfiles/blob/main/home/programs/hypr/default.nix
 # https://github.com/hyprland-community/awesome-hyprland#runners-menus-and-application-launchers
 # https://github.com/Aylur/dotfiles
-{ inputs, lib, pkgs, configLib, ... }:
+{ inputs, lib, pkgs,  ... }:
 let
   # startup = configLib.makeScriptPkg ./scripts/start.sh;
   hyprlandSrc = inputs.hyprland.packages."${pkgs.system}";
@@ -27,6 +27,13 @@ in
     hyprlandSrc.xdg-desktop-portal-hyprland
     networkmanagerapplet
     rofi-wayland
+    gnome.adwaita-icon-theme
+    swayidle
+    upower
+    grim
+    slurp
+    swappy
+    bluez
 
     # TODO: setup after deleting gnome
     # polkit-kde-agent
@@ -164,10 +171,10 @@ in
         };
 
         #   drop_shadow = false;
-          shadow_range = 12;
-          shadow_offset = "3 3";
-          "col.shadow" = "0x44000000";
-          "col.shadow_inactive" = "0x66000000";
+          # shadow_range = 12;
+          # shadow_offset = "3 3";
+          # "col.shadow" = "0x44000000";
+          # "col.shadow_inactive" = "0x66000000";
       };
 
       gestures = {

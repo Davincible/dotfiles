@@ -3,6 +3,9 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
+  grim = "${pkgs.grim}/bin/grim";
+  slurp = "${pkgs.slurp}/bin/slurp";
+  swappy = "${pkgs.swappy}/bin/swappy";
 in
 {
   wayland.windowManager.hyprland = {
@@ -34,6 +37,8 @@ in
         ",XF86AudioPrev,    exec, ${playerctl} previous"
         ",XF86AudioNext,    exec, ${playerctl} next"
         ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+	'',XF86Launch2,      exec, ${grim} -g "$(${slurp})" - | ${swappy} -f -''
+	'',Print,      exec, ${grim} -g "$(${slurp})" - | ${swappy} -f -''
       ];
 
 
@@ -107,6 +112,7 @@ in
           #################### Basic Bindings ####################
           "SHIFTALT,q,killactive"
           "SUPERSHIFT,e,exit"
+	  "CTRLSHIFT,R,exec,ags -b hypr quit; ags -b hypr"
 
           "SUPER,s,togglesplit"
           "SUPER,f,fullscreen,1"

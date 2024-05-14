@@ -20,7 +20,7 @@ let
           fd \
             --follow \
             --hidden \
-    	--max-depth=8 \
+            --max-depth=8 \
             --exclude .git \
             --exclude .snapshots \
             --exclude node_modules \
