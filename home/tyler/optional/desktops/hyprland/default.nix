@@ -237,6 +237,15 @@ in
           # Special rules for specific titles
           specialRules = [
             {
+              selector = titleRule "Bitwarden - Opera";
+              rules = [
+                "float"
+                "noborder"
+                "nodim"
+                "opaque"
+              ];
+            }
+            {
               selector = titleRule "Picture in Picture";
               rules = [
                 "float"
@@ -269,6 +278,8 @@ in
 
         "LIBVA_DRIVER_NAME,nvidia"
         "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
         "WLR_NO_HARDWARE_CURSORS,1" # Can try to disable for hardware cursor
