@@ -17,9 +17,9 @@
     # media-session.enable = true;
   };
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs)
-      pamixer# pulseaudio sound mixer
-      pavucontrol; # pulseaudio volume control
-  };
+  environment.systemPackages = with pkgs; [
+    pamixer # pulseaudio sound mixer
+    pavucontrol # pulseaudio volume control
+    alsa-utils # alsa sound utilities
+  ];
 }

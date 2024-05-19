@@ -37,8 +37,8 @@ in
         ",XF86AudioPrev,    exec, ${playerctl} previous"
         ",XF86AudioNext,    exec, ${playerctl} next"
         ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-	'',XF86Launch2,      exec, ${grim} -g "$(${slurp})" - | ${swappy} -f -''
-	'',Print,      exec, ${grim} -g "$(${slurp})" - | ${swappy} -f -''
+        '',XF86Launch2,      exec, ${grim} -g "$(${slurp})" - | ${swappy} -f -''
+        '',Print,      exec, ${grim} -g "$(${slurp})" - | ${swappy} -f -''
       ];
 
 
@@ -112,7 +112,7 @@ in
           #################### Basic Bindings ####################
           "SHIFTALT,q,killactive"
           "SUPERSHIFT,e,exit"
-	  "CTRLSHIFT,R,exec,ags -b hypr quit; ags -b hypr"
+          "CTRLSHIFT,R,exec,ags -b hypr quit; ags -b hypr"
 
           "SUPER,s,togglesplit"
           "SUPER,f,fullscreen,1"
@@ -133,6 +133,10 @@ in
 
           "SUPER,u,togglespecialworkspace"
           "SUPERSHIFT,u,movetoworkspacesilent,special"
+          "SUPERSHIFT,l,movetoworkspacesilent,+1"
+          "SUPERSHIFT,right,movetoworkspacesilent,+1"
+          "SUPERSHIFT,h,movetoworkspacesilent,-1"
+          "SUPERSHIFT,left,movetoworkspacesilent,-1"
         ] ++
 
         # Change workspace

@@ -3,61 +3,61 @@
 {
   virtualisation.docker.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    # dev
-    podman
-    podman-tui
-    podman-compose
-    go
+  environment.systemPackages = with pkgs;
+    [
+      # dev
+      podman
+      podman-tui
+      podman-compose
+      go
 
-    # Tools
-    fzf
-    ripgrep
-    ripgrep-all # ripgrep in pdfs etc
-    fd
-    gdu
-    tealdeer # tldr, but in rust
-    nh # Better nix experience
-    lsd
-    lazygit
-    git
-    gnupg # GPG signing for git commits
+      # Tools
+      fzf
+      ripgrep
+      ripgrep-all # ripgrep in pdfs etc
+      fd
+      gdu
+      tealdeer # tldr, but in rust
+      nh # Better nix experience
+      lsd
+      lazygit
+      git
+      gnupg # GPG signing for git commits
 
-    # System Deps
-    wget
-    gparted
-    ntfs3g
-    smartmontools
-    sops # Secret management tool
-    age # Age keygen encryption util, used for Sops
-    xclip # clipboard for X11
-    wl-clipboard # clipboard for Wayland
-    git
-    htop
-    cargo
-    gnumake
-    openssh
-    gcc
-    nix-ld-rs # Run aribrary binaries on Nix
+      # System Deps
+      wget
+      gparted
+      ntfs3g
+      smartmontools
+      sops # Secret management tool
+      age # Age keygen encryption util, used for Sops
+      xclip # clipboard for X11
+      wl-clipboard # clipboard for Wayland
+      git
+      htop
+      cargo
+      gnumake
+      openssh
+      gcc
+      nix-ld-rs # Run aribrary binaries on Nix
 
-    # TODO: remove later / dev env
-    docker
-    nodejs_20
-    prettierd
-    yarn
-    stylua
-    richgo
-    python3
-    tree-sitter
-    findutils
-    glow # markdown preview for telescope
+      # TODO: remove later / dev env
+      docker
+      nodejs_20
+      prettierd
+      yarn
+      stylua
+      richgo
+      python3
+      tree-sitter
+      findutils
+      glow # markdown preview for telescope
 
-    # TODO: move
-    gh
-    sqlc
-    dbeaver
-    telegram-desktop
-    signal-desktop
-    (opera.override { proprietaryCodecs = true; })
-  ];
+      # TODO: move
+      gh
+      sqlc
+      dbeaver
+      telegram-desktop
+      signal-desktop
+    ];
 }

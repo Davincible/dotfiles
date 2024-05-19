@@ -89,22 +89,18 @@
         zip# zip compression
         lsd# Better ls
         bat# Better man
-	ffmpeg
-	openssh
+        ffmpeg
+        openssh
 
-	taskwarrior
-	vit
+        taskwarrior
+        vit
 
         nerdfonts
-	slack
+        slack
 
         # Dev stuff
         gnumake
-
-        # Browsers
-        # opera
-        # chromium;
-	;
+        ;
     };
   };
 

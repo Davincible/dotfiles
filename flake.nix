@@ -56,9 +56,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";  # Colors from img
-    ags.url = "github:Aylur/ags";  # GTK3 js
-    astal.url = "github:Aylur/astal";  # GTK4 js
+    matugen.url = "github:InioX/matugen?ref=v2.2.0"; # Colors from img
+    ags.url = "github:Aylur/ags"; # GTK3 js
+    astal.url = "github:Aylur/astal"; # GTK4 js
 
     lf-icons = {
       url = "github:gokcehan/lf";
@@ -68,6 +68,11 @@
     lf-config = {
       url = "github:jackielii/dotfiles";
       flake = false;
+    };
+
+    loungy = {
+      # TODO: not packacged upstream yet, check later
+      url = "github:MatthiasGrandl/loungy";
     };
 
     #################### Personal Repositories ####################

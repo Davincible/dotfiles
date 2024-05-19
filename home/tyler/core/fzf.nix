@@ -17,14 +17,14 @@ let
   '';
 
   defaultCommand = ''
-          fd \
-            --follow \
-            --hidden \
-            --max-depth=8 \
-            --exclude .git \
-            --exclude .snapshots \
-            --exclude node_modules \
-            --strip-cwd-prefix
+    fd \
+      --follow \
+      --hidden \
+      --max-depth=8 \
+      --exclude .git \
+      --exclude .snapshots \
+      --exclude node_modules \
+      --strip-cwd-prefix
   '';
 
   changeDirWidgetCommand = defaultCommand + " --type d";

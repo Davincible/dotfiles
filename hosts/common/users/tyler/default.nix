@@ -24,10 +24,27 @@ in
   services.greetd = {
     enable = true;
     settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland --user-menu-min-uid 1000";
-        user = "greeter";
-      };
+      default_session =
+        let
+          hypr-run = pkgs.writeShellScriptBin "hypr-run" ''
+            export XDG_SESSION_TYPE="wayland"
+            export XDG_SESSION_DESKTOP="Hyprland"
+            export XDG_CURRENT_DESKTOP="Hyprland"
+
+            ${pkgs.hyprland}/bin/Hyprland $@
+            # systemd-run --user --scope --collect --quiet --unit="hyprland" \
+                systemd-cat --identifier="hyprland" ${pkgs.hyprland}/bin/Hyprland $@
+    
+            ${pkgs.hyprland}/bin/hyperctl dispatch exit
+          '';
+        in
+        {
+          user = "greeter";
+          command = ''${pkgs.greetd.tuigreet}/bin/tuigreet \
+	                -r --asterisks --time \
+			--user-menu-min-uid 1000 \
+			--cmd ${hypr-run}/bin/hypr-run'';
+        };
     };
   };
 

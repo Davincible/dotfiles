@@ -12,6 +12,13 @@
 
     # Fingerprint Sensor
     fprintd.enable = lib.mkDefault true;
+
+    upower = {
+      enable = true;
+      percentageAction = 5;
+      percentageCritical = 10;
+      percentageLow = 15;
+    };
   };
 
   nixpkgs.config.packageOverrides =
@@ -55,6 +62,7 @@
   environment.systemPackages = with pkgs; [
     # Terminals
     kitty
+    upower
 
     # Browsers
     firefox

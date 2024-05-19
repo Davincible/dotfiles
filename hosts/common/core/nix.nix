@@ -15,7 +15,7 @@
 
       trusted-users = [
         "root"
-	"tyler"
+        "tyler"
       ];
 
       substituters = lib.mkBefore [
