@@ -18,6 +18,28 @@ in
     ../ags
   ];
 
+  services.gammastep = {
+    enable = true;
+    brightness = {
+      day = "1";
+      night = "1";
+    };
+    temperature = {
+      day = 5700;
+      night = 2500;
+    };
+    provider = "geoclue2";
+    dawnTime = "07:00-08:00";
+    duskTime = "19:00-20:00";
+    tray = true;
+    settings = {
+      redshift = {
+        gamma = 0.8;
+        fade = 1;
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     playerctl
     swww # Desktop wallpaper daemon

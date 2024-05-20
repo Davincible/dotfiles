@@ -10,28 +10,7 @@ in
   # sops.secrets."${passwordSecret}".neededForUsers = true;
   # users.mutableUsers = false; # Required for password to be set via sops during system activation!
 
-  # services.displayManager = {
-  # };
-    security.polkit.enable = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "${lib.getExe config.programs.hyprland.package} --config /path/to/greetd/hyprland.conf";
-        user = "greeter";
-      };
-
-      default_session = {
-        user = "tyler";
-        command = "Hyprland";
-        #          command = ''${pkgs.greetd.tuigreet}/bin/tuigreet \
-        #               -r --asterisks --time \
-        # --user-menu-min-uid 1000 \
-        # --cmd Hyprland'';
-      };
-    };
-  };
+  security.polkit.enable = true;
 
   users.users.${username} = {
     name = username;

@@ -1,17 +1,43 @@
-{ lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   imports = [
     ./pipewire.nix
+    ./greetd.nix
   ];
+
+  security.pam.services.login.fprintAuth = false;
+  # similarly to how other distributions handle the fingerprinting login
+  # TODO: kde keyring
+  security.pam.services.gdm-fingerprint = lib.mkIf (config.services.fprintd.enable) {
+    text = ''
+      auth       required                    pam_shells.so
+      auth       requisite                   pam_nologin.so
+      auth       requisite                   pam_faillock.so      preauth
+      auth       required                    ${pkgs.fprintd}/lib/security/pam_fprintd.so
+      auth       optional                    pam_permit.so
+      auth       required                    pam_env.so
+      auth       [success=ok default=1]      ${pkgs.gnome.gdm}/lib/security/pam_gdm.so
+      auth       optional                    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
+    
+      account    include                     login
+    
+      password   required                    pam_deny.so
+    
+      session    include                     login
+      session    optional                    ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so auto_start
+    '';
+  };
 
   services = {
     # Enable CUPS to print documents.
     printing.enable = lib.mkDefault true;
 
+    geoclue2.enable = true;
+
     # Enable touchpad support (enabled by default in most desktopManager).
     libinput.enable = lib.mkDefault true;
 
     # Fingerprint Sensor
-    fprintd.enable = lib.mkDefault true;
+    fprintd.enable = lib.mkDefault false;
 
     upower = {
       enable = true;

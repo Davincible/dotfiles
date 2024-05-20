@@ -91,6 +91,11 @@
         bat# Better man
         ffmpeg
         openssh
+	udev
+	libudev-zero
+
+	figma-linux
+	figma-agent
 
         taskwarrior
         vit

@@ -23,6 +23,7 @@
       lazygit
       git
       gnupg # GPG signing for git commits
+      findutils
 
       # System Deps
       wget
