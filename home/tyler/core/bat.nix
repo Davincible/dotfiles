@@ -10,7 +10,6 @@
         rg = "batgrep";
         man = "batman";
         watch = "batwatch";
-	nvim = "nvim -u $HOME/.config/nvim/init.lua";
       };
     };
 

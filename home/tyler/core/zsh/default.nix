@@ -65,7 +65,7 @@
     initExtra = ''
       # Edit config files
       edit_config () {
-      	nvim $1 -c ":cd $(dirname $1)"
+      	nvim -u $HOME/.config/nvim/init.lua $1 -c ":cd $(dirname $1)" 
       }
 
       # eval "$(starship init zsh)"
@@ -108,6 +108,7 @@
       e = "nvim";
       vi = "nvim";
       vim = "nvim";
+      nvim = "nvim -u $HOME/.config/nvim/init.lua";
 
       #-------------Config---------------
       enix = "edit_config ~/dotfiles";

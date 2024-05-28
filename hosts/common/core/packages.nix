@@ -26,6 +26,7 @@
       findutils
       mlocate
       udev
+      sd
 
       # System Deps
       wget
