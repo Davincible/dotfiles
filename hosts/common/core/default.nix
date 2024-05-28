@@ -56,9 +56,10 @@ in {
   services.pcscd.enable = true;
   programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;
+
+  # For signing git requsts with GPG
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
   };
 
   programs.nix-ld.enable = true;

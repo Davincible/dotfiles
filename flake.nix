@@ -16,6 +16,8 @@
 
     #################### Utilities ####################
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     # Declarative partitioning and formatting
     disko = {
       url = "github:nix-community/disko";
@@ -98,11 +100,14 @@
       configLib = import ./lib { inherit lib; pkgs = nixpkgs.legacyPackages.x86_64-linux; };
 
       specialArgs = { inherit inputs outputs configLib nixpkgs; };
+
+      # Custom modifications/overrides to upstream packages.
+      myOverlays = [
+        # (import ./overlays { inherit inputs outputs; })
+        inputs.neovim-nightly-overlay.overlays.default
+      ];
     in
     {
-      # Custom modifications/overrides to upstream packages.
-      overlays = import ./overlays { inherit inputs outputs; };
-
       # Custom packages to be shared or upstreamed.
       # NOTE: If I'd want to create custom packages that aren't available throught the package manager that's possible here. Not needed for now.
       # packages = forAllSystems
@@ -116,6 +121,8 @@
         (system:
           nixpkgs.legacyPackages.${system}.nixpkgs-fmt
         );
+
+      overlays = myOverlays;
 
       #################### NixOS Configurations ####################
 

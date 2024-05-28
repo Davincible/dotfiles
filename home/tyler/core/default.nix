@@ -6,6 +6,7 @@
     ./zsh # primary shell: includes zsh, oh-my-zsh, and p10k theme
     ./bat.nix # cat with better syntax highlighting and extras like batgrep.
     ./fzf.nix
+    # ./nixvim
 
     # ./bash.nix # backup shell
     # ./direnv.nix # shell environment manager. Hooks inot shell direnv to look for .envrc before prompts
@@ -105,12 +106,14 @@
 
         # Dev stuff
         gnumake
+	spotify-player
+
         ;
     };
   };
 
   nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
+    overlays = outputs.overlays;
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942

@@ -24,6 +24,8 @@
       git
       gnupg # GPG signing for git commits
       findutils
+      mlocate
+      udev
 
       # System Deps
       wget
@@ -41,6 +43,7 @@
       openssh
       gcc
       nix-ld-rs # Run aribrary binaries on Nix
+      killall
 
       # TODO: remove later / dev env
       docker
@@ -57,7 +60,7 @@
       # TODO: move
       gh
       sqlc
-      dbeaver
+      dbeaver-bin
       telegram-desktop
       signal-desktop
     ];

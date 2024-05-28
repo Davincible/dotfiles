@@ -20,10 +20,12 @@
 
       substituters = lib.mkBefore [
         "https://hyprland.cachix.org"
+	"https://nix-community.cachix.org"
       ];
 
       trusted-public-keys = lib.mkBefore [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+	"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
 
@@ -43,9 +45,10 @@
     hostPlatform = lib.mkDefault "x86_64-linux";
 
     # you can add global overlays here
-    overlays = builtins.attrValues outputs.overlays;
+    # overlays = outputs.overlays;
     config = {
       allowUnfree = true;
+      allowUnfreePredicate = (_: true);
     };
   };
 }

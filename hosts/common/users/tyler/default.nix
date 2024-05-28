@@ -24,6 +24,8 @@ in
       "video"
       "git"
       "networkmanager"
+      "scanner"
+      "plugdev"
     ];
     # These get placed into /etc/ssh/authorized_keys.d/<name> on nixos
     # TODO: move to server

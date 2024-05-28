@@ -27,6 +27,25 @@
     '';
   };
 
+  users.groups.scanner = {};
+  users.groups.plugdev = {};
+
+  # NOTE: added temp for now so xwayland works
+  programs.hyprland.enable = true;
+  programs.hyprland.xwayland.enable = true;
+
+  users.users.greeter = {
+    isSystemUser = true;
+    extraGroups = [
+      "scanner"
+      "plugdev"
+      "input"
+      "wheel"
+    ];
+  };
+
+  programs.ssh.startAgent = true;
+
   services = {
     # Enable CUPS to print documents.
     printing.enable = lib.mkDefault true;

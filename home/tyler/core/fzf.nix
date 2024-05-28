@@ -5,15 +5,15 @@ let
   cfg = config.programs.fzf;
 
   bashIntegration = ''
+    source ${cfg.package}/share/fzf/completion.bash
+    source ${cfg.package}/share/fzf/key-bindings.bash
     source <(fzf --bash)
-    # source ${cfg.package}/share/fzf/completion.bash
-    # source ${cfg.package}/share/fzf/key-bindings.bash
   '';
 
   zshIntegration = ''
+    source ${cfg.package}/share/fzf/completion.zsh
+    source ${cfg.package}/share/fzf/key-bindings.zsh
     source <(fzf --zsh)
-    # source ${cfg.package}/share/fzf/completion.zsh
-    # source ${cfg.package}/share/fzf/key-bindings.zsh
   '';
 
   defaultCommand = ''
@@ -46,5 +46,5 @@ in
   # Note, since fzf unconditionally binds C-r we use `mkOrder` to make the
   # initialization show up a bit earlier. This is to make initialization of
   # other history managers, like mcfly or atuin, take precedence.
-  programs.zsh.initExtra = mkOrder 200 zshIntegration;
+  programs.zsh.initExtra = mkOrder 900 zshIntegration;
 }
