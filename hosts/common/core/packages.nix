@@ -27,6 +27,9 @@
       mlocate
       udev
       sd
+      tokei
+      awscli2
+      dig
 
       # System Deps
       wget
