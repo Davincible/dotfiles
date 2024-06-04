@@ -10,6 +10,7 @@
       podman-tui
       podman-compose
       go
+      anchor
 
       # Tools
       fzf
@@ -30,6 +31,9 @@
       tokei
       awscli2
       dig
+      obs-studio
+      mpv
+
 
       # System Deps
       wget

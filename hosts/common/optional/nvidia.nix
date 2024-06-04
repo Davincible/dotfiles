@@ -30,6 +30,7 @@
 
   environment.systemPackages = with pkgs; [
     nvtop
+    nvidia-vaapi-driver
   ];
 
   # Tell Xorg to use the nvidia driver

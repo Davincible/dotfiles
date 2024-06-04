@@ -46,6 +46,7 @@ in
     cliphist # Clipboard history
     libnotify # Desktop notifications daemon
     xdg-desktop-portal-gtk
+    xdg-desktop-portal-wlr
     hyprlandSrc.xdg-desktop-portal-hyprland
     networkmanagerapplet
     rofi-wayland
