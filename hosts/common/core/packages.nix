@@ -11,6 +11,8 @@
       podman-compose
       go
       anchor
+      solana-cli
+      blender
 
       # Tools
       fzf

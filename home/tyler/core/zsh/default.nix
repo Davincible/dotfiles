@@ -63,6 +63,11 @@
     '';
 
     initExtra = ''
+     # TODO: do this in a better place
+     # npm && npm config set prefix ~/.npm-global
+     export PATH=$PATH:$HOME/.npm-global/bin
+
+
       # Edit config files
       edit_config () {
       	nvim -u $HOME/.config/nvim/init.lua $1 -c ":cd $(dirname $1)" 

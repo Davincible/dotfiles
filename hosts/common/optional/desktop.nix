@@ -46,6 +46,10 @@
 
   programs.ssh.startAgent = true;
 
+  hardware.bluetooth = {
+    enable = true;
+  };
+
   services = {
     # Enable CUPS to print documents.
     printing.enable = lib.mkDefault true;

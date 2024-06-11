@@ -2,7 +2,8 @@
 let
   runOpera = pkgs.writeScript "run-opera" ''
     #!/bin/sh
-    LD_LIBRARY_PATH="\\$LD_LIBRARY_PATH:${pkgs.libGL}/lib:${pkgs.ffmpeg}/lib" exec ${pkgs.opera}/bin/opera "$@"
+    # LD_LIBRARY_PATH="\\$LD_LIBRARY_PATH:${pkgs.libGL}/lib:${pkgs.ffmpeg}/lib" exec ${pkgs.opera}/bin/opera "$@"
+    LD_LIBRARY_PATH="${pkgs.libGL}/lib" exec ${pkgs.opera}/bin/opera "$@"
   '';
 in
 {
