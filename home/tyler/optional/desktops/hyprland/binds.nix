@@ -18,7 +18,7 @@ in
 
       bindm = [
         "SUPER,mouse:272,movewindow"
-        # "SUPER,mouse:273,resizewindow"
+        "SUPER,mouse:273,resizewindow"
       ];
 
       bindle = [
@@ -137,6 +137,10 @@ in
           "SUPERSHIFT,right,movetoworkspacesilent,+1"
           "SUPERSHIFT,h,movetoworkspacesilent,-1"
           "SUPERSHIFT,left,movetoworkspacesilent,-1"
+
+          #################### Scroll through workspaces ####################
+          "ALT,mouse:275,workspace,prev" # Horizontal scroll left
+          "ALT,mouse:276,workspace,next" # Horizontal scroll right
         ] ++
 
         # Change workspace

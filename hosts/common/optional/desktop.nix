@@ -84,7 +84,9 @@
   hardware = {
     opengl = {
       enable = true;
-      driSupport = true;
+      # Deprecated
+      # driSupport = true;
+      # setLdLibraryPath = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [
         # libGL
@@ -97,7 +99,6 @@
         vaapiVdpau
         libvdpau-va-gl
       ];
-      setLdLibraryPath = true;
     };
 
     logitech = {

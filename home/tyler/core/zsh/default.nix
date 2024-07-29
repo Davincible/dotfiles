@@ -66,6 +66,7 @@
      # TODO: do this in a better place
      # npm && npm config set prefix ~/.npm-global
      export PATH=$PATH:$HOME/.npm-global/bin
+     export PATH="/home/tyler/.local/share/solana/install/active_release/bin:$PATH"
 
 
       # Edit config files

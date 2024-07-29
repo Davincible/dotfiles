@@ -13,6 +13,11 @@
       anchor
       solana-cli
       blender
+      rustup
+      rustc
+      postgresql
+      sherlock
+      ranger
 
       # Tools
       fzf
