@@ -55,7 +55,7 @@ in {
   # TODO: find a better place to put this
   services.pcscd.enable = true;
   programs.seahorse.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
 
   # For signing git requsts with GPG
   programs.gnupg.agent = {

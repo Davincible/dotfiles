@@ -18,6 +18,8 @@
       postgresql
       sherlock
       ranger
+      tailwindcss
+      typescript
 
       # Tools
       fzf
@@ -40,7 +42,7 @@
       dig
       obs-studio
       mpv
-
+      gnome-keyring
 
       # System Deps
       wget
@@ -71,6 +73,7 @@
       tree-sitter
       findutils
       glow # markdown preview for telescope
+      postman
 
       # TODO: move
       gh

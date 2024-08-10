@@ -20,10 +20,10 @@ in
 
   services.gammastep = {
     enable = true;
-    brightness = {
-      day = "1";
-      night = "1";
-    };
+    # brightness = {
+    #   day = "1";
+    #   night = "1";
+    # };
     temperature = {
       day = 5700;
       night = 2500;
@@ -56,6 +56,9 @@ in
     slurp
     swappy
     bluez
+    catppuccin-cursors
+    catppuccin-cursors.mochaSky
+    hyprcursor
 
     # TODO: setup after deleting gnome
     # polkit-kde-agent
@@ -104,6 +107,10 @@ in
 
     settings = {
       "$mod" = "SUPER";
+
+      cursor = {
+        no_hardware_cursors = true;
+      };
 
       # load at the end of the hyperland set
       # extraConfig = ''    '';
@@ -305,7 +312,11 @@ in
         "XDG_CURRENT_DESKTOP,Hyprland"
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        "WLR_NO_HARDWARE_CURSORS,1" # Can try to disable for hardware cursor
+        # "WLR_NO_HARDWARE_CURSORS,1" # Can try to disable for hardware cursor
+        "HYPRCURSOR_THEME,Catppuccin-Mocha-Sky"
+        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_THEME,Catppuccin-Mocha-Sky"
+        "XCURSOR_SIZE,24"
         "NVD_BACKEND,direct"
       ];
     };

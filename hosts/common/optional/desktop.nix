@@ -60,7 +60,8 @@
     libinput.enable = lib.mkDefault true;
 
     # Fingerprint Sensor
-    fprintd.enable = lib.mkDefault false;
+    # fprintd.enable = lib.mkDefault false;
+    fprintd.enable = lib.mkForce false;
 
     upower = {
       enable = true;
@@ -82,12 +83,12 @@
   # hardware.trackpoint.emulateWheel = true;
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
       # Deprecated
       # driSupport = true;
       # setLdLibraryPath = true;
-      driSupport32Bit = true;
+      # driSupport32Bit = true;
       extraPackages = with pkgs; [
         # libGL
         # libGL.dev

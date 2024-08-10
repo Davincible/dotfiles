@@ -29,7 +29,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    nvtop
+    nvtopPackages.full
     nvidia-vaapi-driver
   ];
 
@@ -126,7 +126,7 @@
   };
 
   environment.variables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
   };
 

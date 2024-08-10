@@ -117,7 +117,7 @@ in
           "SUPER,s,togglesplit"
           "SUPER,f,fullscreen,1"
           "SUPERSHIFT,f,fullscreen,0"
-          "ALT,f,fakefullscreen"
+          # "ALT,f,fakefullscreen"
           "SUPERSHIFT,space,togglefloating"
 
           "SUPER,minus,splitratio,-0.25"
