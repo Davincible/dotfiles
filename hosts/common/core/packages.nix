@@ -10,7 +10,7 @@
       podman-tui
       podman-compose
       go
-      anchor
+      # anchor
       solana-cli
       blender
       rustup
@@ -20,6 +20,13 @@
       ranger
       tailwindcss
       typescript
+      openvpn
+      openssl
+      ngrok
+      gtk4
+      gtk3
+      unixtools.xxd
+      openjdk11-bootstrap
 
       # Tools
       fzf

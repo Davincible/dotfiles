@@ -45,12 +45,12 @@ in
     swww # Desktop wallpaper daemon
     cliphist # Clipboard history
     libnotify # Desktop notifications daemon
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-wlr
-    hyprlandSrc.xdg-desktop-portal-hyprland
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-wlr
+    # hyprlandSrc.xdg-desktop-portal-hyprland
     networkmanagerapplet
     rofi-wayland
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
     swayidle
     grim
     slurp
@@ -76,10 +76,19 @@ in
 
   xdg.portal = {
     enable = true;
+    config = {
+      common = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
+    };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
       # TODO: test this later
-      # hyprlandSrc.xdg-desktop-portal-hyprland
+      hyprlandSrc.xdg-desktop-portal-hyprland
     ];
   };
 
@@ -258,8 +267,8 @@ in
             "org.gnome.Settings"
             "org.gnome.design.Palette"
             "Color Picker"
-            "xdg-desktop-portal"
-            "xdg-desktop-portal-gnome"
+            # "xdg-desktop-portal"
+            # "xdg-desktop-portal-gnome"
             "transmission-gtk"
             "com.github.Aylur.ags"
           ];

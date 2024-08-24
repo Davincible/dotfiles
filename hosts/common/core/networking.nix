@@ -8,5 +8,11 @@
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     useDHCP = lib.mkDefault true;
+
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "9.9.9.9"
+    ];
   };
 }

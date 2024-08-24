@@ -24,9 +24,10 @@
 
       extraPackages = with pkgs; [
         entr # Requirement for batwatch
+	# # TODO: enable again later
         delta # Requirement for batdiff
         bat-extras.batgrep # search through and highlight files using ripgrep
-        bat-extras.batdiff # Diff a file against the current git index, or display the diff between to files
+        # bat-extras.batdiff # Diff a file against the current git index, or display the diff between to files
         bat-extras.batwatch # Better watch
         bat-extras.batman # read manpages using bat as the formatter
       ];

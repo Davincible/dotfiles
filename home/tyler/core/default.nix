@@ -96,7 +96,7 @@
 	libudev-zero
 
 	figma-linux
-	figma-agent
+	# figma-agent
 
         taskwarrior
         vit
