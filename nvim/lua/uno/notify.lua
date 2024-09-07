@@ -32,45 +32,45 @@ local function starts_with(str, start)
 	return str:sub(1, #start) == start
 end
 
-vim.notify = function(msg, level, opts)
-	local d = debug.getinfo(2)
-
-	vim.schedule(function()
-		opts = opts or {}
-
-		-- Don't overwrite title
-		-- if opts["title"] == nil then
-		-- 	-- Get caller info
-		-- 	opts["title"] = "(Source) " .. d.source
-		--
-		-- 	-- Extract path
-		-- 	local possible_matches = {
-		-- 		{
-		-- 			path = "@" .. vim.fn.expand("$HOME") .. "/.local/share/nvim/site/pack/packer/start/",
-		-- 			prefix = "(Plugin) ",
-		-- 		},
-		-- 		{
-		-- 			path = "@" .. vim.fn.expand("$HOME") .. "/.local/share/nvim/site/pack/packer/opt/",
-		-- 			prefix = "(Plugin) ",
-		-- 		},
-		-- 		{
-		-- 			path = "@" .. vim.fn.expand("$HOME") .. "/.config/nvim/lua/uno/",
-		-- 			prefix = "(Config) ",
-		-- 		},
-		-- 		{
-		-- 			path = "@" .. "/usr/share/nvim/runtime/lua/",
-		-- 			prefix = "(Nvim) ",
-		-- 		},
-		-- 	}
-		--
-		-- 	-- Set title
-		-- 	for _, m in pairs(possible_matches) do
-		-- 		if starts_with(d.source, m.path) then
-		-- 			opts["title"] = m.prefix .. d.source:sub(#m.path + 1)
-		-- 		end
-		-- 	end
-		-- end
-
-		require("notify")(msg, level, opts)
-	end)
-end
+-- vim.notify = function(msg, level, opts)
+-- 	local d = debug.getinfo(2)
+--
+-- 	vim.schedule(function()
+-- 		opts = opts or {}
+--
+-- 		-- Don't overwrite title
+-- 		-- if opts["title"] == nil then
+-- 		-- 	-- Get caller info
+-- 		-- 	opts["title"] = "(Source) " .. d.source
+-- 		--
+-- 		-- 	-- Extract path
+-- 		-- 	local possible_matches = {
+-- 		-- 		{
+-- 		-- 			path = "@" .. vim.fn.expand("$HOME") .. "/.local/share/nvim/site/pack/packer/start/",
+-- 		-- 			prefix = "(Plugin) ",
+-- 		-- 		},
+-- 		-- 		{
+-- 		-- 			path = "@" .. vim.fn.expand("$HOME") .. "/.local/share/nvim/site/pack/packer/opt/",
+-- 		-- 			prefix = "(Plugin) ",
+-- 		-- 		},
+-- 		-- 		{
+-- 		-- 			path = "@" .. vim.fn.expand("$HOME") .. "/.config/nvim/lua/uno/",
+-- 		-- 			prefix = "(Config) ",
+-- 		-- 		},
+-- 		-- 		{
+-- 		-- 			path = "@" .. "/usr/share/nvim/runtime/lua/",
+-- 		-- 			prefix = "(Nvim) ",
+-- 		-- 		},
+-- 		-- 	}
+-- 		--
+-- 		-- 	-- Set title
+-- 		-- 	for _, m in pairs(possible_matches) do
+-- 		-- 		if starts_with(d.source, m.path) then
+-- 		-- 			opts["title"] = m.prefix .. d.source:sub(#m.path + 1)
+-- 		-- 		end
+-- 		-- 	end
+-- 		-- end
+--
+-- 		require("notify")(msg, level, opts)
+-- 	end)
+-- end

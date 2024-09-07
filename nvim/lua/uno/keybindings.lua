@@ -150,9 +150,9 @@ vim.api.nvim_set_keymap("v", "<Leader>t", ":Translate EN -output=replace<CR>", {
 -- end
 
 -- GitHub Co-Pilot
-vim.go.copilot_no_tab_map = true
+vim.g.copilot_no_tab_map = true
 
-vim.api.nvim_set_keymap("i", "<S-CR>", "copilot#Accept('<CR>')", { expr = true, silent = true })
+vim.api.nvim_set_keymap("i", "<S-CR>", 'copilot#Accept("\\<CR>")', { expr = true, silent = true })
 
 local function SuggestOneCharacter()
 	local suggestion = vim.fn["copilot#Accept"]("")

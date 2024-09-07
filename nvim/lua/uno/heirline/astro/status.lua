@@ -556,7 +556,7 @@ end
 -- @see unoline.status.utils.stylize
 function unoline.status.provider.lsp_progress(opts)
 	return function()
-		local Lsp = vim.lsp.util.get_progress_messages()[1]
+		local Lsp = vim.lsp.status()[1]
 		return unoline.status.utils.stylize(
 			Lsp
 					and string.format(
@@ -698,31 +698,31 @@ end
 -- @return boolean of whether or not the current file has any test results
 -- @usage local heirline_component = { provider = "Example Provider", condition = unoline.status.condition.has_test_results }
 function unoline.status.condition.has_test_results()
-    local fname = vim.api.nvim_buf_get_name(0)
-    local neotest = require("neotest")
-    if neotest and neotest.state and vim.g.neotest_result_enabled then
-        local status = neotest.state.status_counts(fname)
-				if status and status.total > 0 then
-          return status.total
-		  	end
-    end
-    return false
+	local fname = vim.api.nvim_buf_get_name(0)
+	local neotest = require("neotest")
+	if neotest and neotest.state and vim.g.neotest_result_enabled then
+		local status = neotest.state.status_counts(fname)
+		if status and status.total > 0 then
+			return status.total
+		end
+	end
+	return false
 end
 
 --- A condition function if neotest is currently running
 -- @return boolean of whether or not the current file has any diagnostics
 -- @usage local heirline_component = { provider = "Example Provider", condition = unoline.status.condition.is_neotest_running }
 function unoline.status.condition.is_neotest_running()
-    local fname = vim.api.nvim_buf_get_name(0)
-    local neotest = require("neotest")
-    if neotest and neotest.state and vim.g.neotest_result_enabled then
-        -- local status = neotest.state.running({ adapter_id = fname, fuzzy = true })
-        local status = neotest.state.status_counts(fname)
-				if status and status.running > 0 then
-          return status.running
-		  	end
-    end
-    return false
+	local fname = vim.api.nvim_buf_get_name(0)
+	local neotest = require("neotest")
+	if neotest and neotest.state and vim.g.neotest_result_enabled then
+		-- local status = neotest.state.running({ adapter_id = fname, fuzzy = true })
+		local status = neotest.state.status_counts(fname)
+		if status and status.running > 0 then
+			return status.running
+		end
+	end
+	return false
 end
 
 --- A condition function if there is a defined filetype

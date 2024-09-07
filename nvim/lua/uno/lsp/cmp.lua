@@ -125,9 +125,9 @@ cmp.setup({
 				strings[1] = ""
 			end
 
-			if #strings ~= 2 then
-				vim.notify(vim.inspect(entry))
-			end
+			-- if #strings ~= 2 then
+			-- 	vim.notify(vim.inspect(entry))
+			-- end
 
 			kind.kind = " " .. strings[1] .. " "
 			kind.menu = "    (" .. strings[2] .. ")"

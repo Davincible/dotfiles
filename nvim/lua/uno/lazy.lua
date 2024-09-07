@@ -20,9 +20,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load and configure plugins
 require("lazy").setup({
-	-- Packer can manage itself
-	{ "wbthomason/packer.nvim" },
-
 	-- Faster startup
 	-- {"lewis6991/impatient.nvim", config = "require('impatient').setup()"},
 
@@ -106,6 +103,7 @@ require("lazy").setup({
 			"theHamsta/nvim-dap-virtual-text",
 			"ray-x/guihua.lua",
 		},
+		ft = "go",
 	},
 
 	-- Workspaces+sessions
@@ -161,7 +159,7 @@ require("lazy").setup({
 	{ "tpope/vim-repeat" },
 	{ "tpope/vim-speeddating" },
 	{ "tpope/vim-surround" },
-	{ "stevearc/stickybuf.nvim" },
+	-- { "stevearc/stickybuf.nvim" },
 	{
 		"folke/todo-comments.nvim",
 		config = function()
@@ -189,6 +187,12 @@ require("lazy").setup({
 	-- Git
 	"ThePrimeagen/git-worktree.nvim",
 	"tpope/vim-fugitive",
+	{
+		"FabijanZulj/blame.nvim",
+		config = function()
+			require("blame").setup()
+		end,
+	},
 	{ "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
 	{ "lewis6991/gitsigns.nvim" },
 	{
@@ -200,6 +204,12 @@ require("lazy").setup({
 	},
 
 	-- More Plugins
+	{
+		"hat0uma/csvview.nvim",
+		config = function()
+			require("csvview").setup()
+		end,
+	},
 	"ThePrimeagen/harpoon",
 	{
 		"pwntester/octo.nvim",

@@ -32,6 +32,7 @@ local exclude_patterns = {
 	"contracts/out/*",
 	"contracts/artifacts/*",
 	"contracts/cache/*",
+	"*.lock",
 }
 
 -- Combine the patterns into a single string with glob patterns

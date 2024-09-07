@@ -6,6 +6,13 @@ require("go").setup({
 	-- 		"-listen.timeout=5m",
 	-- --		"-logfile=" .. vim.fn.expand("~/.cache/nvim/gopls.log"),
 	-- 	},
+
+	-- TODO: temporarily disabled since broken
+	lsp_codelens = false,
+	lsp_inlay_hints = {
+		enable = false,
+	},
+
 	log_path = vim.fn.expand("$HOME") .. "/.cache/nvim/gonvim.log",
 	comment_placeholder = " ",
 	gofmt = "gofmt", -- if set to gopls will use gopls format
