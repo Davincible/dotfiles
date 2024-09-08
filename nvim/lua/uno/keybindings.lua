@@ -178,5 +178,19 @@ map("i", "<C-left>", SuggestOneWord, { expr = true, remap = false })
 map("i", "<M-l>", accept_line, { expr = true, remap = false })
 
 -- Ufo keybindings
-map("n", "zR", require("ufo").openAllFolds)
-map("n", "zM", require("ufo").closeAllFolds)
+map("n", "zO", require("ufo").openAllFolds)
+map("n", "zC", require("ufo").closeAllFolds)
+map("n", "fO", require("ufo").openAllFolds)
+map("n", "fC", require("ufo").closeAllFolds)
+map("n", "fo", ":foldopen<CR>")
+map("n", "fc", ":foldclose<CR>")
+map("n", "zr", require("ufo").openFoldsExceptKinds)
+map("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+map("n", "K", function()
+	local winid = require("ufo").peekFoldedLinesUnderCursor()
+	if not winid then
+		-- choose one of coc.nvim and nvim lsp
+		vim.fn.CocActionAsync("definitionHover") -- coc.nvim
+		vim.lsp.buf.hover()
+	end
+end)

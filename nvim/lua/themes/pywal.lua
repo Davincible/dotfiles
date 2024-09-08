@@ -160,7 +160,7 @@ local theme = lush(function()
 		ErrorMsg { fg = pink.darken(40).saturate(-20) }, -- error messages on the command line
 		VertSplit { fg = color2.darken(60) }, -- the column separating vertically split windows
 		Folded { fg = color3.darken(5) }, -- line used for closed folds
-		FoldColumn { fg = color3 }, -- 'foldcolumn'
+		FoldColumn { fg = grey_fg }, -- 'foldcolumn'
 		SignColumn { fg = color6 }, -- column where |signs| are displayed
 		Search { bg = color8.darken(60), fg = white }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
 		IncSearch { bg = color9.darken(60), fg = white }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"

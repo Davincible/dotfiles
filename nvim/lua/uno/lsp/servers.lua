@@ -131,6 +131,12 @@ local default_lsp_opts = {
 mason_lsp.setup_handlers({
 	-- Default handler, for all LSP servers without explicit config
 	function(server_name)
+		if server_name == "tsserver" then
+			server_name = "ts_ls"
+			vim.bo.tabstop = 2
+			vim.bo.shiftwidth = 2
+		end
+
 		local opts = vim.deepcopy(default_lsp_opts)
 		lsp_config[server_name].setup(opts)
 	end,
@@ -189,14 +195,14 @@ mason_lsp.setup_handlers({
 		lsp_config[server].setup(opts)
 	end,
 
-	["tsserver"] = function(server)
-		local opts = vim.deepcopy(default_lsp_opts)
-
-		vim.bo.tabstop = 2
-		vim.bo.shiftwidth = 2
-
-		lsp_config[server].setup(opts)
-	end,
+	-- ["tsserver"] = function(server)
+	-- 	local opts = vim.deepcopy(default_lsp_opts)
+	--
+	-- 	vim.bo.tabstop = 2
+	-- 	vim.bo.shiftwidth = 2
+	--
+	-- 	lsp_config[server].setup(opts)
+	-- end,
 
 	["html"] = function(server)
 		local opts = vim.deepcopy(default_lsp_opts)
@@ -214,7 +220,7 @@ mason_lsp.setup_handlers({
 		lsp_config[server].setup(opts)
 	end,
 
-	["tailwindCSS"] = function(server)
+	["tailwindcss"] = function(server)
 		local opts = vim.deepcopy(default_lsp_opts)
 
 		opts.filetypes = { "html", "eta", "ts", "tsx", "js", "jsx", "javascript", "javascriptreact", "typescript" }
@@ -311,8 +317,37 @@ mason_lsp.setup_handlers({
 	end,
 })
 
+local ftMap = {
+	vim = "indent",
+	python = { "indent" },
+	git = "",
+}
+
 require("ufo").setup({
+	-- open_fold_hl_timeout = 150,
+	close_fold_kinds_for_ft = {
+		default = { "imports", "comment" },
+		json = { "array" },
+		c = { "comment", "region" },
+	},
+	preview = {
+		win_config = {
+			border = { "", "─", "", "", "", "─", "", "" },
+			winhighlight = "Normal:Folded",
+			winblend = 0,
+		},
+		mappings = {
+			scrollU = "<C-u>",
+			scrollD = "<C-d>",
+			jumpTop = "[",
+			jumpBot = "]",
+		},
+	},
 	provider_selector = function(bufnr, filetype, buftype)
-		return { "treesitter", "indent" }
+		-- if you prefer treesitter provider rather than lsp,
+		-- return ftMap[filetype] or {'treesitter', 'indent'}
+		return ftMap[filetype]
+
+		-- refer to ./doc/example.lua for detail
 	end,
 })

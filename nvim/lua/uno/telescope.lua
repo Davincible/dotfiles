@@ -99,7 +99,7 @@ telescope.setup({
 				["<C-c>"] = actions.close,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
-				["<c-r>"] = require("trouble.providers.telescope").open_with_trouble,
+				["<c-r>"] = require("trouble.sources.telescope").open,
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 				-- To disable a keymap, put [map] = false
 				-- So, to not map "<C-n>", just put
@@ -118,7 +118,7 @@ telescope.setup({
 			n = {
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
-				["<c-r>"] = require("trouble.providers.telescope").open_with_trouble,
+				["<c-r>"] = require("trouble.sources.telescope").open,
 				["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 				-- ["<C-i>"] = my_cool_custom_action,
 			},
