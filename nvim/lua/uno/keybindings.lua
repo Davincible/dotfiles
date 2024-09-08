@@ -176,3 +176,7 @@ local map = vim.keymap.set
 map("i", "<C-l>", SuggestOneCharacter, { expr = true, remap = false })
 map("i", "<C-left>", SuggestOneWord, { expr = true, remap = false })
 map("i", "<M-l>", accept_line, { expr = true, remap = false })
+
+-- Ufo keybindings
+map("n", "zR", require("ufo").openAllFolds)
+map("n", "zM", require("ufo").closeAllFolds)

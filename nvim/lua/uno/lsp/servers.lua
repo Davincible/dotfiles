@@ -114,11 +114,17 @@ require("mason-lspconfig").setup({
 	automatic_installation = true,
 })
 
+local capabilities = cmp_lsp.default_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
+
 local default_lsp_opts = {
 	on_attach = common_on_attach,
 	-- Setup cmp for all servers
 	-- capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-	capabilities = cmp_lsp.default_capabilities(),
+	capabilities = capabilities,
 }
 
 -- Setup LSP Servers
@@ -302,5 +308,11 @@ mason_lsp.setup_handlers({
 		}
 
 		lsp_config[server].setup(opts)
+	end,
+})
+
+require("ufo").setup({
+	provider_selector = function(bufnr, filetype, buftype)
+		return { "treesitter", "indent" }
 	end,
 })

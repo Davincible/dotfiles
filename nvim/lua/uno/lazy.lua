@@ -197,11 +197,12 @@ require("lazy").setup({
 	{ "lewis6991/gitsigns.nvim" },
 	{
 		"akinsho/git-conflict.nvim",
-		tag = "*",
 		config = function()
 			require("git-conflict").setup()
 		end,
 	},
+
+	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 
 	-- More Plugins
 	{
