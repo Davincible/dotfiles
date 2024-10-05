@@ -22,23 +22,13 @@ local config = {
 		go = require("formatter.filetypes.go").goimports,
 		sql = {
 			function()
-				local config = [[
-          {
-            "language": "postgresql",
-            "tabWidth": 2,
-            "keywordCase": "upper",
-            "linesBetweenQueries": 2,
-            "paramTypes": { "named": ["@", "sqlc.narg"] }
-          }
-				]]
-
-				local file = string.format("<(echo '%s')", config)
-
 				return {
-					exe = "sql-formatter",
+					exe = "sqlfluff",
 					args = {
-						"--config",
-						file,
+						"format",
+						"--dialect",
+						"postgres",
+						"-",
 					},
 					stdin = true,
 				}
