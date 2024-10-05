@@ -429,6 +429,25 @@ local theme = lush(function()
 		NeotestMarked { fg = hsl "#F79000" },
 		NeotestFocused { bold = true },
 
+		-- Avante
+		AvanteTitle { fg = color1.lighten(50).rotate(50), bg = color1.darken(60), gui = "bold" },
+		AvanteReversedTitle { fg = color1.darken(60), bg = color1.lighten(50).rotate(50) },
+
+		AvanteSubtitle { fg = color2.lighten(30), bg = color1.darken(55), gui = "bold" },
+		AvanteReversedSubtitle { fg = color1.darken(55), bg = color2.lighten(30) },
+
+		AvanteThirdTitle { fg = color3.lighten(20), bg = color1.darken(50), gui = "bold" },
+		AvanteReversedThirdTitle { fg = color1.darken(50), bg = color3.lighten(20) },
+
+		AvanteConflictCurrent { bg = vibrant_green.rotate(0).darken(70), fg = white },
+		AvanteConflictIncoming { bg = nord_blue.darken(50), fg = white },
+
+		AvanteConflictCurrentLabel { AvanteConflictCurrent, fg = AvanteConflictCurrent.bg.lighten(40) },
+		AvanteConflictIncomingLabel { AvanteConflictIncoming, fg = AvanteConflictIncoming.bg.lighten(40) },
+
+		AvantePopupHint { fg = grey_fg.lighten(20), bg = one_bg3.darken(10) },
+		AvanteInlineHint { fg = color6.lighten(10), bg = color1.darken(70) },
+
 		-- Modes
 		ModesNormal { bg = green.rotate(10).saturate(20).darken(25) },
 		-- Copy
