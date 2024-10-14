@@ -79,6 +79,9 @@
       # This command let's me execute arbitrary binaries downloaded through channels such as mason.
       # TODO: refactor lsps https://pastebin.ai/xnzful32hm
       # export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
+
+      source $HOME/.secrets
+      source $HOME/Launchpad/dotfiles/davincible/zsh/plugins/kitty.zsh
     '';
 
     oh-my-zsh = {
@@ -122,8 +125,9 @@
 
       #-----------Nix related----------------
       ne = "nix-instantiate --eval";
-      # nb = "nix-build";
-      ns = "nix-shell";
+      nu = "nh os switch -u";
+      nb = "nh os switch";
+      ns = "nix-shell --impure --run zsh -p";
 
       #-----------Remotes----------------
       # cakes = "ssh -l freshcakes freshcakes.memeoid.cx";

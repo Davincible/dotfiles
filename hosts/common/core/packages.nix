@@ -26,7 +26,17 @@
       gtk4
       gtk3
       unixtools.xxd
-      openjdk11-bootstrap
+      # openjdk11-bootstrap
+      jdk22
+      pkg-config 
+      pixman 
+      cairo 
+      libpng 
+      pango
+      libjpeg
+      wireguard-tools
+      zerotierone
+      sqlfluff
 
       # Tools
       fzf
@@ -71,7 +81,7 @@
 
       # TODO: remove later / dev env
       docker
-      nodejs_20
+      nodejs_22
       prettierd
       yarn
       stylua

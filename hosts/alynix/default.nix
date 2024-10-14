@@ -30,6 +30,7 @@
   security.pki.certificateFiles = [
     # "${config.users.users.tyler.home}/certs/localhost.crt"
     (configLib.relativeToRoot "certs/localhost.crt")
+    (configLib.relativeToRoot "certs/burp.pem")
   ];
 
   networking = {

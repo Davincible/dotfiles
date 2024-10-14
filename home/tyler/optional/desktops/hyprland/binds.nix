@@ -110,9 +110,10 @@ in
           "ALT,space,exec,rofi -show drun"
 
           #################### Basic Bindings ####################
-          "SHIFTALT,q,killactive"
+          "SUPERSHIFT,q,killactive"
           "SUPERSHIFT,e,exit"
           "CTRLSHIFT,R,exec,ags -b hypr quit; ags -b hypr"
+          ''SUPER,p,exec,${grim} -g "$(${slurp})" - | ${swappy} -f -''
 
           "SUPER,s,togglesplit"
           "SUPER,f,fullscreen,1"
@@ -141,6 +142,10 @@ in
           #################### Scroll through workspaces ####################
           "ALT,mouse:275,workspace,prev" # Horizontal scroll left
           "ALT,mouse:276,workspace,next" # Horizontal scroll right
+
+          "SUPER,h,workspace,-1"
+          "SUPER,l,workspace,+1"
+	  "SUPER,Tab,workspace,prev"
         ] ++
 
         # Change workspace

@@ -98,7 +98,7 @@
 	figma-linux
 	# figma-agent
 
-        taskwarrior
+        taskwarrior3
         vit
 
         nerdfonts

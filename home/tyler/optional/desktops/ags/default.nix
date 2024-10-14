@@ -4,7 +4,6 @@
 }: {
   imports = [
     inputs.ags.homeManagerModules.default
-    inputs.astal.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [
@@ -12,6 +11,7 @@
     dart-sass
     brightnessctl
     inputs.matugen.packages.${system}.default
+    inputs.astal.packages.${system}.default
     slurp
     wf-recorder
     wl-clipboard
@@ -23,12 +23,12 @@
     gtk3
   ];
 
-  programs.astal = {
-    enable = true;
-    extraPackages = with pkgs; [
-      libadwaita
-    ];
-  };
+  # programs.astal = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     libadwaita
+  #   ];
+  # };
 
   programs.ags = {
     enable = true;
