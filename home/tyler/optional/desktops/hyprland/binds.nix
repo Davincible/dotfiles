@@ -156,11 +156,11 @@ in
           workspaces) ++
 
         # Move window to workspace
-        (map
-          (n:
-            "SHIFTALT,${n},movetoworkspacesilent,name:${n}"
-          )
-          workspaces) ++
+        # (map
+        #   (n:
+        #     "SHIFT,${n},movetoworkspacesilent,name:${n}"
+        #   )
+        #   workspaces) ++
 
         # Move focus
         (lib.mapAttrsToList
@@ -177,11 +177,11 @@ in
           directions) ++
 
         # Move windows
-        (lib.mapAttrsToList
-          (key: direction:
-            "SHIFTALT,${key},movewindoworgroup,${direction}"
-          )
-          directions) ++
+        # (lib.mapAttrsToList
+        #   (key: direction:
+        #     "SHIFTALT,${key},movewindoworgroup,${direction}"
+        #   )
+        #   directions) ++
 
         # Move monitor focus
         (lib.mapAttrsToList
